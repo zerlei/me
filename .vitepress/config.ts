@@ -10,7 +10,9 @@ export default defineConfig({
       { text: 'Home', link: '/' },
       { text: 'Examples', link: '/markdown-examples' }
     ],
-
+    search: {
+      provider: 'local'
+    },
     sidebar: [
       {
         text: 'Examples',
@@ -20,6 +22,10 @@ export default defineConfig({
         ]
       }
     ],
+    footer: {
+      // message: 'Released under the MIT License.',
+      copyright: 'Copyright © 2019-present Evan You'
+    },
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
