@@ -12,7 +12,8 @@ hero:
   #   - theme: alt
   #     text: API Examples
   #     link: /api-examples
-
+  image:
+    src: ./asserts/zerlei.svg
 features:
   - title: Feature A
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit

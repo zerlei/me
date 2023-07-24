@@ -66,7 +66,7 @@
 }
 
 @media (min-width: 1440px) {
-  .VPNavBar.has-sidebar .content[data-v-84a11e99] {
+  .VPNavBar.has-sidebar .content {
     padding-right: 50px !important;
     padding-left: 272px !important;
   }
@@ -93,7 +93,7 @@
   }
 }
 @media (min-width: 1440px) {
-  .VPNavBar.has-sidebar .curtain[data-v-84a11e99] {
+  .VPNavBar.has-sidebar .curtain {
     width: 100% !important;
   }
 }
@@ -124,7 +124,7 @@
   --vp-custom-block-tip-bg: var(--vp-c-brand-dimm);
 }
 @media (min-width: 768px) {
-  .VPHome[data-v-441e4bfa] {
+  .VPHome {
     padding-bottom: 0px !important;
   }
   /**
