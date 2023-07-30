@@ -12,16 +12,20 @@ hero:
   #   - theme: alt
   #     text: API Examples
   #     link: /api-examples
-  image:
-    src: ./asserts/zerlei.svg
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - icon: 
+      src: cpp.svg
+    title: 制作 windows installer 的qt方案 
+    details: 静态编译qt，链接大文件，制作无dll 依赖的安装包
     link: /note/
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - icon:
+      src: cpp.svg
+    title: 打印网页的自动化工具
+    details: 根据一个url,打印网页，主要使用qt开发
+  - icon:
+      src: vue.svg
+    title: 合格的前端搬砖工
+    details: 用vue全家桶干活
 ---
 <script setup>
 import home  from "./home.vue";
