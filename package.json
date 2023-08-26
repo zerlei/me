@@ -3,12 +3,16 @@
     "docs:dev": "vitepress dev",
     "docs:build": "vitepress build && cp -r .vitepress/dist/*  /home/zhaoyouya/workspace/mysite/wwwroot ",
     "docs:preview": "vitepress preview",
-    "docs:cphtml":"cp -r .vitepress/htmlref/* /home/zhaoyouya/workspace/mysite/wwwroot/htmlref"
+    "docs:cphtml": "cp -r .vitepress/htmlref/* /home/zhaoyouya/workspace/mysite/wwwroot/htmlref"
   },
   "dependencies": {
     "vite-plugin-vitepress-auto-sidebar": "^1.5.1",
     "vitepress": "^1.0.0-beta.5",
     "vue": "^3.3.4"
   },
-  "type": "module"
+  "type": "module",
+  "devDependencies": {
+    "mermaid": "^10.4.0",
+    "vitepress-plugin-mermaid": "^2.0.14"
+  }
 }
