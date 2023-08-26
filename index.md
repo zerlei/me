@@ -2,16 +2,9 @@
 # https://vitepress.dev/reference/default-theme-home-page
 layout: home
 hero:
-  name: Zerlei的博客
+  name: Zerlei的学习笔记
   text: 很烂、没什么内容
   tagline: My blog, there are no worth content, very bad
-  # actions:
-  #   - theme: brand
-  #     text: Markdown Examples
-  #     link: /markdown-examples
-  #   - theme: alt
-  #     text: API Examples
-  #     link: /api-examples
 features:
   - icon: 
       src: cpp.svg
