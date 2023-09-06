@@ -139,3 +139,11 @@
     max-width: 2000px !important;
   }
 }
+.mermaid.eita {
+  margin-left: 7%;
+  margin-right: 7%;
+}
+
+#mermaid-3 .titleText {
+  font-size: 33px !important;
+}
