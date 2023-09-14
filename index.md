@@ -35,8 +35,8 @@ gantt
 
     section 实践
     打印工具(90%)            :active,exec1, 2023-09-01,30d
-    “windows Installer 解决方案“ :exec2, after exec1, 30d
-    "代码风格调整,重构一部分代码" :after exec2,30d
+    windows Installer 解决方案 :exec2, after exec1, 30d
+    代码风格调整,重构一部分代码 :after exec2,30d
     待定内容的系统编程实践 :2024-05-01,1y
 
     section 基础
