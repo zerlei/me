@@ -9,7 +9,6 @@
 ### nvim+vscode init.lua
 vscode 配合vim 编辑方式使用vim
 ```lua
-
 local opts = {
     noremap = true,
     silent = true
@@ -35,14 +34,18 @@ keymap('v', 'L', '$', opts)
 keymap('v', 'H', '^', opts)
 keymap('v', 'K', '3k', opts)
 keymap('v', 'J', '3j', opts)
-keymap('v', '<leader>y', '\"*y', opts)
 
+-- When yanked, move the cursor to the end of the selected text
+keymap('v', '<leader>y', '\"*y`>', opts)
+keymap('x', 'y', 'y`>', opts)
 if vim.g.vscode then
     -- vim.api.nvim_exec([[
     --     nnoremap <leader>c <Cmd>call VSCodeNotify('workbench.action.terminal.toggleTerminal')<CR>
     --     ]], false)
 else
 end
+
+
 ```
 
 ### 在一些其它编辑工具下,当不支持nvim时,使用vimrc
@@ -50,38 +53,19 @@ end
 
 ```vim
 
-local opts = {
-    noremap = true,
-    silent = true
-}
-local term_opts = {
-    silent = true
-}
--- Shorten function name
-local keymap = vim.api.nvim_set_keymap
+let mapleader = " "
 
--- Remap space as leader key
-keymap("", "<Space>", "<Nop>", opts)
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+nnoremap J 3j
+nnoremap K 3k
+nnoremap L $
+nnoremap H ^
+nnoremap <leader>p  "*p
 
-keymap('n', 'J', '3j', opts)
-keymap('n', 'K', '3k', opts)
-keymap('n', 'L', '$', opts)
-keymap('n', 'H', '^', opts)
-keymap('n', '<leader>p', '\"*p', opts)
-
-keymap('v', 'L', '$', opts)
-keymap('v', 'H', '^', opts)
-keymap('v', 'K', '3k', opts)
-keymap('v', 'J', '3j', opts)
-keymap('v', '<leader>y', '\"*y', opts)
-
-if vim.g.vscode then
-    -- vim.api.nvim_exec([[
-    --     nnoremap <leader>c <Cmd>call VSCodeNotify('workbench.action.terminal.toggleTerminal')<CR>
-    --     ]], false)
-else
-end
+vnoremap J 3j
+vnoremap K 3k
+vnoremap L $
+vnoremap H ^
+vnoremap <leader>y  "*y`>
+vnoremap y y`>
 
 ```
