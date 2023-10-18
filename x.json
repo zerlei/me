@@ -1,0 +1,154 @@
+[
+    {
+        "items": [
+            {
+                "text": "life",
+                "items": [
+                    {
+                        "text": "index",
+                        "link": "/docs/life/index.html"
+                    },
+                    {
+                        "text": "仙乐府",
+                        "link": "/docs/life/仙乐府.html"
+                    },
+                    {
+                        "text": "体育锻炼",
+                        "link": "/docs/life/体育锻炼.html"
+                    },
+                    {
+                        "text": "健康",
+                        "items": [
+                            {
+                                "text": "index",
+                                "link": "/docs/life/健康/index.html"
+                            }
+                        ],
+                        "collapsed": false
+                    },
+                    {
+                        "text": "减少高血脂和脂肪肝",
+                        "link": "/docs/life/减少高血脂和脂肪肝.html"
+                    },
+                    {
+                        "text": "打造个人品牌",
+                        "link": "/docs/life/打造个人品牌.html"
+                    },
+                    {
+                        "text": "高质量生活",
+                        "link": "/docs/life/高质量生活.html"
+                    }
+                ],
+                "collapsed": false
+            },
+            {
+                "text": "tech",
+                "items": [
+                    {
+                        "text": "fastCoding",
+                        "items": [
+                            {
+                                "text": "index",
+                                "link": "/docs/tech/fastCoding/index.html"
+                            },
+                            {
+                                "text": "vim",
+                                "link": "/docs/tech/fastCoding/vim.html"
+                            },
+                            {
+                                "text": "vscode",
+                                "link": "/docs/tech/fastCoding/vscode.html"
+                            }
+                        ],
+                        "collapsed": false
+                    },
+                    {
+                        "text": "index",
+                        "link": "/docs/tech/index.html"
+                    },
+                    {
+                        "text": "plan",
+                        "items": [
+                            {
+                                "text": "two-years-plan-1",
+                                "items": [
+                                    {
+                                        "text": "index",
+                                        "link": "/docs/tech/plan/two-years-plan-1/index.html"
+                                    }
+                                ],
+                                "collapsed": false
+                            }
+                        ],
+                        "collapsed": false
+                    },
+                    {
+                        "text": "project",
+                        "items": [
+                            {
+                                "text": "打印网页的自动化工具",
+                                "link": "/docs/tech/project/打印网页的自动化工具.html"
+                            }
+                        ],
+                        "collapsed": false
+                    },
+                    {
+                        "text": "ref",
+                        "items": [
+                            {
+                                "text": "Iot数据传输协议",
+                                "link": "/docs/tech/ref/Iot数据传输协议.html"
+                            },
+                            {
+                                "text": "PAT证书",
+                                "link": "/docs/tech/ref/PAT证书.html"
+                            },
+                            {
+                                "text": "index",
+                                "link": "/docs/tech/ref/index.html"
+                            },
+                            {
+                                "text": "wsl和host主机之间的网络",
+                                "link": "/docs/tech/ref/wsl和host主机之间的网络.html"
+                            }
+                        ],
+                        "collapsed": false
+                    },
+                    {
+                        "text": "常去的网站",
+                        "link": "/docs/tech/常去的网站.html"
+                    },
+                    {
+                        "text": "技术路线",
+                        "link": "/docs/tech/技术路线.html"
+                    },
+                    {
+                        "text": "数据结构&算法",
+                        "items": [
+                            {
+                                "text": "1-时间&空间复杂度",
+                                "link": "/docs/tech/数据结构&算法/1-时间&空间复杂度.html"
+                            },
+                            {
+                                "text": "index",
+                                "link": "/docs/tech/数据结构&算法/index.html"
+                            }
+                        ],
+                        "collapsed": false
+                    },
+                    {
+                        "text": "面向业务的完备生产力",
+                        "items": [
+                            {
+                                "text": "index",
+                                "link": "/docs/tech/面向业务的完备生产力/index.html"
+                            }
+                        ],
+                        "collapsed": false
+                    }
+                ],
+                "collapsed": false
+            }
+        ]
+    }
+]

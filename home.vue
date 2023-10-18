@@ -5,7 +5,7 @@
         color: var(--vp-c-text-1);
         ">
             <p style="font-size: 35px;margin-top: 40px; line-height: 35px; font-style: italic;font-weight: 600">
-                The road is too long, don't worry much, just go ahead. In past, you didn't complete it, now, start them, it's better than do nothing
+                The road is too long, don't worry much, just go ahead. In past, you didn't complete it, now, let's begin, it's better than do nothing
             </p>
             <!-- <p>正好有个云服务器,做了一个blog网站。但无奈水平有限，也不是很勤快，写不出好的东西，现在是个人的学习和练习笔记</p>
 
@@ -34,3 +34,4 @@ p {
     margin-top: 30px;
 }
 </style>
+
