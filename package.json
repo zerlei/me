@@ -6,13 +6,20 @@
     "docs:cphtml": "cp -r .vitepress/htmlref/* /home/zhaoyouya/workspace/mysite/wwwroot/htmlref"
   },
   "dependencies": {
-    "vite-plugin-vitepress-auto-sidebar": "^1.5.1",
-    "vitepress": "^1.0.0-beta.5",
+    "dayjs": "^1.11.10",
+    "fast-glob": "^3.3.1",
+    "feed": "^4.2.2",
+    "fs-extra": "^11.1.1",
+    "gitalk": "^1.8.0",
+    "globby": "^13.2.2",
+    "gray-matter": "^4.0.3",
+    "vite-plugin-vitepress-auto-sidebar": "^1.6.1",
+    "vitepress": "^1.0.0-rc.22",
     "vue": "^3.3.4"
   },
   "type": "module",
   "devDependencies": {
-    "mermaid": "^10.4.0",
-    "vitepress-plugin-mermaid": "^2.0.14"
+    "mermaid": "^10.5.0",
+    "vitepress-plugin-mermaid": "^2.0.15"
   }
 }

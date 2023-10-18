@@ -65,14 +65,14 @@
   }
 }
 
-@media (min-width: 1440px) {
+/* @media (min-width: 1440px) {
   .VPNavBar.has-sidebar .content {
     padding-right: 50px !important;
     padding-left: 272px !important;
   }
-}
+} */
 
-@media (min-width: 1440px) {
+/* @media (min-width: 1440px) {
   .VPContent.has-sidebar {
     padding-right: 50px !important;
     padding-left: 272px !important;
@@ -96,15 +96,22 @@
   .VPNavBar.has-sidebar .curtain {
     width: 100% !important;
   }
-}
 
+
+}
+.VPDoc:not(.has-sidebar) .content {
+  max-width: 2000px !important;
+}
+.VPDoc:not(.has-sidebar) .container {
+  max-width: 2000px !important;
+}
 @media (min-width: 1440px) {
   .VPNavBar.has-sidebar div.title {
     padding-left: 32px !important;
     width: 272px !important;
     border-bottom: 1px solid var(--vp-c-divider);
   }
-}
+} */
 
 /**
  * Component: Custom Block
@@ -123,6 +130,10 @@
   --vp-custom-block-tip-text: var(--vp-c-brand-lightest);
   --vp-custom-block-tip-bg: var(--vp-c-brand-dimm);
 }
+/* @media (min-width: 1440px) {
+
+} */
+
 @media (min-width: 768px) {
   .VPHome {
     padding-bottom: 0px !important;

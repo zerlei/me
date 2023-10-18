@@ -13,7 +13,7 @@ export default withMermaid({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: "Tech", link: "/docs/tech/" },
-      { text: "Life", link: "/docs/life/" },
+      { text: "Life", link: "/docs/life_ca/" },
     ],
     search: {
       provider: "local",
@@ -32,6 +32,7 @@ export default withMermaid({
       // add plugin
       AutoSidebar({
         path: "/",
+        collapsed:true,
         sideBarResolved: (data) => {
           let d =filterDocsSideBar(data)
           // console.log(JSON.stringify(d))
