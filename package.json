@@ -13,6 +13,8 @@
     "gitalk": "^1.8.0",
     "globby": "^13.2.2",
     "gray-matter": "^4.0.3",
+    "naive-ui": "^2.35.0",
+    "vfonts": "^0.0.3",
     "vite-plugin-vitepress-auto-sidebar": "^1.6.1",
     "vitepress": "^1.0.0-rc.22",
     "vue": "^3.3.4"
