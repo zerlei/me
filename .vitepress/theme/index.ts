@@ -4,7 +4,7 @@ import Theme from 'vitepress/theme'
 
 import ZerleiLayout from './component/ZerleiLayout.vue'
 
-import './style.css'
+// import './style.css'
 
 export default {
   extends: Theme,

@@ -11,9 +11,9 @@ export default withMermaid({
     // logo:'../asserts/zerlei.svg',
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: "🏡blogs", link: "/docs/tech/" },
-      { text: "🌈history", link: "/docs/life_ca/" },
-      { text: "💋about", link: "/docs/life_ca/" },
+      { text: "🏡blogs", link: "?type=blogs" },
+      { text: "🌈history", link: "?type=history" },
+      { text: "🇨🇳about", link: "?type=about" },
     ],
     search: {
       provider: "local",
