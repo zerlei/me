@@ -3,7 +3,7 @@
     <template #doc-before>
       <div>
         <h1 class="title">{{ frontMatter.title }}</h1>
-        <div style="display: flex">
+        <div style="display: flex;margin-bottom: 5px;">
           <span
             style="
               background-color: rgba(32, 128, 240, 0.12);
