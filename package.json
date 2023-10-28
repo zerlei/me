@@ -1,7 +1,7 @@
 {
   "scripts": {
     "docs:dev": "vitepress dev",
-    "docs:build": "vitepress build && cp -r .vitepress/dist/*  /home/zhaoyouya/workspace/mysite/wwwroot ",
+    "docs:build": "vitepress build && rm -rf /home/zhaoyouya/workspace/mysite/wwwroot/*  && cp -r .vitepress/dist/*  /home/zhaoyouya/workspace/mysite/wwwroot ",
     "docs:preview": "vitepress preview",
     "docs:cphtml": "cp -r .vitepress/htmlref/* /home/zhaoyouya/workspace/mysite/wwwroot/htmlref"
   },
