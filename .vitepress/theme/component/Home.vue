@@ -53,14 +53,6 @@
                     content-style="margin-top: 10px;"
                   >
                     <template #description>
-                      <n-space
-                        justify="space-between"
-                        size="small"
-                        style="margin-top: 4px"
-                      >
-                        <div>Created:{{ item.frontMatter.birthtime }}</div>
-                        <div>Last Update:{{ item.frontMatter.mtime }}</div>
-                      </n-space>
                       <n-space size="small" style="margin-top: 4px">
                         <n-tag
                           v-for="t in item.frontMatter.tags || []"
@@ -73,6 +65,14 @@
                       </n-space>
                     </template>
                     {{ item.frontMatter.desp }}
+                    <n-space
+                      justify="space-between"
+                      size="small"
+                      style="margin-top: 4px"
+                    >
+                      <div>Created:{{ item.frontMatter.birthtime }}</div>
+                      <div>Last Update:{{ item.frontMatter.mtime }}</div>
+                    </n-space>
                   </n-thing>
                 </n-list-item>
               </n-list>
@@ -121,7 +121,6 @@ const {
 //naive-ui 默认不支持 ssr 渲染，而vitepress 是ssr 渲染，这里使naive-ui组件跳过ssr
 const notSsrRender = ref(false);
 const { theme, isDark } = useData();
-
 
 let postsAll = theme.value.posts || [];
 const groupTabs = ref([
