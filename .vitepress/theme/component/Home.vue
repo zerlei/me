@@ -25,7 +25,12 @@
             <li>2. qt</li>
             <li>3. 存储、db</li>
             <li>4. zig</li>
-            <li>5. web前端</li>
+          </ol>
+          <p>我也在这些方面工作：</p>
+          <ol>
+            <li>1. js/ts vue</li>
+            <li>2. .net c#</li>
+            <li>3. python</li>
           </ol>
           <p>(右图为腾讯混元大模型生成)</p>
           <img
@@ -64,11 +69,13 @@
                         </n-tag>
                       </n-space>
                     </template>
+                    <p>
                     {{ item.frontMatter.desp }}
+                    </p>
                     <n-space
                       justify="space-between"
                       size="small"
-                      style="margin-top: 4px"
+                      style="margin-top: 4px;font-size: small;"
                     >
                       <div>Created:{{ item.frontMatter.birthtime }}</div>
                       <div>Last Update:{{ item.frontMatter.mtime }}</div>

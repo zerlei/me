@@ -20,7 +20,6 @@
                   content-style="margin-top: 10px;"
                 >
                   <template #description>
- 
                     <n-space size="small" style="margin-top: 4px">
                       <n-tag
                         v-for="t in item.frontMatter.tags || []"
@@ -34,13 +33,13 @@
                   </template>
                   {{ item.frontMatter.desp }}
                   <n-space
-                      justify="space-between"
-                      size="small"
-                      style="margin-top: 4px"
-                    >
-                      <div>Created:{{ item.frontMatter.birthtime }}</div>
-                      <div>Last Update:{{ item.frontMatter.mtime }}</div>
-                    </n-space>
+                    justify="space-between"
+                    size="small"
+                    style="margin-top: 4px; font-size: small"
+                  >
+                    <div>Created:{{ item.frontMatter.birthtime }}</div>
+                    <div>Last Update:{{ item.frontMatter.mtime }}</div>
+                  </n-space>
                 </n-thing>
               </n-list-item>
             </n-list>
@@ -135,7 +134,6 @@ const historyPosts = ref([
     year: "2039",
   },
 ] as Array<any>);
-
 
 let postsAll = theme.value.posts || [];
 let nTheme = ref(lightTheme);
