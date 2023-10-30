@@ -23,7 +23,7 @@
         </div>
         <div class="date" style="display: flex; justify-content: space-between">
           <div>🕒 Create: {{ frontMatter.birthtime }}</div>
-          <div>🕒 Last Update: {{ frontMatter.birthtime }}</div>
+          <div>🕒 Last Update: {{ frontMatter.mtime}}</div>
         </div>
       </div>
     </template>
