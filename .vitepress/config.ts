@@ -13,7 +13,7 @@ export default withMermaid({
     nav: [
       { text: "🏡blogs", link: "/" },
       { text: "🌈history", link: "/history" },
-      { text: "🇨🇳about", link: "/about" },
+      { text: "🐷about", link: "/about" },
     ],
     search: {
       provider: "local",
