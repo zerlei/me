@@ -1,8 +1,8 @@
 <template>
   <div v-if="notSsrRender">
     <n-config-provider :theme="nTheme">
-      <n-space justify="center">
-        <div class="postsTab" style="position: relative">
+      <n-space justify="center" :item-style="spaceItemStyle">
+        <!-- <div >
           <div
             style="
               font-size: 48px;
@@ -32,20 +32,17 @@
             <li>2. .net c#</li>
             <li>3. python</li>
           </ol>
-          <p>(右图为腾讯混元大模型生成)</p>
-          <img
-            style="
-              border-radius: 20px;
-              width: 250px;
-              position: absolute;
-              top: 30px;
-              right: 0;
-            "
-            :src="tcai"
-          />
+          
+
+        </div> -->
+        <div>
+          <n-space justify="center">
+            <img style="border-radius: 20px; width: 100%;max-width: 350px;" :src="tcai" />
+          </n-space>
+          <p style="text-align: center">《此图为腾讯混元大模型生成》</p>
         </div>
 
-        <n-tabs type="line" class="postsTab" animated>
+        <n-tabs type="line" animated>
           <n-tab-pane v-for="group in groupTabs" :name="getTabsName(group)">
             <n-scrollbar class="scrollArea">
               <n-list hoverable clickable>
@@ -70,12 +67,12 @@
                       </n-space>
                     </template>
                     <p>
-                    {{ item.frontMatter.desp }}
+                      {{ item.frontMatter.desp }}
                     </p>
                     <n-space
                       justify="space-between"
                       size="small"
-                      style="margin-top: 4px;font-size: small;"
+                      style="margin-top: 4px; font-size: small"
                     >
                       <div>Created:{{ item.frontMatter.birthtime }}</div>
                       <div>Last Update:{{ item.frontMatter.mtime }}</div>
@@ -130,6 +127,9 @@ const notSsrRender = ref(false);
 const { theme, isDark } = useData();
 
 let postsAll = theme.value.posts || [];
+const spaceItemStyle = ref({
+  width:window.innerWidth>1376?"1376px":'100%'
+});
 const groupTabs = ref([
   {
     tag: "all",
@@ -140,6 +140,17 @@ let nTheme = ref(lightTheme);
 if (isDark.value) {
   nTheme.value = darkTheme;
 }
+function handleWindowSizeChange() {
+  let width = window.innerWidth;
+  if (width > 1376) {
+    spaceItemStyle.value.width = "1376px";
+  } else {
+    spaceItemStyle.value.width = "100%";
+  }
+}
+
+// 监听 resize 事件
+window.addEventListener("resize", handleWindowSizeChange);
 watch(isDark, (o, n) => {
   if (!n) {
     nTheme.value = darkTheme;
@@ -184,17 +195,13 @@ onMounted(() => {
 </script>
 
 <style>
-.scrollArea {
+/* .scrollArea {
   max-height: calc(80vh);
-  /* height: 500px; */
-  /* background-color: blue; */
-}
+ 
+} */
 #footer {
   background-color: var(--vp-c-bg);
   border-top: 1px solid;
   border-color: var(--vp-input-border-color);
-}
-.postsTab {
-  width: calc(var(--vp-layout-max-width));
 }
 </style>
