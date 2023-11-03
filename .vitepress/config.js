@@ -36,12 +36,12 @@ export default withMermaid({
         collapsed:true,
         sideBarResolved: (data) => {
           let d =filterDocsSideBar(data)
-           return d as any
+           return d 
         },
         // You can also set options to adjust sidebar data
         // see option document below
       }),
-      htmlImport() as any,
+      htmlImport(),
     ],
     server: {
       host: "0.0.0.0",

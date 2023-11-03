@@ -37,31 +37,20 @@
         </div> -->
         <div>
           <n-space justify="center">
-            <img style="border-radius: 20px; width: 100%;max-width: 350px;" :src="tcai" />
+            <img style="border-radius: 20px; width: 100%; max-width: 350px" :src="tcai" />
           </n-space>
-          <p style="text-align: center">《此图为腾讯混元大模型生成》</p>
+          <!-- <p style="text-align: center">《此图为腾讯混元大模型生成》</p> -->
         </div>
 
         <n-tabs type="line" animated>
           <n-tab-pane v-for="group in groupTabs" :name="getTabsName(group)">
             <n-scrollbar class="scrollArea">
               <n-list hoverable clickable>
-                <n-list-item
-                  v-for="(item, index) in group.Children"
-                  v-on:click="routeGo(item)"
-                >
-                  <n-thing
-                    :title="item.frontMatter.title"
-                    content-style="margin-top: 10px;"
-                  >
+                <n-list-item v-for="(item, index) in group.Children" v-on:click="routeGo(item)">
+                  <n-thing :title="item.frontMatter.title" content-style="margin-top: 10px;">
                     <template #description>
                       <n-space size="small" style="margin-top: 4px">
-                        <n-tag
-                          v-for="t in item.frontMatter.tags || []"
-                          :bordered="false"
-                          type="info"
-                          size="small"
-                        >
+                        <n-tag v-for="t in item.frontMatter.tags || []" :bordered="false" type="info" size="small">
                           {{ t }}
                         </n-tag>
                       </n-space>
@@ -69,11 +58,7 @@
                     <p>
                       {{ item.frontMatter.desp }}
                     </p>
-                    <n-space
-                      justify="space-between"
-                      size="small"
-                      style="margin-top: 4px; font-size: small"
-                    >
+                    <n-space justify="space-between" size="small" style="margin-top: 4px; font-size: small">
                       <div>Created:{{ item.frontMatter.birthtime }}</div>
                       <div>Last Update:{{ item.frontMatter.mtime }}</div>
                     </n-space>
@@ -86,9 +71,7 @@
       </n-space>
     </n-config-provider>
   </div>
-  <div
-    id="footer"
-    style="
+  <div id="footer" style="
       position: fixed;
       bottom: 0;
       left: 0;
@@ -97,12 +80,11 @@
       font-size: large;
       line-height: 45px;
       z-index: 999;
-    "
-  >
+    ">
     备案号:XXXXXXXXXXX
   </div>
 </template>
-<script lang="ts" setup>
+<script setup>
 import { ref, watch, onMounted, watchEffect } from "vue";
 import { useRoute } from "vitepress";
 //commonJs 报错？ 错误信息推荐使用这种导入。
@@ -128,14 +110,14 @@ const { theme, isDark } = useData();
 
 let postsAll = theme.value.posts || [];
 const spaceItemStyle = ref({
-  width:window.innerWidth>1376?"1376px":'100%'
+  width: window.innerWidth > 1376 ? "1376px" : "100%",
 });
 const groupTabs = ref([
   {
     tag: "all",
     Children: postsAll,
   },
-] as Array<any>);
+]);
 let nTheme = ref(lightTheme);
 if (isDark.value) {
   nTheme.value = darkTheme;
@@ -158,15 +140,15 @@ watch(isDark, (o, n) => {
     nTheme.value = lightTheme;
   }
 });
-function routeGo(item: any) {
+function routeGo(item) {
   window.location.href = withBase(item.regularPath);
 }
 
 function setGroupPosts() {
-  const insertGroupTab = (et: string, e: any) => {
+  const insertGroupTab = (et, e) => {
     let it = groupTabs.value.find((e1) => {
-      return (e1 as any).tag == et;
-    }) as any;
+      return e1.tag == et;
+    });
     if (it) {
       it.Children.push(e);
     } else {
