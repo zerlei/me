@@ -1,55 +1,51 @@
 <template>
   <div v-if="notSsrRender">
     <n-config-provider :theme="nTheme">
- 
-        <n-space
-          justify="center"
-          :item-style="spaceItemStyle"
-        >
-          <n-scrollbar>
-            <div v-for="group in historyPosts.filter((e) => e.Children)">
-              <div class="historyYear">
-                {{ group.year
-                }}<span style="font-size: 35px"
-                  >({{ group.Children.length }})</span
-                >
-              </div>
-              <n-list hoverable clickable>
-                <n-list-item
-                  v-for="(item, index) in group.Children"
-                  v-on:click="routeGo(item)"
-                >
-                  <n-thing
-                    :title="item.frontMatter.title"
-                    content-style="margin-top: 10px;"
-                  >
-                    <template #description>
-                      <n-space size="small" style="margin-top: 4px">
-                        <n-tag
-                          v-for="t in item.frontMatter.tags || []"
-                          :bordered="false"
-                          type="info"
-                          size="small"
-                        >
-                          {{ t }}
-                        </n-tag>
-                      </n-space>
-                    </template>
-                    {{ item.frontMatter.desp }}
-                    <n-space
-                      justify="space-between"
-                      size="small"
-                      style="margin-top: 4px; font-size: small"
-                    >
-                      <div>Created:{{ item.frontMatter.birthtime }}</div>
-                      <div>Last Update:{{ item.frontMatter.mtime }}</div>
-                    </n-space>
-                  </n-thing>
-                </n-list-item>
-              </n-list>
+      <n-space justify="center" :item-style="spaceItemStyle">
+        <n-scrollbar>
+          <div v-for="group in historyPosts.filter((e) => e.Children)">
+            <div class="historyYear">
+              {{ group.year
+              }}<span style="font-size: 35px"
+                >({{ group.Children.length }})</span
+              >
             </div>
-          </n-scrollbar>
-        </n-space>
+            <n-list hoverable clickable>
+              <n-list-item
+                v-for="(item, index) in group.Children"
+                v-on:click="routeGo(item)"
+              >
+                <n-thing
+                  :title="item.frontMatter.title"
+                  content-style="margin-top: 10px;"
+                >
+                  <template #description>
+                    <n-space size="small" style="margin-top: 4px">
+                      <n-tag
+                        v-for="t in item.frontMatter.tags || []"
+                        :bordered="false"
+                        type="info"
+                        size="small"
+                      >
+                        {{ t }}
+                      </n-tag>
+                    </n-space>
+                  </template>
+                  {{ item.frontMatter.desp }}
+                  <n-space
+                    justify="space-between"
+                    size="small"
+                    style="margin-top: 4px; font-size: small"
+                  >
+                    <div>Created:{{ item.frontMatter.birthtime }}</div>
+                    <div>Last Update:{{ item.frontMatter.mtime }}</div>
+                  </n-space>
+                </n-thing>
+              </n-list-item>
+            </n-list>
+          </div>
+        </n-scrollbar>
+      </n-space>
     </n-config-provider>
   </div>
 </template>
@@ -140,9 +136,9 @@ const historyPosts = ref([
   },
 ] as Array<any>);
 
-const spaceItemStyle= ref({
-  width:window.innerWidth>1376?"1376px":'100%'
-})
+const spaceItemStyle = ref({
+  width: "1376px",
+});
 let postsAll = theme.value.posts || [];
 let nTheme = ref(lightTheme);
 if (isDark.value) {
@@ -159,18 +155,13 @@ function routeGo(item: any) {
   window.location.href = withBase(item.regularPath);
 }
 function handleWindowSizeChange() {
-  let  width = window.innerWidth;
-  if(width>1376) {
-    spaceItemStyle.value.width = '1376px'
+  let width = window.innerWidth;
+  if (width > 1376) {
+    spaceItemStyle.value.width = "1376px";
   } else {
-    spaceItemStyle.value.width = '100%'
-
+    spaceItemStyle.value.width = "100%";
   }
 }
-
-// 监听 resize 事件
-window.addEventListener('resize', handleWindowSizeChange);
-
 
 function setGroupPosts() {
   postsAll.forEach((e) => {
@@ -192,11 +183,15 @@ function setGroupPosts() {
 onMounted(() => {
   notSsrRender.value = true;
   setGroupPosts();
+  // 监听 resize 事件
+  window.addEventListener("resize", handleWindowSizeChange);
+  spaceItemStyle.value = {
+    width: window.innerWidth > 1376 ? "1376px" : "100%",
+  };
 });
 </script>
 
 <style>
-
 .historyYear {
   border-bottom: 5px double;
   border-color: var(--vp-input-border-color);
@@ -205,6 +200,5 @@ onMounted(() => {
   line-height: 55px;
   padding-bottom: 10px;
   padding-top: 10px;
-
 }
 </style>

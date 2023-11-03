@@ -110,7 +110,7 @@ const { theme, isDark } = useData();
 
 let postsAll = theme.value.posts || [];
 const spaceItemStyle = ref({
-  width: window.innerWidth > 1376 ? "1376px" : "100%",
+  width: "1376px",
 });
 const groupTabs = ref([
   {
@@ -132,7 +132,7 @@ function handleWindowSizeChange() {
 }
 
 // 监听 resize 事件
-window.addEventListener("resize", handleWindowSizeChange);
+
 watch(isDark, (o, n) => {
   if (!n) {
     nTheme.value = darkTheme;
@@ -173,6 +173,10 @@ function getTabsName(group) {
 onMounted(() => {
   notSsrRender.value = true;
   setGroupPosts();
+  window.addEventListener("resize", handleWindowSizeChange);
+  spaceItemStyle.value = {
+    width:window.innerWidth > 1376 ? "1376px" : "100%"
+  }
 });
 </script>
 
