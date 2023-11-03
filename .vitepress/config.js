@@ -15,9 +15,9 @@ export default withMermaid({
       { text: "🌈history", link: "/history" },
       { text: "🐷about", link: "/about" },
     ],
-    search: {
-      provider: "local",
-    },
+    // search: {
+    //   provider: "local",
+    // },
     posts: await getPosts(),
     pageSize: 5,
     sidebar: [],

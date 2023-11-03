@@ -2,9 +2,10 @@
 tags:
   - 健康
   - linux
-  - openSuse
-  - snapper
+keys:
   - todo
+  - snapper
+  - openSuse
 ---
 
 ::: info Introduction

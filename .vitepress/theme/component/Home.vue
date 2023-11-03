@@ -37,7 +37,10 @@
         </div> -->
         <div>
           <n-space justify="center">
-            <img style="border-radius: 20px; width: 100%; max-width: 350px" :src="tcai" />
+            <img
+              style="border-radius: 20px; width: 100%; max-width: 350px"
+              :src="tcai"
+            />
           </n-space>
           <!-- <p style="text-align: center">《此图为腾讯混元大模型生成》</p> -->
         </div>
@@ -45,12 +48,33 @@
         <n-tabs type="line" animated>
           <n-tab-pane v-for="group in groupTabs" :name="getTabsName(group)">
             <n-scrollbar class="scrollArea">
+              <n-input placeholder="filter" v-model:value="filter"></n-input>
               <n-list hoverable clickable>
-                <n-list-item v-for="(item, index) in group.Children" v-on:click="routeGo(item)">
-                  <n-thing :title="item.frontMatter.title" content-style="margin-top: 10px;">
+                <n-list-item
+                  v-for="(item, index) in filterGroupChild(group.Children)"
+                  v-on:click="routeGo(item)"
+                >
+                  <n-thing
+                    :title="item.frontMatter.title"
+                    content-style="margin-top: 10px;"
+                  >
                     <template #description>
                       <n-space size="small" style="margin-top: 4px">
-                        <n-tag v-for="t in item.frontMatter.tags || []" :bordered="false" type="info" size="small">
+                        <n-tag
+                          v-for="t in item.frontMatter.tags || []"
+                          :bordered="false"
+                          type="info"
+                          size="small"
+                        >
+                          {{ t }}
+                        </n-tag>
+                        <n-tag
+                          v-for="t in item.frontMatter.keys || []"
+                          :bordered="false"
+                          type="info"
+                          size="small"
+                          round
+                        >
                           {{ t }}
                         </n-tag>
                       </n-space>
@@ -58,7 +82,11 @@
                     <p>
                       {{ item.frontMatter.desp }}
                     </p>
-                    <n-space justify="space-between" size="small" style="margin-top: 4px; font-size: small">
+                    <n-space
+                      justify="space-between"
+                      size="small"
+                      style="margin-top: 4px; font-size: small"
+                    >
                       <div>Created:{{ item.frontMatter.birthtime }}</div>
                       <div>Last Update:{{ item.frontMatter.mtime }}</div>
                     </n-space>
@@ -71,7 +99,9 @@
       </n-space>
     </n-config-provider>
   </div>
-  <div id="footer" style="
+  <div
+    id="footer"
+    style="
       position: fixed;
       bottom: 0;
       left: 0;
@@ -80,7 +110,8 @@
       font-size: large;
       line-height: 45px;
       z-index: 999;
-    ">
+    "
+  >
     备案号:XXXXXXXXXXX
   </div>
 </template>
@@ -103,11 +134,12 @@ const {
   NTabs,
   NTabPane,
   NScrollbar,
+  NInput,
 } = pkg;
 //naive-ui 默认不支持 ssr 渲染，而vitepress 是ssr 渲染，这里使naive-ui组件跳过ssr
 const notSsrRender = ref(false);
 const { theme, isDark } = useData();
-
+const filter = ref("");
 let postsAll = theme.value.posts || [];
 const spaceItemStyle = ref({
   width: "1376px",
@@ -130,7 +162,25 @@ function handleWindowSizeChange() {
     spaceItemStyle.value.width = "100%";
   }
 }
-
+function tagsIncludes(tags, str) {
+  if (tags) {
+    for (let i = 0; i < tags.length; ++i) {
+      if (tags[i].includes(str)) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+function filterGroupChild(Children) {
+  return Children.filter((e) => {
+    return (
+      e.frontMatter.title.includes(filter.value) ||
+      tagsIncludes(e.frontMatter.tags, filter.value) ||
+      e.frontMatter.desp.includes(filter.value)
+    );
+  });
+}
 // 监听 resize 事件
 
 watch(isDark, (o, n) => {
@@ -175,8 +225,8 @@ onMounted(() => {
   setGroupPosts();
   window.addEventListener("resize", handleWindowSizeChange);
   spaceItemStyle.value = {
-    width:window.innerWidth > 1376 ? "1376px" : "100%"
-  }
+    width: window.innerWidth > 1376 ? "1376px" : "100%",
+  };
 });
 </script>
 

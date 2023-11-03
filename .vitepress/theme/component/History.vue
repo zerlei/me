@@ -29,6 +29,15 @@
                       >
                         {{ t }}
                       </n-tag>
+                      <n-tag
+                        v-for="t in item.frontMatter.keys || []"
+                        :bordered="false"
+                        type="info"
+                        size="small"
+                        round
+                      >
+                      {{ t }}
+                    </n-tag>
                     </n-space>
                   </template>
                   {{ item.frontMatter.desp }}
