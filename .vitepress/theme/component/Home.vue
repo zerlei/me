@@ -163,7 +163,7 @@ function handleWindowSizeChange() {
     spaceItemStyle.value.width = "100%";
   }
 }
-function tagsIncludes(tags, str) {
+function tagsOrKeysIncludes(tags, str) {
   if (tags) {
     for (let i = 0; i < tags.length; ++i) {
       if (tags[i].includes(str)) {
@@ -177,7 +177,8 @@ function filterGroupChild(Children) {
   return Children.filter((e) => {
     return (
       e.frontMatter.title.includes(filter.value) ||
-      tagsIncludes(e.frontMatter.tags, filter.value) ||
+      tagsOrKeysIncludes(e.frontMatter.tags, filter.value) || 
+      tagsOrKeysIncludes(e.frontMatter.keys, filter.value) || 
       e.frontMatter.desp.includes(filter.value)
     );
   });

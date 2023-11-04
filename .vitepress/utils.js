@@ -39,7 +39,7 @@ export async function getPosts() {
         const content = await fs.readFile(item, "utf-8");
         const state = fs.statSync(item)
         //查找文字内容的简介
-        let despMatch = content.match(/:::\s*info\s*Introduction(?:.|\n)*:::/)
+        let despMatch = content.match(/:::\s*info\s*Introduction(?:.|\n)*?:::/)
         let desp = ''
         if(despMatch) {
           desp = despMatch[0].replace(/:::\s*info\s*Introduction/,'').replace(':::','')
