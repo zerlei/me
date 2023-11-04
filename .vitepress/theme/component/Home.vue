@@ -44,11 +44,12 @@
           </n-space>
           <!-- <p style="text-align: center">《此图为腾讯混元大模型生成》</p> -->
         </div>
-
+        <n-input placeholder="filter" v-model:value="filter"></n-input>
         <n-tabs type="line" animated>
+       
           <n-tab-pane v-for="group in groupTabs" :name="getTabsName(group)">
             <n-scrollbar class="scrollArea">
-              <n-input placeholder="filter" v-model:value="filter"></n-input>
+          
               <n-list hoverable clickable>
                 <n-list-item
                   v-for="(item, index) in filterGroupChild(group.Children)"
