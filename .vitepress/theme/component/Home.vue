@@ -46,10 +46,8 @@
         </div>
         <n-input placeholder="filter" v-model:value="filter"></n-input>
         <n-tabs type="line" animated>
-       
           <n-tab-pane v-for="group in groupTabs" :name="getTabsName(group)">
             <n-scrollbar class="scrollArea">
-          
               <n-list hoverable clickable>
                 <n-list-item
                   v-for="(item, index) in filterGroupChild(group.Children)"
@@ -100,7 +98,7 @@
       </n-space>
     </n-config-provider>
   </div>
-  <div
+  <a
     id="footer"
     style="
       position: fixed;
@@ -108,13 +106,15 @@
       left: 0;
       width: 100%;
       text-align: center;
-      font-size: large;
-      line-height: 45px;
+      /* font-size: large; */
+      line-height: 35px;
+      cursor: pointer;
       z-index: 999;
     "
+    href="https://beian.miit.gov.cn/"
   >
-    备案号:XXXXXXXXXXX
-  </div>
+    豫ICP备2023028578号
+  </a>
 </template>
 <script setup>
 import { ref, watch, onMounted, watchEffect } from "vue";
@@ -177,8 +177,8 @@ function filterGroupChild(Children) {
   return Children.filter((e) => {
     return (
       e.frontMatter.title.includes(filter.value) ||
-      tagsOrKeysIncludes(e.frontMatter.tags, filter.value) || 
-      tagsOrKeysIncludes(e.frontMatter.keys, filter.value) || 
+      tagsOrKeysIncludes(e.frontMatter.tags, filter.value) ||
+      tagsOrKeysIncludes(e.frontMatter.keys, filter.value) ||
       e.frontMatter.desp.includes(filter.value)
     );
   });
