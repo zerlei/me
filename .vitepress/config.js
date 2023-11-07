@@ -12,7 +12,7 @@ export default withMermaid({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: "🏡blogs", link: "/" },
-      { text: "🌈history", link: "/history" },
+      { text: "🚀history", link: "/history" },
       { text: "🐷about", link: "/about" },
     ],
     // search: {
