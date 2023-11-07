@@ -113,10 +113,10 @@
     "
   >
   🌈
-    <a href="https://beian.miit.gov.cn/"> 豫ICP备2023028578号 </a>
+    <a href="https://beian.miit.gov.cn/">豫ICP备2023028578号 </a>
     |
     <span style="position: relative">
-      <a href="https://beian.miit.gov.cn/"> 豫公网安备号xxxxxxxxx </a>
+      <a href="https://beian.miit.gov.cn/">豫公网安备号xxxxxxxxx </a>
     </span>
     🌈
   </div>
