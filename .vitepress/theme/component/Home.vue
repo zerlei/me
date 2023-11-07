@@ -122,8 +122,7 @@
   </div>
 </template>
 <script setup>
-import { ref, watch, onMounted, watchEffect } from "vue";
-import { useRoute } from "vitepress";
+import { ref, watch, onMounted } from "vue";
 //commonJs 报错？ 错误信息推荐使用这种导入。
 import * as pkg from "naive-ui";
 import tcai from "../../../asserts/tcai.png";
