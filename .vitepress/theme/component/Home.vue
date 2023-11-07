@@ -35,13 +35,65 @@
           
 
         </div> -->
-        <div>
-          <n-space justify="center">
-            <img
-              style="border-radius: 20px; width: 100%; max-width: 350px"
-              :src="tcai"
-            />
-          </n-space>
+        <div style="display: block;">
+          <n-scrollbar style="max-height: 350px; max-width: 1000px;float: left;padding: 5px;">
+            <div style="height: 100px">
+              <n-gradient-text style="line-height: 34px;" type="success">Hi~ 我也不知道怎么介绍自己，先留个空吧<span style="font-size: 34px;">超大的文字</span></n-gradient-text>
+              <br />
+              <p style="text-align: center;">
+
+              <n-gradient-text style="line-height: 50px;font-size: 50px;" type="info" >更大的居中文字</n-gradient-text>
+              </p>
+            </div>
+            <div style="line-height: 30px;">
+              📌
+              📌
+              📌
+            </div>
+            <n-thing
+              class="pin"
+              v-for="(item, index) in getPinGroup()"
+              :title="item.frontMatter.title"
+              content-style="margin-top: 10px;"
+              v-on:click="routeGo(item)"
+            >
+              <template #description>
+                <n-space size="small" style="margin-top: 4px">
+                  <n-tag
+                    v-for="t in item.frontMatter.tags || []"
+                    :bordered="false"
+                    type="info"
+                    size="small"
+                  >
+                    {{ t }}
+                  </n-tag>
+                  <n-tag
+                    v-for="t in item.frontMatter.keys || []"
+                    :bordered="false"
+                    type="info"
+                    size="small"
+                    round
+                  >
+                    {{ t }}
+                  </n-tag>
+                </n-space>
+              </template>
+              <p>
+                {{ item.frontMatter.desp }}
+              </p>
+              <n-space
+                justify="space-between"
+                size="small"
+                style="margin-top: 4px; font-size: small"
+              >
+              </n-space>
+            </n-thing>
+          </n-scrollbar>
+          <img
+            style="border-radius: 20px;  /* width: 100%; */ max-width: 350px;"
+            :src="tcai"
+          />
+
           <!-- <p style="text-align: center">《此图为腾讯混元大模型生成》</p> -->
         </div>
         <n-input placeholder="filter" v-model:value="filter"></n-input>
@@ -112,7 +164,7 @@
       z-index: 999;
     "
   >
-  🌈
+    🌈
     <a href="https://beian.miit.gov.cn/">豫ICP备2023028578号 </a>
     |
     <span style="position: relative">
@@ -140,6 +192,7 @@ const {
   NTabPane,
   NScrollbar,
   NInput,
+  NGradientText,
 } = pkg;
 //naive-ui 默认不支持 ssr 渲染，而vitepress 是ssr 渲染，这里使naive-ui组件跳过ssr
 const notSsrRender = ref(false);
@@ -185,6 +238,11 @@ function filterGroupChild(Children) {
       tagsOrKeysIncludes(e.frontMatter.keys, filter.value) ||
       e.frontMatter.desp.includes(filter.value)
     );
+  });
+}
+function getPinGroup() {
+  return postsAll.filter((e) => {
+    return e.frontMatter.pin != undefined;
   });
 }
 // 监听 resize 事件
@@ -250,5 +308,16 @@ onMounted(() => {
 a:hover {
   color: #266fe8;
   text-decoration: underline;
+}
+.pin {
+  cursor: pointer;
+  /* border: 1px solid gray; */
+  padding: 10px;
+  /* width: 200px; */
+  /* height: 200px; */
+}
+.pin:hover {
+  background-color: rgba(239, 240, 243, 0.4);
+  border-radius: 5px;
 }
 </style>
