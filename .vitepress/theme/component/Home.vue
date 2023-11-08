@@ -35,17 +35,19 @@
           
 
         </div> -->
-        <div style="display: block">
-
-
-          <n-scrollbar
+        <div v-if="imgShowTop">
+          <img
             style="
-              max-height: 350px;
-              max-width: 1000px;
-              float: left;
-              padding: 5px;
+              border-radius: 20px; /* width: 100%; */
+              max-width: 350px;
+              margin: 0 auto;
+              /* float: right; */
             "
-          >
+            :src="imgsrc"
+          />
+        </div>
+        <div style="display: block">
+          <n-scrollbar :style="pinScrollStyle">
             <!-- <div >
               <n-gradient-text style="line-height: 34px" type="success"
                 >Hi~ 我也不知道怎么介绍自己，先留个空吧<span
@@ -121,7 +123,8 @@
               </n-thing>
             </div>
           </n-scrollbar>
-          <img
+          <div v-if="!imgShowTop">
+            <img
               style="
                 border-radius: 20px; /* width: 100%; */
                 max-width: 350px;
@@ -130,6 +133,8 @@
               "
               :src="imgsrc"
             />
+          </div>
+
           <!-- <p style="text-align: center">《此图为腾讯混元大模型生成》</p> -->
         </div>
         <n-input placeholder="filter" v-model:value="filter"></n-input>
@@ -233,11 +238,18 @@ const {
 } = pkg;
 //naive-ui 默认不支持 ssr 渲染，而vitepress 是ssr 渲染，这里使naive-ui组件跳过ssr
 const notSsrRender = ref(false);
+const imgShowTop = ref(false)
 const { theme, isDark } = useData();
 const filter = ref("");
 let postsAll = theme.value.posts || [];
 const spaceItemStyle = ref({
   width: "1376px",
+});
+const pinScrollStyle = ref({
+  maxHeight: "350px",
+  maxWidth: "auto",
+  float: "left",
+  padding: "5px",
 });
 const groupTabs = ref([
   {
@@ -251,10 +263,15 @@ if (isDark.value) {
 }
 function handleWindowSizeChange() {
   let width = window.innerWidth;
+
   if (width > 1376) {
+    imgShowTop.value = false
     spaceItemStyle.value.width = "1376px";
+    pinScrollStyle.value.maxWidth = "1000px";
   } else {
+    imgShowTop.value = true
     spaceItemStyle.value.width = "100%";
+    pinScrollStyle.value.maxWidth = `${width}px`;
   }
 }
 function tagsOrKeysIncludes(tags, str) {
@@ -325,9 +342,22 @@ onMounted(() => {
   notSsrRender.value = true;
   setGroupPosts();
   window.addEventListener("resize", handleWindowSizeChange);
+
+
   spaceItemStyle.value = {
     width: window.innerWidth > 1376 ? "1376px" : "100%",
   };
+  pinScrollStyle.value = {
+    maxHeight: "350px",
+    maxWidth: window.innerWidth > 1376 ? "1000px" : "auto",
+    float: "left",
+    padding: "5px",
+  };
+  if(window.innerWidth>1376) {
+    imgShowTop.value = false
+  } else {
+    imgShowTop.value = true
+  }
 });
 </script>
 
