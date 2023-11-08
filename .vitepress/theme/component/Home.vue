@@ -364,6 +364,7 @@ onMounted(() => {
 <style>
 .scrollArea {
   max-height: calc(60vh);
+  min-height: 30vh;
  
 }
 #footer {
