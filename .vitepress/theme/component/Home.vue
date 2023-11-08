@@ -1,5 +1,5 @@
 <template>
-  <div v-if="notSsrRender">
+  <div v-if="notSsrRender" id="home">
     <n-config-provider :theme="nTheme">
       <n-space justify="center" :item-style="spaceItemStyle">
         <!-- <div >
@@ -79,10 +79,16 @@
                   background-color: rgba(150, 150, 150, 0.4);
                   border-top-left-radius: 10px;
                   border-top-right-radius: 10px;
+                  /* color: red; */
+                  font-weight: bolder;
+                  font-size: larger;
+                  padding-left: 10px;
                 "
               >
+              <n-gradient-text type="danger">
                 📌📌📌
-              </div>
+              </n-gradient-text>
+            </div>
               <n-thing
                 class="pin"
                 v-for="(item, index) in getPinGroup()"
@@ -190,28 +196,31 @@
         </n-tabs>
       </n-space>
     </n-config-provider>
-  </div>
-  <div
-    id="footer"
-    style="
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      text-align: center;
-      font-size: small;
-      line-height: 30px;
-      cursor: pointer;
-      z-index: 999;
-    "
-  >
-    🌈
-    <a href="https://beian.miit.gov.cn/">豫ICP备2023028578号 </a>
-    |
-    <span style="position: relative">
-      <a href="https://beian.miit.gov.cn/">豫公网安备号xxxxxxxxx办理中... </a>
-    </span>
-    🌈
+
+    <div
+      id="footer"
+      style="
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        font-size: smaller;
+        /* background-color: rgba(150, 150, 150, 0.4); */
+        /* border-top: 1px dashed rgba(150, 150, 150, 0.4); */
+        /* line-height: 30px; */
+        cursor: pointer;
+        z-index: 999;
+      "
+    >
+      🌈
+      <a href="https://beian.miit.gov.cn/">豫ICP备2023028578号 </a>
+      |
+      <span style="position: relative">
+        <a href="https://beian.miit.gov.cn/">豫公网安备号xxxxxxxxx办理中... </a>
+      </span>
+      🌈
+    </div>
   </div>
 </template>
 <script setup>
@@ -238,7 +247,7 @@ const {
 } = pkg;
 //naive-ui 默认不支持 ssr 渲染，而vitepress 是ssr 渲染，这里使naive-ui组件跳过ssr
 const notSsrRender = ref(false);
-const imgShowTop = ref(false)
+const imgShowTop = ref(false);
 const { theme, isDark } = useData();
 const filter = ref("");
 let postsAll = theme.value.posts || [];
@@ -265,11 +274,11 @@ function handleWindowSizeChange() {
   let width = window.innerWidth;
 
   if (width > 1376) {
-    imgShowTop.value = false
+    imgShowTop.value = false;
     spaceItemStyle.value.width = "1376px";
     pinScrollStyle.value.maxWidth = "1000px";
   } else {
-    imgShowTop.value = true
+    imgShowTop.value = true;
     spaceItemStyle.value.width = "100%";
     pinScrollStyle.value.maxWidth = `${width}px`;
   }
@@ -343,7 +352,6 @@ onMounted(() => {
   setGroupPosts();
   window.addEventListener("resize", handleWindowSizeChange);
 
-
   spaceItemStyle.value = {
     width: window.innerWidth > 1376 ? "1376px" : "100%",
   };
@@ -353,19 +361,18 @@ onMounted(() => {
     float: "left",
     padding: "5px",
   };
-  if(window.innerWidth>1376) {
-    imgShowTop.value = false
+  if (window.innerWidth > 1376) {
+    imgShowTop.value = false;
   } else {
-    imgShowTop.value = true
+    imgShowTop.value = true;
   }
 });
 </script>
 
 <style>
 .scrollArea {
-  height: calc(50vh);
+  height: calc(60vh);
   /* min-height: 30vh; */
- 
 }
 #footer {
   background-color: var(--vp-c-bg);
@@ -393,5 +400,12 @@ a:hover {
 .pin:hover {
   background-color: rgba(209, 200, 203, 0.4);
   border-radius: 5px;
+}
+.VPHome {
+  padding-bottom: 0px !important;
+}
+#home {
+  position: relative;
+  min-height: calc(100vh - 70px);
 }
 </style>
