@@ -362,10 +362,10 @@ onMounted(() => {
 </script>
 
 <style>
-/* .scrollArea {
-  max-height: calc(80vh);
+.scrollArea {
+  max-height: calc(60vh);
  
-} */
+}
 #footer {
   background-color: var(--vp-c-bg);
 
