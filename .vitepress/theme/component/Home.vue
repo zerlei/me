@@ -35,65 +35,101 @@
           
 
         </div> -->
-        <div style="display: block;">
-          <n-scrollbar style="max-height: 350px; max-width: 1000px;float: left;padding: 5px;">
-            <div style="height: 100px">
-              <n-gradient-text style="line-height: 34px;" type="success">Hi~ 我也不知道怎么介绍自己，先留个空吧<span style="font-size: 34px;">超大的文字</span></n-gradient-text>
-              <br />
-              <p style="text-align: center;">
+        <div style="display: block">
 
-              <n-gradient-text style="line-height: 50px;font-size: 50px;" type="info" >更大的居中文字</n-gradient-text>
-              </p>
-            </div>
-            <div style="line-height: 30px;">
-              📌
-              📌
-              📌
-            </div>
-            <n-thing
-              class="pin"
-              v-for="(item, index) in getPinGroup()"
-              :title="item.frontMatter.title"
-              content-style="margin-top: 10px;"
-              v-on:click="routeGo(item)"
-            >
-              <template #description>
-                <n-space size="small" style="margin-top: 4px">
-                  <n-tag
-                    v-for="t in item.frontMatter.tags || []"
-                    :bordered="false"
-                    type="info"
-                    size="small"
-                  >
-                    {{ t }}
-                  </n-tag>
-                  <n-tag
-                    v-for="t in item.frontMatter.keys || []"
-                    :bordered="false"
-                    type="info"
-                    size="small"
-                    round
-                  >
-                    {{ t }}
-                  </n-tag>
-                </n-space>
-              </template>
-              <p>
-                {{ item.frontMatter.desp }}
-              </p>
-              <n-space
-                justify="space-between"
-                size="small"
-                style="margin-top: 4px; font-size: small"
+
+          <n-scrollbar
+            style="
+              max-height: 350px;
+              max-width: 1000px;
+              float: left;
+              padding: 5px;
+            "
+          >
+            <!-- <div >
+              <n-gradient-text style="line-height: 34px" type="success"
+                >Hi~ 我也不知道怎么介绍自己，先留个空吧<span
+                  style="font-size: 34px"
+                  >超大的文字</span
+                ></n-gradient-text
               >
-              </n-space>
-            </n-thing>
+              <br />
+              <p style="text-align: center">
+                <n-gradient-text
+                  style="line-height: 50px; font-size: 50px"
+                  type="info"
+                  >更大的居中文字</n-gradient-text
+                >
+              </p>
+              <p style="text-align: center">
+                <n-gradient-text
+                  style="line-height: 50px; font-size: 50px"
+                  type="info"
+                  >更大的居中文字</n-gradient-text
+                >
+              </p>
+
+            </div> -->
+            <div id="pincontainer">
+              <div
+                style="
+                  line-height: 30px;
+                  background-color: rgba(150, 150, 150, 0.4);
+                  border-top-left-radius: 10px;
+                  border-top-right-radius: 10px;
+                "
+              >
+                📌📌📌
+              </div>
+              <n-thing
+                class="pin"
+                v-for="(item, index) in getPinGroup()"
+                :title="item.frontMatter.title"
+                content-style="margin-top: 10px;"
+                v-on:click="routeGo(item)"
+              >
+                <template #description>
+                  <n-space size="small" style="margin-top: 4px">
+                    <n-tag
+                      v-for="t in item.frontMatter.tags || []"
+                      :bordered="false"
+                      type="info"
+                      size="small"
+                    >
+                      {{ t }}
+                    </n-tag>
+                    <n-tag
+                      v-for="t in item.frontMatter.keys || []"
+                      :bordered="false"
+                      type="info"
+                      size="small"
+                      round
+                    >
+                      {{ t }}
+                    </n-tag>
+                  </n-space>
+                </template>
+                <p>
+                  {{ item.frontMatter.desp }}
+                </p>
+                <n-space
+                  justify="space-between"
+                  size="small"
+                  style="margin-top: 4px; font-size: small"
+                >
+                </n-space>
+              </n-thing>
+            </div>
           </n-scrollbar>
           <img
-            style="border-radius: 20px;  /* width: 100%; */ max-width: 350px;"
-            :src="tcai"
-          />
-
+              style="
+                border-radius: 20px; /* width: 100%; */
+                max-width: 350px;
+                margin: 0 auto;
+                /* float: right; */
+              "
+              :src="tcai"
+            />
           <!-- <p style="text-align: center">《此图为腾讯混元大模型生成》</p> -->
         </div>
         <n-input placeholder="filter" v-model:value="filter"></n-input>
@@ -301,8 +337,14 @@ onMounted(() => {
 } */
 #footer {
   background-color: var(--vp-c-bg);
-  border-top: 1px solid;
+
   border-color: var(--vp-input-border-color);
+}
+#pincontainer {
+  border-color: var(--vp-input-border-color);
+  /* border: 1px dashed; */
+  border-radius: 10px;
+  /* padding: 0px 0; */
 }
 
 a:hover {
@@ -317,7 +359,7 @@ a:hover {
   /* height: 200px; */
 }
 .pin:hover {
-  background-color: rgba(239, 240, 243, 0.4);
+  background-color: rgba(209, 200, 203, 0.4);
   border-radius: 5px;
 }
 </style>
