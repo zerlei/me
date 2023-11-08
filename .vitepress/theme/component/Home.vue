@@ -128,7 +128,7 @@
                 margin: 0 auto;
                 /* float: right; */
               "
-              :src="tcai"
+              :src="imgsrc"
             />
           <!-- <p style="text-align: center">《此图为腾讯混元大模型生成》</p> -->
         </div>
@@ -213,7 +213,8 @@
 import { ref, watch, onMounted } from "vue";
 //commonJs 报错？ 错误信息推荐使用这种导入。
 import * as pkg from "naive-ui";
-import tcai from "../../../asserts/tcai.png";
+// import tcai from "../../../asserts/gc.png";
+import imgsrc from "../../../asserts/head.png";
 import { useData, withBase } from "vitepress";
 const {
   lightTheme,
