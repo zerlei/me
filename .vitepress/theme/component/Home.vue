@@ -398,7 +398,7 @@ a:hover {
   /* height: 200px; */
 }
 .pin:hover {
-  background-color: rgba(209, 200, 203, 0.4);
+  background-color: rgba(180, 180, 180, 0.2);
   border-radius: 5px;
 }
 .VPHome {
