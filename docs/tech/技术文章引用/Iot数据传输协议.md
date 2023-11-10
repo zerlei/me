@@ -1,5 +1,14 @@
-
-# iot 数据传输协议
+---
+tags:
+    - network
+    - 参考
+keys:
+    - iot
+    - opcua
+    - mqtt
+    - kafka
+---
+## iot 数据传输协议
 
 Iot世界三个重要的数据传输协议: MQTT，OPC-UA, Kafaka。这篇文章阐述了他们三个的区别。
 

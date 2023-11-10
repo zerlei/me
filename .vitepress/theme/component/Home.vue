@@ -49,6 +49,7 @@
         <div style="display: block">
           <n-scrollbar :style="pinScrollStyle">
             <!-- <div >
+              
               <n-gradient-text style="line-height: 34px" type="success"
                 >Hi~ 我也不知道怎么介绍自己，先留个空吧<span
                   style="font-size: 34px"
@@ -73,6 +74,20 @@
 
             </div> -->
             <div id="pincontainer">
+              <!-- <n-gradient-text>
+                <p
+                  style="
+                    /* text-align: center; */
+                    font-size: 34px;
+                    font-weight: bolder;
+                    font-style: italic;
+                  "
+                >
+                  Hi~
+                </p>
+                My name is zhao lei(赵磊). you can contact me by
+                WeChat:zhao_you_ya(always online) or email:1445089819@qq.com or DisCard:ZhaoYouYa#5917
+              </n-gradient-text> -->
               <div
                 style="
                   line-height: 30px;
@@ -85,10 +100,8 @@
                   padding-left: 10px;
                 "
               >
-              <n-gradient-text type="danger">
-                📌📌📌
-              </n-gradient-text>
-            </div>
+                <n-gradient-text type="danger"> 📌📌📌 </n-gradient-text>
+              </div>
               <n-thing
                 class="pin"
                 v-for="(item, index) in getPinGroup()"
@@ -143,57 +156,73 @@
 
           <!-- <p style="text-align: center">《此图为腾讯混元大模型生成》</p> -->
         </div>
-        <n-input placeholder="filter" v-model:value="filter"></n-input>
-        <n-tabs type="line" animated>
-          <n-tab-pane v-for="group in groupTabs" :name="getTabsName(group)">
-            <n-scrollbar class="scrollArea">
-              <n-list hoverable clickable>
-                <n-list-item
-                  v-for="(item, index) in filterGroupChild(group.Children)"
-                  v-on:click="routeGo(item)"
-                >
-                  <n-thing
-                    :title="item.frontMatter.title"
-                    content-style="margin-top: 10px;"
-                  >
-                    <template #description>
-                      <n-space size="small" style="margin-top: 4px">
-                        <n-tag
-                          v-for="t in item.frontMatter.tags || []"
-                          :bordered="false"
-                          type="info"
-                          size="small"
-                        >
-                          {{ t }}
-                        </n-tag>
-                        <n-tag
-                          v-for="t in item.frontMatter.keys || []"
-                          :bordered="false"
-                          type="info"
-                          size="small"
-                          round
-                        >
-                          {{ t }}
-                        </n-tag>
-                      </n-space>
-                    </template>
-                    <p>
-                      {{ item.frontMatter.desp }}
-                    </p>
-                    <n-space
-                      justify="space-between"
+        <n-input
+          placeholder="filter title&keywords&brief "
+          v-model:value="filter"
+        ></n-input>
+        <n-space>
+          <n-tag
+            style="cursor: pointer"
+            @mouseenter="itemMouseEnter(group.tag)"
+            @mouseleave="itemMouseLeave"
+            @click="itemClick(group.tag)"
+            v-for="group in groupTabs"
+            :type="isItemHoverOrChoice(group.tag)"
+            round
+            :bordered="false"
+          >
+            <span style="user-select: none">
+              {{ getTabsName(group) }}
+            </span>
+          </n-tag>
+        </n-space>
+
+        <n-scrollbar class="scrollArea">
+          <n-list hoverable clickable>
+            <n-list-item
+              v-for="(item, index) in filterGroupChild(group.Children)"
+              v-on:click="routeGo(item)"
+            >
+              <n-thing
+                :title="item.frontMatter.title"
+                content-style="margin-top: 10px;"
+              >
+                <template #description>
+                  <n-space size="small" style="margin-top: 4px">
+                    <n-tag
+                      v-for="t in item.frontMatter.tags || []"
+                      :bordered="false"
+                      type="info"
                       size="small"
-                      style="margin-top: 4px; font-size: small"
                     >
-                      <div>Created:{{ item.frontMatter.birthtime }}</div>
-                      <div>Last Update:{{ item.frontMatter.mtime }}</div>
-                    </n-space>
-                  </n-thing>
-                </n-list-item>
-              </n-list>
-            </n-scrollbar>
-          </n-tab-pane>
-        </n-tabs>
+                      {{ t }}
+                    </n-tag>
+                    <n-tag
+                      v-for="t in item.frontMatter.keys || []"
+                      :bordered="false"
+                      type="info"
+                      size="small"
+                      round
+                    >
+                      {{ t }}
+                    </n-tag>
+                  </n-space>
+                </template>
+                <p>
+                  {{ item.frontMatter.desp }}
+                </p>
+                <n-space
+                  justify="space-between"
+                  size="small"
+                  style="margin-top: 4px; font-size: small"
+                >
+                  <div>Created:{{ item.frontMatter.birthtime }}</div>
+                  <div>Last Update:{{ item.frontMatter.mtime }}</div>
+                </n-space>
+              </n-thing>
+            </n-list-item>
+          </n-list>
+        </n-scrollbar>
       </n-space>
     </n-config-provider>
 
@@ -224,7 +253,7 @@
   </div>
 </template>
 <script setup>
-import { ref, watch, onMounted } from "vue";
+import { ref, watch, onMounted, computed } from "vue";
 //commonJs 报错？ 错误信息推荐使用这种导入。
 import * as pkg from "naive-ui";
 // import tcai from "../../../asserts/gc.png";
@@ -250,6 +279,36 @@ const notSsrRender = ref(false);
 const imgShowTop = ref(false);
 const { theme, isDark } = useData();
 const filter = ref("");
+const group = computed(() => {
+  const ar = groupTabs.value.filter((e) => {
+    return e.tag == choiceGroupItem.value;
+  });
+  if (ar.length == 0) {
+    return groupTabs.value[0];
+  }
+  return ar[0];
+});
+const hoverGroupItem = ref("");
+const choiceGroupItem = ref("all");
+
+function isItemHoverOrChoice(groupName) {
+  if (groupName == choiceGroupItem.value) {
+    return "error";
+  } else if (groupName == hoverGroupItem.value) {
+    return "error";
+  }
+  return "";
+}
+function itemMouseEnter(groupName) {
+  hoverGroupItem.value = groupName;
+}
+function itemMouseLeave() {
+  hoverGroupItem.value = "";
+}
+function itemClick(groupName) {
+  choiceGroupItem.value = groupName;
+}
+
 let postsAll = theme.value.posts || [];
 const spaceItemStyle = ref({
   width: "1376px",
@@ -345,7 +404,7 @@ function setGroupPosts() {
   });
 }
 function getTabsName(group) {
-  return `${group.tag}(${group.Children.length})`;
+  return `${group.tag}(${filterGroupChild(group.Children).length})`;
 }
 onMounted(() => {
   notSsrRender.value = true;

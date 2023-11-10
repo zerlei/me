@@ -1,3 +1,9 @@
+---
+tags:
+    - linux
+keys:
+    - opensuse&KDE
+---
 > 为了感觉更 cool 一点，进了 opensuse 和 kde的坑，windows哪点不好用？wsl2解决不了你的问题吗？
 
 这里的内容是：

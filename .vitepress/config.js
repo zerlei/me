@@ -1,11 +1,12 @@
 import AutoSidebar from "vite-plugin-vitepress-auto-sidebar";
 import htmlImport from "./plugin/vitehtml";
 import { withMermaid } from "vitepress-plugin-mermaid";
-import { filterDocsSideBar,getPosts} from "./utils";
+import { filterDocsSideBar, getPosts } from "./utils";
 // https://vitepress.dev/reference/site-config
 export default withMermaid({
   head: [["link", { rel: "icon", href: "/zerlei.svg" }]],
   title: "Zerlei",
+  lang:'zh-cn',
   description: "A VitePress Site",
   themeConfig: {
     // logo:'../asserts/zerlei.svg',
@@ -33,10 +34,10 @@ export default withMermaid({
       // add plugin
       AutoSidebar({
         path: "/",
-        collapsed:true,
+        collapsed: true,
         sideBarResolved: (data) => {
-          let d =filterDocsSideBar(data)
-           return d 
+          let d = filterDocsSideBar(data)
+          return d
         },
         // You can also set options to adjust sidebar data
         // see option document below

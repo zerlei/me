@@ -1,3 +1,9 @@
+---
+tags:
+    - linux
+keys:
+    - opensuse&KDE
+---
 # 问题
 
 1. 当安装完成qt之后，无法编译任何一个qt项目，cmake报错，提示缺少opengl相关库。
