@@ -54,7 +54,13 @@
   --vp-c-brand-dimm: rgba(100, 108, 255, 0.08);
 }
 .vp-doc p {
-  font-family:"颜宋简体";
+  font-family:"中宋";
+}
+.vp-doc ul {
+  font-family: "楷体";
+}
+.vp-doc ol {
+  font-family: "楷体";
 }
 
 /**
