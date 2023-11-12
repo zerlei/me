@@ -6,6 +6,43 @@
 /**
  * Colors
  * -------------------------------------------------------------------------- */
+ @font-face {
+  font-family: "姚体";
+  src: url("/assets/font/FZYTK.TTF");
+}
+
+@font-face {
+  font-family: "颜宋简体";
+  src: url("https://zerlei.cn/fonts/FZYanSJW.TTF");
+}
+
+@font-face {
+  font-family: "楷体";
+  src: url("https://zerlei.cn/fonts/simkai.ttf");
+}
+
+@font-face {
+  font-family: "中宋";
+  src: url("https://zerlei.cn/fonts/STZHONGS.TTF");
+}
+@font-face {
+  font-family: "准颜简体";
+  src: url("https://zerlei.cn/fonts/FZY3JW.TTF");
+}
+
+@font-face {
+  font-family: "一线天";
+  src: url("https://zerlei.cn/fonts/FZYiXTJW-R.TTF");
+}
+
+@font-face {
+  font-family: "赵孟頫楷书";
+  src: url("https://zerlei.cn/fonts/FZZhaoMFKSJF.TTF");
+}
+@font-face {
+  font-family: "柳公权楷体";
+  src: url("https://zerlei.cn/fonts/FZLiuGQKSJW.TTF");
+}
 
 :root {
   --vp-c-brand: #646cff;
@@ -15,6 +52,9 @@
   --vp-c-brand-dark: #535bf2;
   --vp-c-brand-darker: #454ce1;
   --vp-c-brand-dimm: rgba(100, 108, 255, 0.08);
+}
+.vp-doc p {
+  font-family:"颜宋简体";
 }
 
 /**
