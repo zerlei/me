@@ -28,6 +28,7 @@ export default withMermaid({
     // },
 
     socialLinks: [{ icon: "github", link: "https://github.com/ZhaoYouYa" }],
+    outline:'deep'
   },
   vite: {
     plugins: [

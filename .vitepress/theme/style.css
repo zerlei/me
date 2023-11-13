@@ -45,12 +45,15 @@
 }
 
 .vp-doc p {
-  font-family:"中宋";
+  font-family:"颜宋简体";
+  font-size: large;
 }
 .vp-doc ul {
   font-family: "楷体";
+  font-size: large;
 }
 .vp-doc ol {
   font-family: "楷体";
+  font-size: large;
 }
 
