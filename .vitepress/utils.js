@@ -62,7 +62,7 @@ export async function getPosts() {
       };
     })
   );
-  posts.sort(_compareDate);
+  // posts.sort(_compareDate);
 
   return posts;
 }
