@@ -280,8 +280,6 @@ const {
   NThing,
   NSpace,
   NTag,
-  NTabs,
-  NTabPane,
   NScrollbar,
   NInput,
   NGradientText,
@@ -322,6 +320,7 @@ function itemClick(groupName) {
 }
 
 let postsAll = theme.value.posts || [];
+// console.log(postsAll)
 const spaceItemStyle = ref({
   width: "1376px",
 });
@@ -443,6 +442,7 @@ onMounted(() => {
 <style>
 .scrollArea {
   height: calc(60vh);
+  padding-bottom: 25px;
   /* min-height: 30vh; */
 }
 #footer {
