@@ -229,12 +229,13 @@
     <div
       id="footer"
       style="
-        position: absolute;
+        position: fixed;
         bottom: 0;
         left: 0;
         width: 100%;
         text-align: center;
-        font-size: smaller;
+        font-size: 13px;
+        line-height: 22px;
         /* background-color: rgba(150, 150, 150, 0.4); */
         /* border-top: 1px dashed rgba(150, 150, 150, 0.4); */
         /* line-height: 30px; */
@@ -242,13 +243,24 @@
         z-index: 999;
       "
     >
-      🌈
-      <a href="https://beian.miit.gov.cn/">豫ICP备2023028578号 </a>
+      <span style="position: relative">
+        <img style="width: 15px;position: absolute;left: 0px;top:1px"
+          src="https://wap.miit.gov.cn/cms_files/filemanager/picture/20201/565bcb03cea442e1a40b4814ca839c20.png"
+        />
+        <a style="margin-left: 20px;" href="https://beian.miit.gov.cn/">豫ICP备2023028578号 </a>
+      </span>
       |
       <span style="position: relative">
-        <a href="https://beian.miit.gov.cn/">豫公网安备号xxxxxxxxx办理中... </a>
+        <img
+          src="https://beian.mps.gov.cn/web/assets/logo01.6189a29f.png"
+          style="width: 15px; position: absolute; left: 0; top: 1px"
+        />
+        <a
+          style="margin-left: 20px"
+          href="https://beian.mps.gov.cn/#/query/webSearch?code=41061102000409"
+          >豫公网安备41061102000409号</a
+        >
       </span>
-      🌈
     </div>
   </div>
 </template>
