@@ -8,7 +8,7 @@
  * -------------------------------------------------------------------------- */
  @font-face {
   font-family: "姚体";
-  src: url("/assets/font/FZYTK.TTF");
+  src: url("https://zerlei.cn/FZYTK.TTF");
 }
 
 @font-face {
@@ -44,16 +44,12 @@
   src: url("https://zerlei.cn/fonts/FZLiuGQKSJW.TTF");
 }
 
-.vp-doc p {
-  font-family:"颜宋简体";
-  font-size: large;
-}
 .vp-doc ul {
-  font-family: "楷体";
+  font-family: "柳公权楷体";
   font-size: large;
 }
 .vp-doc ol {
-  font-family: "楷体";
+  font-family: "柳公权楷体";
   font-size: large;
 }
 
