@@ -1,7 +1,9 @@
 ---
 title: 建一个blog网站
+description: VitePress 建一个blog网站
 tags:
-  - 建站
+  - project
+  - web
 keys:
   - vitepress
 ---

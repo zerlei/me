@@ -7,7 +7,7 @@ export default withMermaid({
   head: [["link", { rel: "icon", href: "/zerlei.svg" }]],
   title: "Zerlei",
   lang:'zh-cn',
-  description: "A VitePress Site",
+  description: "🌈A programmer,there are his blog🌈",
   themeConfig: {
     // logo:'../asserts/zerlei.svg',
     // https://vitepress.dev/reference/default-theme-config

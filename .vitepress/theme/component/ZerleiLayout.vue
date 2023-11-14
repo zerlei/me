@@ -3,8 +3,8 @@
     <template #doc-before>
       <div>
         <h1 class="title">{{ frontMatter.title }}</h1>
-        <div style="display: flex; margin-bottom: 5px">
-          <span
+        <div style="display: flex;flex-wrap: wrap; margin-bottom: 5px">
+          <div
             style="
               background-color: rgba(32, 128, 240, 0.12);
               color: #2080f0;
@@ -15,12 +15,14 @@
               font-size: smaller;
               margin-right: 5px;
               border-radius: 2px;
+              line-height: normal;
+              margin-bottom: 5px
             "
             v-for="tag in frontMatter.tags || []"
           >
             {{ tag }}
-          </span>
-          <span
+          </div>
+          <div
             style="
               background-color: rgba(32, 128, 240, 0.12);
               color: #2080f0;
@@ -35,7 +37,7 @@
             v-for="key in frontMatter.keys || []"
           >
             {{ key }}
-          </span>
+          </div>
         </div>
         <div class="date" style="display: flex; justify-content: space-between">
           <div>🕒 Create: {{ frontMatter.birthtime }}</div>
