@@ -55,14 +55,14 @@ export async function getPosts() {
       if (!data.title) {
         let ar = item.split('/')
         data.title = ar[ar.length - 1].replace('.md', '')
-      } 
+      }
       return {
         frontMatter: data,
         regularPath: `/${item.replace(".md", ".html")}`,
       };
     })
   );
-  // posts.sort(_compareDate);
+  posts.sort(_compareDate);
 
   return posts;
 }
@@ -73,7 +73,7 @@ function _convertDate(date = new Date().toString()) {
 }
 
 function _compareDate(obj1, obj2) {
-  return obj1.frontMatter.birthtime < obj2.frontMatter.birthtime ? 1 : -1;
+  return new Date(obj1.frontMatter.birthtime) < new Date(obj2.frontMatter.birthtime) ? 1 : -1;
 }
 
 async function getPostMDFilePaths() {
