@@ -47,9 +47,9 @@ export async function getPosts() {
       const { data } = matter(content);
       data.desp = desp
       //创建时间
-      data.birthtime = state.birthtime.toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' })
+      data.birthtime = state.birthtime.toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' }).split(' ')[0]
       //最后修改时间
-      data.mtime = state.mtime.toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' })
+      data.mtime = state.mtime.toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' }).split(' ')[0]
 
       //如果不包含title将使用文件目录作为title
       if (!data.title) {
