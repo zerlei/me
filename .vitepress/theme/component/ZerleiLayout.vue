@@ -33,6 +33,8 @@
               font-size: smaller;
               margin-right: 5px;
               border-radius: 15px;
+              line-height: normal;
+              margin-bottom: 5px;
             "
             v-for="key in frontMatter.keys || []"
           >
