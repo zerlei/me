@@ -6,7 +6,7 @@
 /**
  * Colors
  * -------------------------------------------------------------------------- */
- @font-face {
+/* @font-face {
   font-family: "姚体";
   src: url("https://zerlei.cn/FZYTK.TTF");
 }
@@ -42,17 +42,14 @@
 @font-face {
   font-family: "柳公权楷体";
   src: url("https://zerlei.cn/fonts/FZLiuGQKSJW.TTF");
-}
-
-.vp-doc ul {
-  font-family: "柳公权楷体";
-  font-size: large;
-}
-.vp-doc ol {
-  font-family: "柳公权楷体";
-  font-size: large;
-}
-/* .vp-doc h1, .vp-doc h2, .vp-doc h3, .vp-doc h4, .vp-doc h5, .vp-doc h6 {
-  font-family: "黑体";
 } */
 
+
+.vp-doc ul, .vp-doc ol {
+  padding-left: 2.25rem;
+  margin: 16px 0;
+  font-size: 95%;
+  /* font-weight: light; */
+  /* font-style: italic; */
+  
+}
