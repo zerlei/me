@@ -30,7 +30,7 @@ keys:
 
 ## vitepress 建站 ✅
 
-完成参考: [建一个blog网站](../tech/建一个建一个blog网站.md)
+完成参考: [建一个blog网站](/docs/tech/建一个blog网站.md)
 
 接下来可能的任务：
 
