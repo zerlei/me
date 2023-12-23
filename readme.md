@@ -1,7 +1,15 @@
-## TODO (unplan)
+# 我的个人网站
+
+使用：
+
+- vitepress
+- naiveUi
+
+go 👉 https://zerlei.cn
+
+
+## TODO
 
 1. gittalk comment
+2. add my contact info  
 
-
-## TODO 
-移除掉naive-ui 组件不够用啦，自己实现把
