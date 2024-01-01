@@ -2,8 +2,11 @@ import AutoSidebar from "vite-plugin-vitepress-auto-sidebar";
 import htmlImport from "./plugin/vitehtml";
 import { withMermaid } from "vitepress-plugin-mermaid";
 import { filterDocsSideBar, getPosts } from "./utils";
+import markdownItTextualUml from 'markdown-it-textual-uml'
 // https://vitepress.dev/reference/site-config
+import { defineConfig } from "vitepress";
 export default withMermaid({
+
   head: [["link", { rel: "icon", href: "/zerlei.svg" }]],
   title: "Zerlei",
   lang:'zh-cn',
@@ -20,7 +23,6 @@ export default withMermaid({
     //   provider: "local",
     // },
     posts: await getPosts(),
-    pageSize: 5,
     sidebar: [],
     // footer: {
     //   copyright:
@@ -50,8 +52,17 @@ export default withMermaid({
       port: 6769,
     },
   },
+  markdown :{
+    config:(md)=>{
 
-  mermaid: {
-    // refer https://mermaid.js.org/config/setup/modules/mermaidAPI.html#mermaidapi-configuration-defaults for options
-  },
-});
+      console.log(markdownItTextualUml)
+      md.use(markdownItTextualUml )
+    }
+  }
+})
+// export default({
+//
+//   // mermaid: {
+//   //   // refer https://mermaid.js.org/config/setup/modules/mermaidAPI.html#mermaidapi-configuration-defaults for options
+//   // },
+// });
