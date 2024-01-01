@@ -1,11 +1,9 @@
 import AutoSidebar from "vite-plugin-vitepress-auto-sidebar";
 import htmlImport from "./plugin/vitehtml";
-import { withMermaid } from "vitepress-plugin-mermaid";
 import { filterDocsSideBar, getPosts } from "./utils";
 import markdownItTextualUml from 'markdown-it-textual-uml'
 // https://vitepress.dev/reference/site-config
-import { defineConfig } from "vitepress";
-export default withMermaid({
+export default ({
 
   head: [["link", { rel: "icon", href: "/zerlei.svg" }]],
   title: "Zerlei",
@@ -54,8 +52,6 @@ export default withMermaid({
   },
   markdown :{
     config:(md)=>{
-
-      console.log(markdownItTextualUml)
       md.use(markdownItTextualUml )
     }
   }

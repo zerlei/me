@@ -59,8 +59,9 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import DefaultTheme from "vitepress/theme";
 import Home from "./Home.vue";
 import { useData, onContentUpdated } from "vitepress";
-import { ref, watch } from "vue";
-
+import { ref} from "vue";
+import mermaid from 'mermaid'
+mermaid.initialize({startOnLoad:false})
 const data = useData();
 
 const cPage = data.page;
@@ -81,13 +82,14 @@ function setFrontMatter(c) {
 }
 //ToDO 合并
 
-const publishDate = ref("");
 
 const { Layout } = DefaultTheme;
 dayjs.extend(relativeTime);
-onContentUpdated(() => {
+onContentUpdated(async () => {
   setFrontMatter(cPage.value);
+  await mermaid.run()
 });
+
 //TODO gittalk 这个似乎没用
 // import Comments from "./Comments.vue";
 </script>
