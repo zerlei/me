@@ -47,32 +47,18 @@
           />
         </div>
         <div style="display: block">
+          
+          
           <n-scrollbar :style="pinScrollStyle">
-            <!-- <div >
-              
-              <n-gradient-text style="line-height: 34px" type="success"
-                >Hi~ 我也不知道怎么介绍自己，先留个空吧<span
-                  style="font-size: 34px"
-                  >超大的文字</span
-                ></n-gradient-text
-              >
-              <br />
-              <p style="text-align: center">
-                <n-gradient-text
-                  style="line-height: 50px; font-size: 50px"
-                  type="info"
-                  >更大的居中文字</n-gradient-text
-                >
-              </p>
-              <p style="text-align: center">
-                <n-gradient-text
-                  style="line-height: 50px; font-size: 50px"
-                  type="info"
-                  >更大的居中文字</n-gradient-text
-                >
-              </p>
-
-            </div> -->
+            <p>
+              优秀的人做困难的事情；或者做简单的事情，但是干净、利落、艺术。
+            </p>
+            <p>
+              我要爱上睡觉，平和安稳入睡，是我人生的成就。
+            </p>
+            <p style="text-align: right;">
+                - 赵宥涯(me😊)
+            </p>
             <div id="pincontainer">
               <!-- <n-gradient-text>
                 <p
@@ -100,11 +86,11 @@
                   padding-left: 10px;
                 "
               >
-                <n-gradient-text type="danger"> 📌📌📌 </n-gradient-text>
+                <n-gradient-text type="danger"> 📌 </n-gradient-text>
               </div>
               <n-thing
                 class="pin"
-                v-for="(item, index) in getPinGroup()"
+                v-for="item in getPinGroup()"
                 :title="item.frontMatter.title"
                 content-style="margin-top: 10px;"
                 v-on:click="routeGo(item)"
@@ -153,8 +139,6 @@
               :src="imgsrc"
             />
           </div>
-
-          <!-- <p style="text-align: center">《此图为腾讯混元大模型生成》</p> -->
         </div>
         <n-input
           placeholder="filter title&keywords&brief "
@@ -229,7 +213,6 @@
     <div
       id="footer"
       style="
-        position: fixed;
         bottom: 0;
         left: 0;
         width: 100%;
@@ -244,10 +227,13 @@
       "
     >
       <span style="position: relative">
-        <img style="width: 15px;position: absolute;left: 0px;top:1px"
+        <img
+          style="width: 15px; position: absolute; left: 0px; top: 1px"
           src="https://wap.miit.gov.cn/cms_files/filemanager/picture/20201/565bcb03cea442e1a40b4814ca839c20.png"
         />
-        <a style="margin-left: 20px;" href="https://beian.miit.gov.cn/">豫ICP备2023028578号 </a>
+        <a style="margin-left: 20px" href="https://beian.miit.gov.cn/"
+          >豫ICP备2023028578号
+        </a>
       </span>
       |
       <span style="position: relative">
