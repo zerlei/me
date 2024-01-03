@@ -3,7 +3,7 @@ import htmlImport from "./plugin/vitehtml";
 import { filterDocsSideBar, getPosts } from "./utils";
 import markdownItTextualUml from 'markdown-it-textual-uml'
 // https://vitepress.dev/reference/site-config
-export default ({
+    export default ({
 
   head: [["link", { rel: "icon", href: "/zerlei.svg" }]],
   title: "Zerlei",

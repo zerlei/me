@@ -47,14 +47,12 @@
           />
         </div>
         <div style="display: block">
-          
-          
           <n-scrollbar :style="pinScrollStyle">
             <p>
-              优秀的人做困难的事情；或者做简单的事情，但是干净、利落、艺术。
+              优秀的人完成困难的事情。或者完成简单的事情，但是干净、利落和艺术。
             </p>
             <p>
-              我要爱上睡觉，平和安稳入睡，是我人生的成就。
+              爱上睡觉，平和入睡，是人生的大成就。
             </p>
             <p style="text-align: right;">
                 - 赵宥涯(me😊)
