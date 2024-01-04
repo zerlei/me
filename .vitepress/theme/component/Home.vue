@@ -49,7 +49,7 @@
         <div style="display: block">
           <n-scrollbar :style="pinScrollStyle">
             <p>
-              优秀的人完成困难的事情。或者完成简单的事情，但是干净、利落和艺术。
+              优秀的人完成困难的事情。或者完成简单的事情，但是干净、利落、艺术。
             </p>
             <p>
               爱上睡觉，平和入睡，是人生的大成就。
