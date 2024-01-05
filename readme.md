@@ -1,15 +1,8 @@
-# 我的个人网站
+# My site & Me
+> https://zerlei.cn
 
-使用：
-
-- vitepress
-- naiveUi
-
-go 👉 https://zerlei.cn
+You can create an issue to me, thanks for your suggestions!
 
 
-## TODO
 
-1. gittalk comment
-2. add my contact info  
 
