@@ -13,9 +13,9 @@ import markdownItTextualUml from 'markdown-it-textual-uml'
     // logo:'../asserts/zerlei.svg',
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: "blogs", link: "/" },
+      { text: "home", link: "/" },
       { text: "history", link: "/history" },
-      { text: "about", link: "/about" },
+      { text: "me", link: "/about" },
     ],
     // search: {
     //   provider: "local",

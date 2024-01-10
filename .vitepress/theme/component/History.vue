@@ -2,7 +2,7 @@
   <div v-if="notSsrRender">
     <n-config-provider :theme="nTheme">
       <n-space justify="center" :item-style="spaceItemStyle">
-        <n-scrollbar>
+        <n-scrollbar class="scrollArea2">
           <div v-for="group in historyPosts.filter((e) => e.Children)">
             <div class="historyYear">
               {{ group.year
@@ -81,67 +81,61 @@ const notSsrRender = ref(false);
 const { theme, isDark } = useData();
 const historyPosts = ref([
   {
-    year: "2019",
-  },
-  {
-    year: "2020",
-  },
-  {
-    year: "2021",
-  },
-  {
-    year: "2022",
-  },
-  {
-    year: "2023",
-  },
-  {
-    year: "2024",
-  },
-  {
-    year: "2025",
-  },
-  {
-    year: "2026",
-  },
-  {
-    year: "2027",
-  },
-  {
-    year: "2028",
-  },
-  {
-    year: "2029",
-  },
-  {
-    year: "2030",
-  },
-  {
-    year: "2031",
-  },
-  {
-    year: "2032",
-  },
-  {
-    year: "2033",
-  },
-  {
-    year: "2034",
-  },
-  {
-    year: "2035",
+    year: "2037",
   },
   {
     year: "2036",
   },
   {
-    year: "2037",
+    year: "2035",
   },
   {
-    year: "2038",
+    year: "2034",
   },
   {
-    year: "2039",
+    year: "2033",
+  },
+  {
+    year: "2032",
+  },
+  {
+    year: "2031",
+  },
+  {
+    year: "2030",
+  },
+  {
+    year: "2029",
+  },
+  {
+    year: "2028",
+  },
+  {
+    year: "2027",
+  },
+  {
+    year: "2026",
+  },
+  {
+    year: "2025",
+  },
+  {
+    year: "2024",
+  },
+  {
+    year: "2023",
+  },
+  {
+    year: "2022",
+  },
+  {
+    year: "2021",
+  },
+  {
+    year: "2020",
+  },
+  {
+    year: "2019",
   },
 ] as Array<any>);
 
@@ -153,7 +147,7 @@ let nTheme = ref(lightTheme);
 if (isDark.value) {
   nTheme.value = darkTheme;
 }
-watch(isDark, (o, n) => {
+watch(isDark, (_, n) => {
   if (!n) {
     nTheme.value = darkTheme;
   } else {
@@ -173,7 +167,7 @@ function handleWindowSizeChange() {
 }
 
 function setGroupPosts() {
-  postsAll.forEach((e) => {
+  postsAll.forEach((e:any) => {
     if (e.frontMatter.birthtime) {
       const year = e.frontMatter.birthtime.split("/")[0];
       for (var i = 0; i < historyPosts.value.length; ++i) {
@@ -201,8 +195,12 @@ onMounted(() => {
 </script>
 
 <style>
+.scrollArea2 {
+  height: calc(100vh - 70px );
+  /* min-height: 30vh; */
+}
 .historyYear {
-  border-bottom: 5px double;
+  border-bottom: 2px solid;
   border-color: var(--vp-input-border-color);
   text-align: center;
   font-size: 55px;

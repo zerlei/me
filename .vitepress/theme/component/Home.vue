@@ -124,7 +124,6 @@ const {
 } = pkg;
 //naive-ui 默认不支持 ssr 渲染，而vitepress 是ssr 渲染，这里使naive-ui组件跳过ssr
 const notSsrRender = ref(false);
-const imgShowTop = ref(false);
 const { theme, isDark } = useData();
 const filter = ref("");
 const group = computed(() => {
@@ -162,12 +161,6 @@ let postsAll = theme.value.posts || [];
 const spaceItemStyle = ref({
   width: "1376px",
 });
-const pinScrollStyle = ref({
-  height: "300px",
-  maxWidth: "auto",
-  float: "left",
-  padding: "5px",
-});
 const groupTabs = ref([
   {
     tag: "all",
@@ -198,14 +191,8 @@ function filterGroupChild(Children) {
     );
   });
 }
-function getPinGroup() {
-  return postsAll.filter((e) => {
-    return e.frontMatter.pin != undefined;
-  });
-}
-// 监听 resize 事件
 
-watch(isDark, (o, n) => {
+watch(isDark, (_, n) => {
   if (!n) {
     nTheme.value = darkTheme;
   } else {
