@@ -5,7 +5,7 @@
         <div style="display: block">
         </div>
         <n-input
-          placeholder="filter title&keywords&brief "
+          placeholder="filter title||keywords||brief "
           v-model:value="filter"
         ></n-input>
         <n-space>
