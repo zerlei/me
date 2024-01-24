@@ -2,7 +2,6 @@ import { globby } from "globby";
 import matter from "gray-matter";
 import fs from "fs-extra";
 
-
 /**
  * 获取sidebar 目录,当目录下的文件包含'_ca'时，将会在此文件下生成一个sidebar 目录
  * @param {*} item autoside object
