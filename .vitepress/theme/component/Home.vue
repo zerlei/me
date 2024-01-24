@@ -2,8 +2,7 @@
   <div v-if="notSsrRender" id="home">
     <n-config-provider :theme="nTheme">
       <n-space justify="center" :item-style="spaceItemStyle">
-        <div style="display: block">
-        </div>
+        <div style="display: block"></div>
         <n-input
           placeholder="filter title||keywords||brief "
           v-model:value="filter"
@@ -91,14 +90,11 @@
       "
     >
       <span style="position: relative">
-        <a href="https://beian.miit.gov.cn/"
-          >豫ICP备2023028578号
-        </a>
+        <a href="https://beian.miit.gov.cn/">豫ICP备2023028578号 </a>
       </span>
       |
       <span style="position: relative">
-        <a
-          href="https://beian.mps.gov.cn/#/query/webSearch?code=41061102000409"
+        <a href="https://beian.mps.gov.cn/#/query/webSearch?code=41061102000409"
           >豫公网安备41061102000409号</a
         >
       </span>
@@ -237,8 +233,8 @@ onMounted(() => {
 
 <style>
 .scrollArea {
-  height: calc(100vh - 210px );
-  padding-bottom: 25px;
+  height: calc(100vh - 210px);
+  /* padding-bottom: 25px; */
   /* min-height: 30vh; */
 }
 #footer {
