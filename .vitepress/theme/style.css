@@ -55,5 +55,60 @@
 }
 .mermaid {
   background-color:#fcffba
+}
+.vp-doc h1 {
+
+  &::before {
+		position: absolute;
+		height:calc(100%);
+		width: 7px;
+		background: brown;
+		content:'';
+    border-radius: 5px;
+    margin-left: -17px;
+	}
+  padding-left: 12px;
+
+}
+.vp-doc h2 {
+
+  &::before {
+		position: absolute;
+		height:calc(100% - 24px);
+		width: 6px;
+		background: #405f86;
+		content:'';
+    border-radius: 5px;
+    margin-left: -15px;
+	}
+  padding-left: 10px;
+
+}
+.vp-doc h3 {
+
+  &::before {
+		position: absolute;
+		height:calc(100%);
+		width: 5px;
+		background: #8a703c;
+		content:'';
+    border-radius: 5px;
+    margin-left: -10px;
+	}
+  padding-left: 7px;
+
+}
+.vp-doc h4 {
+
+  &::before {
+		position: absolute;
+		height:calc(100%);
+		width: 4px;
+		background: #647c68;
+		content:'';
+    border-radius: 4px;
+    margin-left: -10px;
+	}
+  padding-left: 8px;
 
 }
