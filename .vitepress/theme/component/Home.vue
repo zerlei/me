@@ -3,10 +3,7 @@
     <n-config-provider :theme="nTheme">
       <n-space justify="center" :item-style="spaceItemStyle">
         <div style="display: block"></div>
-        <n-input
-          placeholder="filter title||keywords||brief "
-          v-model:value="filter"
-        ></n-input>
+        <n-input placeholder="filter title||keywords||brief " v-model:value="filter"></n-input>
         <n-space>
           <n-tag
             style="cursor: pointer"
@@ -26,31 +23,14 @@
 
         <n-scrollbar class="scrollArea">
           <n-list hoverable clickable>
-            <n-list-item
-              v-for="(item, _) in filterGroupChild(group.Children)"
-              v-on:click="routeGo(item)"
-            >
-              <n-thing
-                :title="item.frontMatter.title"
-                content-style="margin-top: 10px;"
-              >
+            <n-list-item v-for="(item, _) in filterGroupChild(group.Children)" v-on:click="routeGo(item)">
+              <n-thing :title="item.frontMatter.title" content-style="margin-top: 10px;">
                 <template #description>
                   <n-space size="small" style="margin-top: 4px">
-                    <n-tag
-                      v-for="t in item.frontMatter.tags || []"
-                      :bordered="false"
-                      type="info"
-                      size="small"
-                    >
+                    <n-tag v-for="t in item.frontMatter.tags || []" :bordered="false" type="info" size="small">
                       {{ t }}
                     </n-tag>
-                    <n-tag
-                      v-for="t in item.frontMatter.keys || []"
-                      :bordered="false"
-                      type="info"
-                      size="small"
-                      round
-                    >
+                    <n-tag v-for="t in item.frontMatter.keys || []" :bordered="false" type="info" size="small" round>
                       {{ t }}
                     </n-tag>
                   </n-space>
@@ -58,11 +38,7 @@
                 <p>
                   {{ item.frontMatter.desp }}
                 </p>
-                <n-space
-                  justify="space-between"
-                  size="small"
-                  style="margin-top: 4px; font-size: small"
-                >
+                <n-space justify="space-between" size="small" style="margin-top: 4px; font-size: small">
                   <div>Created:{{ item.frontMatter.birthtime }}</div>
                   <div>Last Update:{{ item.frontMatter.mtime }}</div>
                 </n-space>
@@ -94,34 +70,21 @@
       </span>
       |
       <span style="position: relative">
-        <a href="https://beian.mps.gov.cn/#/query/webSearch?code=41061102000409"
-          >豫公网安备41061102000409号</a
-        >
+        <a href="https://beian.mps.gov.cn/#/query/webSearch?code=41061102000409">豫公网安备41061102000409号</a>
       </span>
     </div>
   </div>
 </template>
 <script setup>
-import { ref, watch, onMounted, computed } from "vue";
+import {ref, watch, onMounted, computed} from 'vue';
 //commonJs 报错？ 错误信息推荐使用这种导入。
-import * as pkg from "naive-ui";
-import { useData, withBase } from "vitepress";
-const {
-  lightTheme,
-  darkTheme,
-  NConfigProvider,
-  NList,
-  NListItem,
-  NThing,
-  NSpace,
-  NTag,
-  NScrollbar,
-  NInput,
-} = pkg;
+import * as pkg from 'naive-ui';
+import {useData, withBase} from 'vitepress';
+const {lightTheme, darkTheme, NConfigProvider, NList, NListItem, NThing, NSpace, NTag, NScrollbar, NInput} = pkg;
 //naive-ui 默认不支持 ssr 渲染，而vitepress 是ssr 渲染，这里使naive-ui组件跳过ssr
 const notSsrRender = ref(false);
-const { theme, isDark } = useData();
-const filter = ref("");
+const {theme, isDark} = useData();
+const filter = ref('');
 const group = computed(() => {
   const ar = groupTabs.value.filter((e) => {
     return e.tag == choiceGroupItem.value;
@@ -131,22 +94,22 @@ const group = computed(() => {
   }
   return ar[0];
 });
-const hoverGroupItem = ref("");
-const choiceGroupItem = ref("all");
+const hoverGroupItem = ref('');
+const choiceGroupItem = ref('all');
 
 function isItemHoverOrChoice(groupName) {
   if (groupName == choiceGroupItem.value) {
-    return "info";
+    return 'info';
   } else if (groupName == hoverGroupItem.value) {
-    return "info";
+    return 'info';
   }
-  return "";
+  return '';
 }
 function itemMouseEnter(groupName) {
   hoverGroupItem.value = groupName;
 }
 function itemMouseLeave() {
-  hoverGroupItem.value = "";
+  hoverGroupItem.value = '';
 }
 function itemClick(groupName) {
   choiceGroupItem.value = groupName;
@@ -155,13 +118,13 @@ function itemClick(groupName) {
 let postsAll = theme.value.posts || [];
 // console.log(postsAll)
 const spaceItemStyle = ref({
-  width: "1376px",
+  width: '1376px'
 });
 const groupTabs = ref([
   {
-    tag: "all",
-    Children: postsAll,
-  },
+    tag: 'all',
+    Children: postsAll
+  }
 ]);
 let nTheme = ref(lightTheme);
 if (isDark.value) {
@@ -209,7 +172,7 @@ function setGroupPosts() {
     } else {
       let ob = {
         tag: et,
-        Children: [e],
+        Children: [e]
       };
       groupTabs.value.push(ob);
     }

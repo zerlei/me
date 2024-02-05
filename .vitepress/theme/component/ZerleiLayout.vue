@@ -3,7 +3,7 @@
     <template #doc-before>
       <div>
         <h1 class="title">{{ frontMatter.title }}</h1>
-        <div style="display: flex;flex-wrap: wrap; margin-bottom: 5px">
+        <div style="display: flex; flex-wrap: wrap; margin-bottom: 5px">
           <div
             style="
               background-color: rgba(32, 128, 240, 0.12);
@@ -16,7 +16,7 @@
               margin-right: 5px;
               border-radius: 2px;
               line-height: normal;
-              margin-bottom: 5px
+              margin-bottom: 5px;
             "
             v-for="tag in frontMatter.tags || []"
           >
@@ -54,14 +54,14 @@
 </template>
 
 <script setup>
-import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
-import DefaultTheme from "vitepress/theme";
-import Home from "./Home.vue";
-import { useData, onContentUpdated } from "vitepress";
-import { ref} from "vue";
-import mermaid from 'mermaid'
-mermaid.initialize({startOnLoad:false})
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import DefaultTheme from 'vitepress/theme';
+import Home from './Home.vue';
+import {useData, onContentUpdated} from 'vitepress';
+import {ref} from 'vue';
+import mermaid from 'mermaid';
+mermaid.initialize({startOnLoad: false});
 const data = useData();
 
 const cPage = data.page;
@@ -74,7 +74,7 @@ const frontMatter = ref({});
 function setFrontMatter(c) {
   const match =
     posts.find((e) => {
-      if (e.regularPath.replace(".html", ".md") == "/" + c.filePath) {
+      if (e.regularPath.replace('.html', '.md') == '/' + c.filePath) {
         return true;
       }
     })?.frontMatter || {};
@@ -82,12 +82,11 @@ function setFrontMatter(c) {
 }
 //ToDO 合并
 
-
-const { Layout } = DefaultTheme;
+const {Layout} = DefaultTheme;
 dayjs.extend(relativeTime);
 onContentUpdated(async () => {
   setFrontMatter(cPage.value);
-  await mermaid.run()
+  await mermaid.run();
 });
 
 //TODO gittalk 这个似乎没用
@@ -102,10 +101,22 @@ onContentUpdated(async () => {
   margin-top: 0.3em;
   margin-bottom: 0.3em;
   line-height: 1.3;
-  font-family: Dosis, ui-sans-serif, system-ui, -apple-system,
-    BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
-    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-    "Noto Color Emoji";
+  font-family:
+    Dosis,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    'Noto Sans',
+    sans-serif,
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol',
+    'Noto Color Emoji';
 }
 
 .date {

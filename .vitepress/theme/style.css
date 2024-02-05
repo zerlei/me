@@ -76,7 +76,7 @@
 		position: absolute;
 		height:calc(100% - 24px);
 		width: 6px;
-		background: #405f86;
+		background: #cc163a;
 		content:'';
     border-radius: 5px;
     margin-left: -15px;
@@ -90,7 +90,7 @@
 		position: absolute;
 		height:calc(100%);
 		width: 5px;
-		background: #8a703c;
+		background: #fecc11;
 		content:'';
     border-radius: 5px;
     margin-left: -10px;
@@ -104,7 +104,7 @@
 		position: absolute;
 		height:calc(100%);
 		width: 4px;
-		background: #647c68;
+		background: #219ebe;
 		content:'';
     border-radius: 4px;
     margin-left: -10px;
