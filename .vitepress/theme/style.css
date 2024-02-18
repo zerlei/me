@@ -62,7 +62,7 @@
 		position: absolute;
 		height:calc(100%);
 		width: 7px;
-		background: brown;
+		background: #c02c38;
 		content:'';
     border-radius: 5px;
     margin-left: -17px;
@@ -76,7 +76,7 @@
 		position: absolute;
 		height:calc(100% - 24px);
 		width: 6px;
-		background: #cc163a;
+		background: #ee3f4d;
 		content:'';
     border-radius: 5px;
     margin-left: -15px;
@@ -90,7 +90,7 @@
 		position: absolute;
 		height:calc(100%);
 		width: 5px;
-		background: #fecc11;
+		background: #1ba784;
 		content:'';
     border-radius: 5px;
     margin-left: -10px;
