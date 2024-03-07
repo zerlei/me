@@ -43,72 +43,65 @@
   font-family: "柳公权楷体";
   src: url("https://zerlei.cn/fonts/FZLiuGQKSJW.TTF");
 } */
-
-
-.vp-doc ul, .vp-doc ol {
+.VPContent.is-home {
+  height: calc(100vh - 70px);
+}
+.vp-doc ul,
+.vp-doc ol {
   padding-left: 2.25rem;
   margin: 16px 0;
   font-size: 95%;
   /* font-weight: light; */
   /* font-style: italic; */
-  
 }
 .mermaid {
-  background-color:#fcffba
+  background-color: #fcffba;
 }
 .vp-doc h1 {
-
   &::before {
-		position: absolute;
-		height:calc(100%);
-		width: 7px;
-		background: #c02c38;
-		content:'';
+    position: absolute;
+    height: calc(100%);
+    width: 7px;
+    background: #c02c38;
+    content: '';
     border-radius: 5px;
     margin-left: -17px;
-	}
+  }
   padding-left: 12px;
-
 }
 .vp-doc h2 {
-
   &::before {
-		position: absolute;
-		height:calc(100% - 24px);
-		width: 6px;
-		background: #ee3f4d;
-		content:'';
+    position: absolute;
+    height: calc(100% - 24px);
+    width: 6px;
+    background: #ee3f4d;
+    content: '';
     border-radius: 5px;
     margin-left: -15px;
-	}
+  }
   padding-left: 10px;
-
 }
 .vp-doc h3 {
-
   &::before {
-		position: absolute;
-		height:calc(100%);
-		width: 5px;
-		background: #1ba784;
-		content:'';
+    position: absolute;
+    height: calc(100%);
+    width: 5px;
+    background: #1ba784;
+    content: '';
     border-radius: 5px;
     margin-left: -10px;
-	}
+  }
   padding-left: 7px;
-
 }
 .vp-doc h4 {
-
   &::before {
-		position: absolute;
-		height:calc(100%);
-		width: 4px;
-		background: #219ebe;
-		content:'';
+    position: absolute;
+    height: calc(100%);
+    width: 4px;
+    background: #219ebe;
+    content: '';
     border-radius: 4px;
     margin-left: -10px;
-	}
+  }
   padding-left: 8px;
-
 }
