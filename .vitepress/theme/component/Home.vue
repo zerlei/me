@@ -126,11 +126,14 @@ function checkRailStyle({_, checked}) {
   }
   return style;
 }
+
+const exportPostAll = theme.value.posts.filter((e) => {
+  return e.frontMatter.export;
+});
+
 function getPostsAll() {
   if (blogExport.value) {
-    return theme.value.posts.filter((e) => {
-      return e.frontMatter.export;
-    });
+    return exportPostAll;
   }
   return theme.value.posts;
 }
