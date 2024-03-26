@@ -2,7 +2,10 @@
   <div v-if="notSsrRender" id="home">
     <n-config-provider :theme="nTheme">
       <n-space justify="center" :item-style="spaceItemStyle">
-        <div style="display: block"></div>
+        <n-switch v-model:value="blogExport" :rail-style="checkRailStyle" :round="false">
+          <template #checked> For You </template>
+          <template #unchecked> For Me </template>
+        </n-switch>
         <n-input placeholder="filter title||keywords||brief " v-model:value="filter"></n-input>
         <n-space>
           <n-tag
@@ -10,7 +13,7 @@
             @mouseenter="itemMouseEnter(group.tag)"
             @mouseleave="itemMouseLeave"
             @click="itemClick(group.tag)"
-            v-for="group in groupTabs"
+            v-for="group in getGroupTabs()"
             :type="isItemHoverOrChoice(group.tag)"
             round
             :bordered="false"
@@ -20,7 +23,6 @@
             </span>
           </n-tag>
         </n-space>
-
         <n-scrollbar class="scrollArea">
           <n-list hoverable clickable>
             <n-list-item v-for="(item, _) in filterGroupChild(group.Children)" v-on:click="routeGo(item)">
@@ -80,17 +82,18 @@ import {ref, watch, onMounted, computed} from 'vue';
 //commonJs 报错？ 错误信息推荐使用这种导入。
 import * as pkg from 'naive-ui';
 import {useData, withBase} from 'vitepress';
-const {lightTheme, darkTheme, NConfigProvider, NList, NListItem, NThing, NSpace, NTag, NScrollbar, NInput} = pkg;
+const {lightTheme, darkTheme, NConfigProvider, NList, NListItem, NThing, NSpace, NTag, NScrollbar, NInput, NSwitch} = pkg;
 //naive-ui 默认不支持 ssr 渲染，而vitepress 是ssr 渲染，这里使naive-ui组件跳过ssr
 const notSsrRender = ref(false);
+const blogExport = ref(true);
 const {theme, isDark} = useData();
 const filter = ref('');
 const group = computed(() => {
-  const ar = groupTabs.value.filter((e) => {
+  const ar = getGroupTabs().filter((e) => {
     return e.tag == choiceGroupItem.value;
   });
   if (ar.length == 0) {
-    return groupTabs.value[0];
+    return getGroupTabs()[0];
   }
   return ar[0];
 });
@@ -114,18 +117,27 @@ function itemMouseLeave() {
 function itemClick(groupName) {
   choiceGroupItem.value = groupName;
 }
+function checkRailStyle({_, checked}) {
+  const style = {};
+  if (checked) {
+    style.background = '#18a058';
+  } else {
+    style.background = '#d03050';
+  }
+  return style;
+}
+function getPostsAll() {
+  if (blogExport.value) {
+    return theme.value.posts.filter((e) => {
+      return e.frontMatter.export;
+    });
+  }
+  return theme.value.posts;
+}
 
-let postsAll = theme.value.posts || [];
-// console.log(postsAll)
 const spaceItemStyle = ref({
   width: '1376px'
 });
-const groupTabs = ref([
-  {
-    tag: 'all',
-    Children: postsAll
-  }
-]);
 let nTheme = ref(lightTheme);
 if (isDark.value) {
   nTheme.value = darkTheme;
@@ -162,9 +174,15 @@ function routeGo(item) {
   window.location.href = withBase(item.regularPath);
 }
 
-function setGroupPosts() {
+function getGroupTabs() {
+  const groupTabs = [
+    {
+      tag: 'all',
+      Children: getPostsAll()
+    }
+  ];
   const insertGroupTab = (et, e) => {
-    let it = groupTabs.value.find((e1) => {
+    let it = groupTabs.find((e1) => {
       return e1.tag == et;
     });
     if (it) {
@@ -174,29 +192,29 @@ function setGroupPosts() {
         tag: et,
         Children: [e]
       };
-      groupTabs.value.push(ob);
+      groupTabs.push(ob);
     }
   };
-  postsAll.forEach((e) => {
+  getPostsAll().forEach((e) => {
     if (e.frontMatter.tags) {
       e.frontMatter.tags.forEach((et) => {
         insertGroupTab(et, e);
       });
     }
   });
+  return groupTabs;
 }
 function getTabsName(group) {
   return `${group.tag}(${filterGroupChild(group.Children).length})`;
 }
 onMounted(() => {
   notSsrRender.value = true;
-  setGroupPosts();
 });
 </script>
 
 <style>
 .scrollArea {
-  height: calc(100vh - 210px);
+  height: calc(100vh - 235px);
   /* padding-bottom: 25px; */
   /* min-height: 30vh; */
 }
@@ -232,6 +250,6 @@ a:hover {
 }
 #home {
   position: relative;
-  min-height: calc(100vh - 70px);
+  /* min-height: calc(100vh - 100px); */
 }
 </style>

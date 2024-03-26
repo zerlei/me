@@ -1,6 +1,7 @@
 ---
 title: 建一个blog网站
 description: VitePress 建一个blog网站
+export: true
 tags:
   - project
   - web
