@@ -22,10 +22,11 @@ function checkRailStyle({_, checked}) {
   }
   return style;
 }
+//发送到home 组件 切换
 watch(blogExport, async (n, o) => {
   bc.postMessage(n);
 });
-onMounted(()=>{
-  notSsrRender.value = true
-})
+onMounted(() => {
+  notSsrRender.value = true;
+});
 </script>
