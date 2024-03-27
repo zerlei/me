@@ -6,5 +6,9 @@
     ".vitepress/**/*.vue",
     ".vitepress/**/*.ts",
     ".vitepress/**/*.d.ts"
+  ],
+  "lib":[
+    "dom",
+    "es2015.promise"
   ]
 }

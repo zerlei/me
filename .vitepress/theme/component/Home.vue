@@ -2,10 +2,6 @@
   <div v-if="notSsrRender" id="home">
     <n-config-provider :theme="nTheme">
       <n-space justify="center" :item-style="spaceItemStyle">
-        <n-switch v-model:value="blogExport" :rail-style="checkRailStyle" :round="false">
-          <template #checked> For You </template>
-          <template #unchecked> For Me </template>
-        </n-switch>
         <n-input placeholder="filter title||keywords||brief " v-model:value="filter"></n-input>
         <n-space>
           <n-tag
@@ -86,6 +82,11 @@ const {lightTheme, darkTheme, NConfigProvider, NList, NListItem, NThing, NSpace,
 //naive-ui 默认不支持 ssr 渲染，而vitepress 是ssr 渲染，这里使naive-ui组件跳过ssr
 const notSsrRender = ref(false);
 const blogExport = ref(true);
+
+const bc = new BroadcastChannel("switcher")
+bc.onmessage = (e)=>{
+  blogExport.value = e.data
+}
 const {theme, isDark} = useData();
 const filter = ref('');
 const group = computed(() => {
@@ -116,15 +117,6 @@ function itemMouseLeave() {
 }
 function itemClick(groupName) {
   choiceGroupItem.value = groupName;
-}
-function checkRailStyle({_, checked}) {
-  const style = {};
-  if (checked) {
-    style.background = '#18a058';
-  } else {
-    style.background = '#d03050';
-  }
-  return style;
 }
 
 const exportPostAll = theme.value.posts.filter((e) => {
@@ -217,7 +209,7 @@ onMounted(() => {
 
 <style>
 .scrollArea {
-  height: calc(100vh - 235px);
+  height: calc(100vh - 210px);
   /* padding-bottom: 25px; */
   /* min-height: 30vh; */
 }

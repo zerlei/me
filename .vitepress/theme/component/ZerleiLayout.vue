@@ -1,5 +1,8 @@
 <template>
   <Layout>
+    <template #nav-bar-content-before>
+      <Switch />
+    </template>
     <template #doc-before>
       <div>
         <h1 class="title">{{ frontMatter.title }}</h1>
@@ -58,6 +61,7 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import DefaultTheme from 'vitepress/theme';
 import Home from './Home.vue';
+import Switch from './Switch.vue';
 import {useData, onContentUpdated} from 'vitepress';
 import {ref} from 'vue';
 import mermaid from 'mermaid';
