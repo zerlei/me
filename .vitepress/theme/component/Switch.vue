@@ -12,7 +12,10 @@ import * as pkg from 'naive-ui';
 const blogExport = ref(true);
 const notSsrRender = ref(false);
 const {NSwitch, NSpace} = pkg;
-const bc = new BroadcastChannel('switcher');
+// 使用BroadcastChannel 会无法发布
+
+const emit = defineEmits(['switcher'])
+// const bc = new BroadcastChannel('switcher');
 function checkRailStyle({_, checked}) {
   const style = {};
   if (checked) {
@@ -24,7 +27,8 @@ function checkRailStyle({_, checked}) {
 }
 //发送到home 组件 切换
 watch(blogExport, async (n, o) => {
-  bc.postMessage(n);
+  emit('switcher',n)
+  // bc.postMessage(n);
 });
 onMounted(() => {
   notSsrRender.value = true;

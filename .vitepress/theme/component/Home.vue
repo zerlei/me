@@ -82,11 +82,16 @@ const {lightTheme, darkTheme, NConfigProvider, NList, NListItem, NThing, NSpace,
 //naive-ui 默认不支持 ssr 渲染，而vitepress 是ssr 渲染，这里使naive-ui组件跳过ssr
 const notSsrRender = ref(false);
 const blogExport = ref(true);
-
-const bc = new BroadcastChannel("switcher")
-bc.onmessage = (e)=>{
-  blogExport.value = e.data
+function changeblogExport(v) {
+  blogExport.value = v
 }
+defineExpose({
+  changeblogExport
+})
+// const bc = new BroadcastChannel("switcher")
+// bc.onmessage = (e)=>{
+//   blogExport.value = e.data
+// }
 const {theme, isDark} = useData();
 const filter = ref('');
 const group = computed(() => {

@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <template #nav-bar-content-before>
-      <Switch />
+      <Switch @switcher="(v)=>{home.changeblogExport(v)}"/>
     </template>
     <template #doc-before>
       <div>
@@ -51,7 +51,7 @@
       </div>
     </template>
     <template #home-features-after>
-      <Home />
+      <Home ref="home" />
     </template>
   </Layout>
 </template>
@@ -67,7 +67,7 @@ import {ref} from 'vue';
 import mermaid from 'mermaid';
 mermaid.initialize({startOnLoad: false});
 const data = useData();
-
+const home = ref(null)
 const cPage = data.page;
 const posts = data.theme.value.posts;
 
