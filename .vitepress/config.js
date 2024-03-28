@@ -2,6 +2,7 @@ import AutoSidebar from 'vite-plugin-vitepress-auto-sidebar';
 import htmlImport from './plugin/vitehtml';
 import {filterDocsSideBar, getPosts} from './utils';
 import markdownItTextualUml from 'markdown-it-textual-uml';
+import markdownFootnote from 'markdown-it-footnote';
 // https://vitepress.dev/reference/site-config
 export default {
   head: [['link', {rel: 'icon', href: '/zerlei.svg'}]],
@@ -52,6 +53,7 @@ export default {
   markdown: {
     config: (md) => {
       md.use(markdownItTextualUml);
+      md.use(markdownFootnote);
     }
   }
 };
