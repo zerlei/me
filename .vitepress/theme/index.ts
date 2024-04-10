@@ -5,7 +5,6 @@ import ZerleiLayout from './component/ZerleiLayout.vue';
 import History from './component/History.vue';
 import About from './component/About.vue';
 import './style.css';
-
 export default {
   extends: Theme,
   Layout: () => {

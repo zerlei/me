@@ -78,16 +78,17 @@ import {ref, watch, onMounted, computed} from 'vue';
 //commonJs 报错？ 错误信息推荐使用这种导入。
 import * as pkg from 'naive-ui';
 import {useData, withBase} from 'vitepress';
-const {lightTheme, darkTheme, NConfigProvider, NList, NListItem, NThing, NSpace, NTag, NScrollbar, NInput, NSwitch} = pkg;
+const {lightTheme, darkTheme, NConfigProvider, NList, NListItem, NThing, NSpace, NTag, NScrollbar, NInput} = pkg;
 //naive-ui 默认不支持 ssr 渲染，而vitepress 是ssr 渲染，这里使naive-ui组件跳过ssr
 const notSsrRender = ref(false);
 const blogExport = ref(true);
 function changeblogExport(v) {
-  blogExport.value = v
+  blogExport.value = v;
 }
+
 defineExpose({
   changeblogExport
-})
+});
 // const bc = new BroadcastChannel("switcher")
 // bc.onmessage = (e)=>{
 //   blogExport.value = e.data
