@@ -46,7 +46,6 @@
         </n-scrollbar>
       </n-space>
     </n-config-provider>
-
     <div
       id="footer"
       style="

@@ -8,7 +8,7 @@
               {{ group.year }}<span style="font-size: 35px">({{ group.Children.length }})</span>
             </div>
             <n-list hoverable clickable>
-              <n-list-item v-for="(item, index) in group.Children" v-on:click="routeGo(item)">
+              <n-list-item v-for="(item, _) in group.Children" v-on:click="routeGo(item)">
                 <n-thing :title="item.frontMatter.title" content-style="margin-top: 10px;">
                   <template #description>
                     <n-space size="small" style="margin-top: 4px">
@@ -36,17 +36,14 @@
 </template>
 <script lang="ts" setup>
 import {ref, watch, onMounted} from 'vue';
-import {useRoute} from 'vitepress';
+//import {useRoute} from 'vitepress';
 //commonJs 报错？ 错误信息推荐使用这种导入。
 import * as pkg from 'naive-ui';
 import {useData, withBase} from 'vitepress';
 const {lightTheme, darkTheme, NConfigProvider, NList, NListItem, NThing, NSpace, NTag, NScrollbar} = pkg;
 //naive-ui 默认不支持 ssr 渲染，而vitepress 是ssr 渲染，这里使naive-ui组件跳过ssr
 const notSsrRender = ref(false);
-const {
-  theme,
-  isDark
-} = useData();
+const {theme, isDark} = useData();
 const historyPosts = ref([
   {
     year: '2037'
