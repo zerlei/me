@@ -1,24 +1,43 @@
 <template>
   <div v-if="notSsrRender" id="home">
     <n-config-provider :theme="nTheme">
-      <n-space justify="center" :item-style="spaceItemStyle">
-        <n-input placeholder="filter title||keywords||brief " v-model:value="filter"></n-input>
-        <n-space>
-          <n-tag
-            style="cursor: pointer"
-            @mouseenter="itemMouseEnter(group.tag)"
-            @mouseleave="itemMouseLeave"
-            @click="itemClick(group.tag)"
-            v-for="group in getGroupTabs()"
-            :type="isItemHoverOrChoice(group.tag)"
-            round
-            :bordered="false"
-          >
-            <span style="user-select: none">
-              {{ getTabsName(group) }}
-            </span>
-          </n-tag>
-        </n-space>
+      <div style="position: relative; width: 1376px; margin: auto">
+        <div :style="filterContainerStyle">
+           <!-- ctrl+ 点击 切换是否 导出 export全部文章  -->
+          <input
+            placeholder="filter title||keywords||brief "
+            v-model="filter"
+            style="width: 100%"
+            @click.ctrl="
+              () => {
+                blogExport = !blogExport;
+              }
+            "
+          />
+          <n-space>
+            <Tags
+              v-for="group in getGroupTabs()"
+              @mouseenter="
+                () => {
+                  hoverGroupItem = group.tag;
+                }
+              "
+              @mouseleave="
+                () => {
+                  hoverGroupItem = '';
+                }
+              "
+              @click="
+                () => {
+                  choiceGroupItem = group.tag;
+                }
+              "
+              :title="group.tag"
+              :count="filterGroupChild(group.Children).length"
+              :focus="isItemHoverOrChoice(group.tag)"
+            ></Tags>
+          </n-space>
+        </div>
         <n-scrollbar class="scrollArea">
           <n-list hoverable clickable>
             <n-list-item v-for="(item, _) in filterGroupChild(group.Children)" v-on:click="routeGo(item)">
@@ -44,7 +63,7 @@
             </n-list-item>
           </n-list>
         </n-scrollbar>
-      </n-space>
+      </div>
     </n-config-provider>
     <div
       id="footer"
@@ -74,6 +93,7 @@
 </template>
 <script setup>
 import {ref, watch, onMounted, computed} from 'vue';
+import Tags from './Tags.vue';
 //commonJs 报错？ 错误信息推荐使用这种导入。
 import * as pkg from 'naive-ui';
 import {useData, withBase} from 'vitepress';
@@ -88,10 +108,6 @@ function changeblogExport(v) {
 defineExpose({
   changeblogExport
 });
-// const bc = new BroadcastChannel("switcher")
-// bc.onmessage = (e)=>{
-//   blogExport.value = e.data
-// }
 const {theme, isDark} = useData();
 const filter = ref('');
 const group = computed(() => {
@@ -108,22 +124,12 @@ const choiceGroupItem = ref('all');
 
 function isItemHoverOrChoice(groupName) {
   if (groupName == choiceGroupItem.value) {
-    return 'info';
+    return true;
   } else if (groupName == hoverGroupItem.value) {
-    return 'info';
+    return true;
   }
-  return '';
+  return false;
 }
-function itemMouseEnter(groupName) {
-  hoverGroupItem.value = groupName;
-}
-function itemMouseLeave() {
-  hoverGroupItem.value = '';
-}
-function itemClick(groupName) {
-  choiceGroupItem.value = groupName;
-}
-
 const exportPostAll = theme.value.posts.filter((e) => {
   return e.frontMatter.export;
 });
@@ -135,9 +141,6 @@ function getPostsAll() {
   return theme.value.posts;
 }
 
-const spaceItemStyle = ref({
-  width: '1376px'
-});
 let nTheme = ref(lightTheme);
 if (isDark.value) {
   nTheme.value = darkTheme;
@@ -204,17 +207,35 @@ function getGroupTabs() {
   });
   return groupTabs;
 }
-function getTabsName(group) {
-  return `${group.tag}(${filterGroupChild(group.Children).length})`;
+
+const filterContainerStyle = ref({});
+
+function onScreenWidthChanged() {
+  const screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+  if (screenWidth > 1376 + 220) {
+    filterContainerStyle.value = {
+      width: '200px',
+      position: 'absolute',
+      right: '-220px',
+      zIndex: '999'
+    };
+  } else {
+    filterContainerStyle.value = {
+      width: '100%',
+      padding: '2px 5px 2px 5px'
+    };
+  }
 }
 onMounted(() => {
   notSsrRender.value = true;
+  window.addEventListener('resize', onScreenWidthChanged);
+  onScreenWidthChanged();
 });
 </script>
 
 <style>
 .scrollArea {
-  height: calc(100vh - 210px);
+  height: calc(100vh - 88px);
   /* padding-bottom: 25px; */
   /* min-height: 30vh; */
 }
