@@ -7,7 +7,6 @@
     "docs:cphtml": "cp -r .vitepress/htmlref/* /home/zhaoyouya/workspace/mysite/wwwroot/htmlref"
   },
   "dependencies": {
-    ".": ".",
     "dayjs": "^1.11.10",
     "fast-glob": "^3.3.1",
     "feed": "^4.2.2",

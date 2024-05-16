@@ -39,7 +39,7 @@
           ></Tags>
         </div>
       </div>
-      <div class="scrollArea">
+      <div id="blogItemsContainer" class="scrollArea">
         <BlogItems :item="item" v-for="(item, _) in filterGroupChild(group.Children)" v-on:click="routeGo(item)"> </BlogItems>
       </div>
     </div>
@@ -70,12 +70,16 @@
   </div>
 </template>
 <script setup>
-import {ref, watch, onMounted, computed} from 'vue';
+import {ref, watch, onMounted, computed, nextTick} from 'vue';
 import Tags from './Tags.vue';
 import BlogItems from './BlogItems.vue';
 //commonJs 报错？ 错误信息推荐使用这种导入。
 import {useData, withBase} from 'vitepress';
 const blogExport = ref(true);
+
+watch(blogExport, () => {
+  localStorage.setItem('blogExport', blogExport.value);
+});
 const {theme} = useData();
 const filter = ref('');
 const group = computed(() => {
@@ -183,9 +187,40 @@ function onScreenWidthChanged() {
     };
   }
 }
+let blogItemsContainer = null;
+let isScrollTimerStart = false;
+function scrollTimerFun() {
+  isScrollTimerStart = false;
+  localStorage.setItem('scrollTop', blogItemsContainer.scrollTop);
+}
+
 onMounted(() => {
   window.addEventListener('resize', onScreenWidthChanged);
   onScreenWidthChanged();
+  blogItemsContainer = document.getElementById('blogItemsContainer');
+  blogItemsContainer.addEventListener(
+    'scroll',
+    () => {
+      if (!isScrollTimerStart) {
+        isScrollTimerStart = true;
+        setTimeout(scrollTimerFun, 500);
+      }
+    },
+    true
+  );
+
+  if (localStorage.getItem('blogExport') == 'false') {
+    blogExport.value = false;
+  } else {
+    blogExport.value = true;
+  }
+
+  nextTick(() => {
+    const scrollTop = localStorage.getItem('scrollTop');
+    if (scrollTop) {
+      blogItemsContainer.scrollTo({top: parseInt(scrollTop)});
+    }
+  });
 });
 </script>
 
