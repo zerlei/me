@@ -1,70 +1,48 @@
 <template>
-  <div v-if="notSsrRender" id="home">
-    <n-config-provider :theme="nTheme">
-      <div style="position: relative; width: 1376px; margin: auto">
-        <div :style="filterContainerStyle">
-           <!-- ctrl+ 点击 切换是否 导出 export全部文章  -->
-          <input
-            placeholder="filter title||keywords||brief "
-            v-model="filter"
-            style="width: 100%"
-            @click.ctrl="
+  <div id="home">
+    <div style="position: relative; width: 1376px; margin: auto">
+      <div :style="filterContainerStyle">
+        <!-- ctrl+ 点击 切换是否 导出 export全部文章  -->
+        <input
+          placeholder="filter title||keywords||brief "
+          v-model="filter"
+          style="width: 100%"
+          @click.ctrl="
+            () => {
+              blogExport = !blogExport;
+            }
+          "
+        />
+        <div style="display: flex; justify-content: flex-start; flex-wrap: wrap">
+          <Tags
+            v-for="group in getGroupTabs()"
+            @mouseenter="
               () => {
-                blogExport = !blogExport;
+                hoverGroupItem = group.tag;
               }
             "
-          />
-          <n-space>
-            <Tags
-              v-for="group in getGroupTabs()"
-              @mouseenter="
-                () => {
-                  hoverGroupItem = group.tag;
-                }
-              "
-              @mouseleave="
-                () => {
-                  hoverGroupItem = '';
-                }
-              "
-              @click="
-                () => {
-                  choiceGroupItem = group.tag;
-                }
-              "
-              :title="group.tag"
-              :count="filterGroupChild(group.Children).length"
-              :focus="isItemHoverOrChoice(group.tag)"
-            ></Tags>
-          </n-space>
+            @mouseleave="
+              () => {
+                hoverGroupItem = '';
+              }
+            "
+            @click="
+              () => {
+                choiceGroupItem = group.tag;
+              }
+            "
+            :title="group.tag"
+            :count="filterGroupChild(group.Children).length"
+            :focus="isItemHoverOrChoice(group.tag)"
+            :show-count="true"
+            :radius="true"
+          ></Tags>
         </div>
-        <n-scrollbar class="scrollArea">
-          <n-list hoverable clickable>
-            <n-list-item v-for="(item, _) in filterGroupChild(group.Children)" v-on:click="routeGo(item)">
-              <n-thing :title="item.frontMatter.title" content-style="margin-top: 10px;">
-                <template #description>
-                  <n-space size="small" style="margin-top: 4px">
-                    <n-tag v-for="t in item.frontMatter.tags || []" :bordered="false" type="info" size="small">
-                      {{ t }}
-                    </n-tag>
-                    <n-tag v-for="t in item.frontMatter.keys || []" :bordered="false" type="info" size="small" round>
-                      {{ t }}
-                    </n-tag>
-                  </n-space>
-                </template>
-                <p>
-                  {{ item.frontMatter.desp }}
-                </p>
-                <n-space justify="space-between" size="small" style="margin-top: 4px; font-size: small">
-                  <div>Created:{{ item.frontMatter.birthtime }}</div>
-                  <div>Last Update:{{ item.frontMatter.mtime }}</div>
-                </n-space>
-              </n-thing>
-            </n-list-item>
-          </n-list>
-        </n-scrollbar>
       </div>
-    </n-config-provider>
+      <div class="scrollArea">
+        <BlogItems :item="item" v-for="(item, _) in filterGroupChild(group.Children)" v-on:click="routeGo(item)"> </BlogItems>
+      </div>
+    </div>
     <div
       id="footer"
       style="
@@ -94,14 +72,11 @@
 <script setup>
 import {ref, watch, onMounted, computed} from 'vue';
 import Tags from './Tags.vue';
+import BlogItems from './BlogItems.vue';
 //commonJs 报错？ 错误信息推荐使用这种导入。
-import * as pkg from 'naive-ui';
 import {useData, withBase} from 'vitepress';
-const {lightTheme, darkTheme, NConfigProvider, NList, NListItem, NThing, NSpace, NTag, NScrollbar, NInput} = pkg;
-//naive-ui 默认不支持 ssr 渲染，而vitepress 是ssr 渲染，这里使naive-ui组件跳过ssr
-const notSsrRender = ref(false);
 const blogExport = ref(true);
-const {theme, isDark} = useData();
+const {theme} = useData();
 const filter = ref('');
 const group = computed(() => {
   const ar = getGroupTabs().filter((e) => {
@@ -134,10 +109,6 @@ function getPostsAll() {
   return theme.value.posts;
 }
 
-let nTheme = ref(lightTheme);
-if (isDark.value) {
-  nTheme.value = darkTheme;
-}
 function tagsOrKeysIncludes(tags, str) {
   if (tags) {
     for (let i = 0; i < tags.length; ++i) {
@@ -159,13 +130,6 @@ function filterGroupChild(Children) {
   });
 }
 
-watch(isDark, (_, n) => {
-  if (!n) {
-    nTheme.value = darkTheme;
-  } else {
-    nTheme.value = lightTheme;
-  }
-});
 function routeGo(item) {
   window.location.href = withBase(item.regularPath);
 }
@@ -220,7 +184,6 @@ function onScreenWidthChanged() {
   }
 }
 onMounted(() => {
-  notSsrRender.value = true;
   window.addEventListener('resize', onScreenWidthChanged);
   onScreenWidthChanged();
 });
@@ -229,6 +192,8 @@ onMounted(() => {
 <style>
 .scrollArea {
   height: calc(100vh - 88px);
+  overflow-y: auto;
+
   /* padding-bottom: 25px; */
   /* min-height: 30vh; */
 }
@@ -265,5 +230,23 @@ a:hover {
 #home {
   position: relative;
   /* min-height: calc(100vh - 100px); */
+}
+
+.scrollArea::-webkit-scrollbar {
+  /*滚动条整体样式*/
+  width: 5px; /*高宽分别对应横竖滚动条的尺寸*/
+  height: 1px;
+}
+.scrollArea::-webkit-scrollbar-thumb {
+  /*滚动条里面小方块*/
+  border-radius: 5px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  background: #535353;
+}
+.scrollArea::-webkit-scrollbar-track {
+  /*滚动条里面轨道*/
+  /* box-shadow : inset 0 0 5px rgba(0, 0, 0, 0.2); */
+  border-radius: 10px;
+  /* background : #ededed; */
 }
 </style>

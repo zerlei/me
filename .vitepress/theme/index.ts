@@ -2,7 +2,7 @@
 import {h} from 'vue';
 import Theme from 'vitepress/theme';
 import ZerleiLayout from './component/ZerleiLayout.vue';
-import History from './component/History.vue';
+// import History from './component/History.vue';
 import About from './component/About.vue';
 import './style.css';
 export default {
@@ -13,7 +13,7 @@ export default {
     });
   },
   enhanceApp({app, router, siteData}) {
-    app.component('History', History);
+    // app.component('History', History);
     app.component('About', About);
     // ...
   }

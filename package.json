@@ -7,6 +7,7 @@
     "docs:cphtml": "cp -r .vitepress/htmlref/* /home/zhaoyouya/workspace/mysite/wwwroot/htmlref"
   },
   "dependencies": {
+    ".": ".",
     "dayjs": "^1.11.10",
     "fast-glob": "^3.3.1",
     "feed": "^4.2.2",
@@ -16,7 +17,6 @@
     "gray-matter": "^4.0.3",
     "markdown-it-footnote": "^4.0.0",
     "markdown-it-textual-uml": "^0.17.1",
-    "naive-ui": "^2.35.0",
     "vfonts": "^0.0.3",
     "vite-plugin-vitepress-auto-sidebar": "^1.6.2",
     "vitepress": "^1.0.0-rc.33",

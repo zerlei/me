@@ -13,8 +13,8 @@ export default {
     // logo:'../asserts/zerlei.svg',
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      {text: 'home', link: '/'},
-      {text: 'history', link: '/history'},
+      {text: 'blog', link: '/'},
+      {text: 'project', link: '/project'},
       {text: 'me', link: '/about'}
     ],
     // search: {
