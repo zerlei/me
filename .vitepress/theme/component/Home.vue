@@ -1,6 +1,6 @@
 <template>
   <div id="home">
-    <div style="position: relative; width: 1376px; margin: auto">
+    <div style="position: relative; max-width: 1376px; margin: auto">
       <div :style="filterContainerStyle">
         <!-- ctrl+ 点击 切换是否 导出 export全部文章  -->
         <input
@@ -15,33 +15,28 @@
         />
         <div style="display: flex; justify-content: flex-start; flex-wrap: wrap">
           <Tags
-            v-for="group in getGroupTabs()"
-            @mouseenter="
-              () => {
-                hoverGroupItem = group.tag;
-              }
-            "
-            @mouseleave="
-              () => {
-                hoverGroupItem = '';
-              }
-            "
-            @click="
-              () => {
-                choiceGroupItem = group.tag;
-              }
-            "
-            :title="group.tag"
-            :count="filterGroupChild(group.Children).length"
-            :focus="isItemHoverOrChoice(group.tag)"
+            v-for="g in currentTags"
+            @click="setChoiceGroupItem(g.tag)"
+            :title="g.tag"
+            :count="filterGroupChildCount(g.Children)"
+            :focus="isItemChoice(g.tag)"
             :show-count="true"
             :radius="true"
           ></Tags>
         </div>
       </div>
-      <div id="blogItemsContainer" class="scrollArea">
-        <BlogItems :item="item" v-for="(item, _) in filterGroupChild(group.Children)" v-on:click="routeGo(item)"> </BlogItems>
-      </div>
+
+      <!-- <div id="blogItemsContainer" class="scrollArea"> -->
+      <DynamicScroller class="scrollArea" :items="filterGroupChild(currentGroup.Children)" :min-item-size="140" ref="scroller" :emit-update="true" @update="onScrollUpdate">
+        <template v-slot="{item, index, active}">
+          <DynamicScrollerItem :item="item" :active="active" :data-index="index">
+            <BlogItems :item="item" v-on:click="routeGo(item)"> </BlogItems>
+          </DynamicScrollerItem>
+        </template>
+      </DynamicScroller>
+      <!-- <BlogItems :item="item" v-for="(item, _) in filterGroupChild(group.Children)" v-on:click="routeGo(item)"> </BlogItems> -->
+      <!-- </div> -->
+      <ProfileMe :style="profileMeStyle"></ProfileMe>
     </div>
     <div
       id="footer"
@@ -70,50 +65,107 @@
   </div>
 </template>
 <script setup>
-import {ref, watch, onMounted, computed, nextTick} from 'vue';
+import {ref, watch, onMounted, computed, onBeforeMount, nextTick} from 'vue';
 import Tags from './Tags.vue';
+import ProfileMe from './ProfileMe.vue';
 import BlogItems from './BlogItems.vue';
 //commonJs 报错？ 错误信息推荐使用这种导入。
 import {useData, withBase} from 'vitepress';
+import {DynamicScroller, DynamicScrollerItem} from 'vue-virtual-scroller';
+import 'vue-virtual-scroller/dist/vue-virtual-scroller.css';
 const blogExport = ref(true);
-
-watch(blogExport, () => {
-  localStorage.setItem('blogExport', blogExport.value);
-});
+const scroller = ref({});
+let isMounted = false;
+function onScrollUpdate(viewStartIndex, viewEndIndex, visibleStartIndex, visibleEndIndex) {
+  if (isMounted) {
+    localStorage.setItem('ScrollVisibleStartIndex', visibleStartIndex);
+  }
+}
 const {theme} = useData();
 const filter = ref('');
-const group = computed(() => {
-  const ar = getGroupTabs().filter((e) => {
-    return e.tag == choiceGroupItem.value;
-  });
-  if (ar.length == 0) {
-    return getGroupTabs()[0];
-  }
-  return ar[0];
-});
-const hoverGroupItem = ref('');
-const choiceGroupItem = ref('all');
+const choiceGroupItem = ref(localStorage.getItem('choiceGroupItem')||'all')
+function setChoiceGroupItem(tag) {
+  choiceGroupItem.value = tag
+  localStorage.setItem('choiceGroupItem', choiceGroupItem.value);
+}
 
-function isItemHoverOrChoice(groupName) {
+function isItemChoice(groupName) {
   if (groupName == choiceGroupItem.value) {
-    return true;
-  } else if (groupName == hoverGroupItem.value) {
     return true;
   }
   return false;
 }
-const exportPostAll = theme.value.posts.filter((e) => {
+
+//#region 是否导出全部blogs
+const exportPostsAll = theme.value.posts.filter((e) => {
   return e.frontMatter.export;
 });
-
-function getPostsAll() {
+const currentPosts = ref(exportPostsAll);
+watch(blogExport, () => {
+  localStorage.setItem('blogExport', blogExport.value);
+  setCurrentPosts();
+});
+function setCurrentPosts() {
   if (blogExport.value) {
-    return exportPostAll;
+    currentPosts.value = exportPostsAll;
+  } else {
+    currentPosts.value = theme.value.posts;
   }
-  return theme.value.posts;
+  setGroupTags();
 }
+//#endregion
 
-function tagsOrKeysIncludes(tags, str) {
+//#region tags 变化
+
+const currentTags = ref([]);
+function setGroupTags() {
+  const groupTags = [
+    {
+      tag: 'all',
+      Children: currentPosts.value
+    }
+  ];
+  const insertGroupTab = (et, e) => {
+    let it = groupTags.find((e1) => {
+      return e1.tag == et;
+    });
+    if (it) {
+      it.Children.push(e);
+    } else {
+      let ob = {
+        tag: et,
+        Children: [e]
+      };
+      groupTags.push(ob);
+    }
+  };
+  currentPosts.value.forEach((e) => {
+    if (e.frontMatter.tags) {
+      e.frontMatter.tags.forEach((et) => {
+        insertGroupTab(et, e);
+      });
+    }
+  });
+  currentTags.value = groupTags;
+}
+setGroupTags();
+
+//#endregion
+
+//#region  当前列表
+
+const currentGroup = computed(() => {
+  const ar = currentTags.value.filter((e) => {
+    return e.tag == choiceGroupItem.value;
+  });
+  if (ar.length == 0) {
+    return currentTags.value[0];
+  }
+  return ar[0];
+});
+//#endregion
+
+function tagsorKeysIncludes(tags, str) {
   if (tags) {
     for (let i = 0; i < tags.length; ++i) {
       if (tags[i].includes(str)) {
@@ -127,57 +179,47 @@ function filterGroupChild(Children) {
   return Children.filter((e) => {
     return (
       e.frontMatter.title.includes(filter.value) ||
-      tagsOrKeysIncludes(e.frontMatter.tags, filter.value) ||
-      tagsOrKeysIncludes(e.frontMatter.keys, filter.value) ||
+      tagsorKeysIncludes(e.frontMatter.tags, filter.value) ||
+      tagsorKeysIncludes(e.frontMatter.keys, filter.value) ||
       e.frontMatter.desp.includes(filter.value)
     );
   });
+}
+function filterGroupChildCount(Children) {
+  let count = 0;
+  Children.forEach((e) => {
+    if (
+      e.frontMatter.title.includes(filter.value) ||
+      tagsorKeysIncludes(e.frontMatter.tags, filter.value) ||
+      tagsorKeysIncludes(e.frontMatter.keys, filter.value) ||
+      e.frontMatter.desp.includes(filter.value)
+    ) {
+      count++;
+    }
+  });
+  return count;
 }
 
 function routeGo(item) {
   window.location.href = withBase(item.regularPath);
 }
 
-function getGroupTabs() {
-  const groupTabs = [
-    {
-      tag: 'all',
-      Children: getPostsAll()
-    }
-  ];
-  const insertGroupTab = (et, e) => {
-    let it = groupTabs.find((e1) => {
-      return e1.tag == et;
-    });
-    if (it) {
-      it.Children.push(e);
-    } else {
-      let ob = {
-        tag: et,
-        Children: [e]
-      };
-      groupTabs.push(ob);
-    }
-  };
-  getPostsAll().forEach((e) => {
-    if (e.frontMatter.tags) {
-      e.frontMatter.tags.forEach((et) => {
-        insertGroupTab(et, e);
-      });
-    }
-  });
-  return groupTabs;
-}
-
 const filterContainerStyle = ref({});
-
+const profileMeStyle = ref({});
 function onScreenWidthChanged() {
   const screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-  if (screenWidth > 1376 + 220) {
+  if (screenWidth > 1376 + 400) {
     filterContainerStyle.value = {
       width: '200px',
       position: 'absolute',
-      right: '-220px',
+      left: '-200px',
+      zIndex: '999'
+    };
+    profileMeStyle.value = {
+      width: '200px',
+      top: '0px',
+      position: 'absolute',
+      right: '-210px',
       zIndex: '999'
     };
   } else {
@@ -185,42 +227,34 @@ function onScreenWidthChanged() {
       width: '100%',
       padding: '2px 5px 2px 5px'
     };
+    profileMeStyle.value = {
+      width: '100%',
+      padding: '2px 5px 2px 5px'
+    };
   }
 }
-let blogItemsContainer = null;
-let isScrollTimerStart = false;
-function scrollTimerFun() {
-  isScrollTimerStart = false;
-  localStorage.setItem('scrollTop', blogItemsContainer.scrollTop);
-}
-
 onMounted(() => {
   window.addEventListener('resize', onScreenWidthChanged);
   onScreenWidthChanged();
-  blogItemsContainer = document.getElementById('blogItemsContainer');
-  blogItemsContainer.addEventListener(
-    'scroll',
-    () => {
-      if (!isScrollTimerStart) {
-        isScrollTimerStart = true;
-        setTimeout(scrollTimerFun, 500);
+  nextTick(() => {
+    const indexStr = localStorage.getItem('ScrollVisibleStartIndex');
+    if (indexStr) {
+      let index = parseInt(indexStr);
+      if (index > filterGroupChild(currentGroup.value.Children).length) {
+        index = 0;
       }
-    },
-    true
-  );
-
+      //WARNING  BUG  index maybe 大于 count  从而导致错误,这出现在文章减少的情况下
+      scroller.value.scrollToItem(index);
+    }
+    isMounted = true;
+  });
+});
+onBeforeMount(() => {
   if (localStorage.getItem('blogExport') == 'false') {
     blogExport.value = false;
   } else {
     blogExport.value = true;
   }
-
-  nextTick(() => {
-    const scrollTop = localStorage.getItem('scrollTop');
-    if (scrollTop) {
-      blogItemsContainer.scrollTo({top: parseInt(scrollTop)});
-    }
-  });
 });
 </script>
 

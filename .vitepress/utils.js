@@ -62,6 +62,20 @@ export async function getPosts() {
   );
   posts.sort(_compareDate);
 
+  // let data = [];
+  //
+  // for (var i = 0; i < 100; i++) {
+  //
+  //   data.push(...JSON.parse(JSON.stringify(posts)));
+  // }
+  //
+  // for (var j = 0; j < data.length; j++) {
+  //   data[j].id= j;
+  // }
+  for (var j = 0; j < posts.length; j++) {
+    posts[j].id = j;
+  }
+
   return posts;
 }
 

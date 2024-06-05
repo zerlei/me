@@ -19,7 +19,8 @@
     "vfonts": "^0.0.3",
     "vite-plugin-vitepress-auto-sidebar": "^1.6.2",
     "vitepress": "^1.0.0-rc.33",
-    "vue": "^3.3.4"
+    "vue": "^3.3.4",
+    "vue-virtual-scroller": "^2.0.0-beta.8"
   },
   "type": "module",
   "devDependencies": {
