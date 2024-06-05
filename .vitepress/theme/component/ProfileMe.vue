@@ -16,13 +16,13 @@
         {{ tag }}
       </div>
     </div>
-    <div class="ctitle">Favor</div>
+    <div class="ctitle">#Favor</div>
     <div style="display: flex; justify-content: flex-start; flex-wrap: wrap">
       <div class="ctag" v-for="tag in favor">
         {{ tag }}
       </div>
     </div>
-    <div class="ctitle">Follow</div>
+    <div class="ctitle">#Follow</div>
     <div style="display: flex; justify-content: flex-start; flex-wrap: wrap">
       <div class="ctag" v-for="tag in follow">
         {{ tag }}
