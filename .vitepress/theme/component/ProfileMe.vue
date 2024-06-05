@@ -31,7 +31,7 @@
     <p style="font-size: small;font-style: italic;
       padding: 5px;border-top: 2px solid #ee4866;margin-top: 5px;
     ">完成复杂的事情。或者完成简单的事情，但是干净、效率、艺术。</p>
-    <p style="text-align: right;font-size: small;font-style: italic;">--Send to me</p>
+    <p style="text-align: right;font-size: small;font-style: italic;">--To me</p>
   </div>
 </template>
 
