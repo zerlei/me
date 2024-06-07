@@ -30,8 +30,7 @@ keys:
 
 ```javascript
 var container = document.getElementById('container');
-container.appendChild(document.
-createElement('div').appendChild(document.createTextNode('123')));
+container.appendChild(document.createElement('div').appendChild(document.createTextNode('123')));
 ```
 
 上述 js 函数执行完毕之后，`container`变化如下：
@@ -100,6 +99,7 @@ vue `<component :is="dynamiccomponent"></component>`能满足需求。
   <body>
     <h1>这是一个vue 动态组件测试</h1>
     <div id="app">
+      <n-button v-on:click="dycall()">调用组件的函数</n-button>
       <!-- 使用 component 动态渲染vnode -->
       <component :is="dy"></component>
     </div>
@@ -116,10 +116,11 @@ vue `<component :is="dynamiccomponent"></component>`能满足需求。
   <script>
     var app = null;
     var papp = null;
+    let callFn = {};
     const App = {
       data() {
         return {
-          dy: {
+          dy: Vue.h({
             template: document.getElementById('v1').innerHTML,
             data() {
               return {
@@ -129,66 +130,98 @@ vue `<component :is="dynamiccomponent"></component>`能满足需求。
             methods: {
               switchdy() {
                 papp.switchdy('v1');
+              },
+              dycall() {
+                console.log('call in v1');
               }
             },
             mounted() {
               console.log('v1');
+              callFn.v1 = this.dycall;
             }
-          },
+          }),
           dyshow: true
         };
       },
       methods: {
-        switchdy(currnt) {
-          if (currnt == 'v1') {
-            papp.dy = Vue.h('div', [
-              Vue.h({
-                template: document.getElementById('v2').innerHTML,
-                data() {
-                  return {
-                    msg: 'v2'
-                  };
-                },
-                methods: {
-                  switchdy() {
-                    papp.switchdy('v2');
-                  }
-                },
-                mounted() {
-                  console.log('v2');
-                }
-              }),
-              Vue.h(
-                naive.NTag,
-                {
-                  type: 'success'
-                },
-                {
-                  default: () => 'v2 extra tags!'
-                }
-              )
-            ]);
-          } else {
-            papp.dy = Vue.h(
-              'div',
-              Vue.h({
-                template: document.getElementById('v1').innerHTML,
-                data() {
-                  return {
-                    msg: 'v1'
-                  };
-                },
-                methods: {
-                  switchdy() {
-                    papp.switchdy('v1');
-                  }
-                },
-                mounted() {
-                  console.log('v1');
-                }
-              })
-            );
+        dycall() {
+          for (key in callFn) {
+            callFn[key]();
           }
+        },
+        switchdy(currnt) {
+          callFn = {};
+          this.dyshow = false;
+          papp.dy = null;
+          Vue.nextTick(() => {
+            if (currnt == 'v1') {
+              papp.dy = Vue.h('div', [
+                Vue.h({
+                  template: document.getElementById('v2').innerHTML,
+                  data() {
+                    return {
+                      msg: 'v2'
+                    };
+                  },
+                  methods: {
+                    switchdy() {
+                      papp.switchdy('v2');
+                    },
+                    dycall() {
+                      console.log('call in v2');
+                    }
+                  },
+                  mounted() {
+                    console.log('v2');
+                    callFn.v2Btn = this.dycall;
+                  }
+                }),
+                Vue.h(
+                  naive.NTag,
+                  {
+                    type: 'success'
+                  },
+                  {
+                    default: () => 'v2 extra tags!'
+                  }
+                )
+              ]);
+            } else {
+              papp.dy = Vue.h('div', [
+                Vue.h({
+                  template: document.getElementById('v1').innerHTML,
+                  data() {
+                    return {
+                      msg: 'v1'
+                    };
+                  },
+                  methods: {
+                    switchdy() {
+                      papp.switchdy('v1');
+                    },
+                    dycall() {
+                      console.log('call in v1');
+                    }
+                  },
+                  mounted() {
+                    console.log('v1');
+                    callFn.v1 = this.dycall;
+                  }
+                }),
+                Vue.h(
+                  naive.NTag,
+                  {
+                    type: 'success'
+                  },
+                  {
+                    default: () => 'v1 extra tags!'
+                  }
+                ),
+                Vue.h('h1', 'v1 extra h1')
+              ]);
+            }
+            papp.dyshow = true;
+          });
         }
       },
       mounted() {
@@ -204,12 +237,12 @@ vue `<component :is="dynamiccomponent"></component>`能满足需求。
 
 ## 问题解决的反思
 
-我在频繁使用 vue 的时候，确实应该系统的学习vue,但我还要学习系统编程的知识...
+我在频繁使用 vue 的时候，确实应该系统的学习 vue,但我还要学习系统编程的知识...
 
 这是目标和现实的矛盾。 我将来打算靠系统级编程吃饭，但是现在我要靠前端吃饭。
 
 系统学习前端知识可能对我来说是必要的，但是它的优先度并不高，大多数情况下，我的前端知识够用，但有时候还是会遇到这样的问题，身边没有可供咨询的人，也只能靠自己解决了...
 
-使用AI大模型，确实在解决问题方面帮助了我不少。
+使用 AI 大模型，确实在解决问题方面帮助了我不少。
 
 [^1]: https://cn.vuejs.org/guide/extras/render-function.html
