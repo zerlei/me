@@ -44,7 +44,7 @@ blog 最重要的是内容.
 
 ## 前端工具(vitepress)
 
-有一堆合适的工具。我选择了 vitepress + naive-ui 的一些组件，原因是我对vue熟悉。
+有一堆合适的工具。我选择了 vitepress ，原因是我对vue熟悉。最开始，为了快速完成目标，我使用了naiveui的一些组件，后面出于减少项目依赖的目的，去掉了naiveui，自己实现了我需要的简单的组件。
 
 如果想给一个项目提供参考文档，vitepress 开箱即用。但若想用 vitepress 搭建个人网站，通常需要做一些个性化的配置，做这些配置十分简单。[^2]
 
@@ -68,8 +68,8 @@ blog 最重要的是内容.
   - vitepress 是新一代版本，用 vitepress。
 :::
 
-我基本只做了主页和和sidebar部分的配置。css样式，之前也调整了一些，最后还是觉得原来的样式好，现在只有微调。
-### 1. 系列目录的生成
+
+### 1. 实现系列目录的自动生成
 
 > 这个👇
 
@@ -128,7 +128,7 @@ function filterDocsSideBarWork(beforItems, willInsertItems, prefix) {
 这样当文件夹目录中有‘_ca’，就会为这个目录下所有的文章生成一个sidebar,当访问此目录下的文章时，sidebar就会在界面左边出现。
 
 
-### 2. 文章分类排序展示
+### 2. 实现文章分类排序展示
 
 我希望文章有一个列表页面，并却按照分类展示。
 
@@ -136,85 +136,28 @@ function filterDocsSideBarWork(beforItems, willInsertItems, prefix) {
 
 `globby`等插件可以帮助获取元数据。在展示数据的时候，我使用了`naive-ui`的一些组件。
 
-引用naive-ui时遇到了一些问题，这些问题都好解决。
-
-**问题 1：** vitepress 使用ssr，但naive-ui默认不是ssr。我选择让主页数据在客户端渲染。
-
-```html{1}
-  <div v-if="notSsrRender">
-    <n-config-provider :theme="nTheme">
-      <n-space justify="center">
-```
-'notSsrRender'初始值为 false ,在 onMounted 函数中修改为 true 。ssr时，onMounted不会被执行,这样主页数据就不会在服务端渲染。假如不这样做，会出现一个服务端渲染结果和客户端不匹配的错误。
-
-**问题 2：** 代码发布的时候遇到了关于导入naive-ui包的什么commonJs的错误，错误提示让我使用这种方式导入：
-
-```ts
-import * as pkg from "naive-ui";
-const {
-  lightTheme,
-  darkTheme,
-  NConfigProvider,
-  NList,
-  NListItem,
-  NThing,
-  NSpace,
-  NTag,
-  NTabs,
-  NTabPane,
-  NScrollbar,
-} = pkg;
-```
-
-我按照这种方式做了，就没有问题了，因为**我不想深入掌握前端**,这里不深纠,解决问题就好。
+首页展示的组件刚开始借助于naive-ui，后面自己实现了，这减少了发布时间，ssr更加顺利。我还使用了`vue-virtual-scroller`解决后续随着blog增多，主页面卡顿的问题，现在终我一生，我也写不出能让我主页面卡顿数量的blogs。
 
 ## 后台托管
 
 vitepress 生成的是纯纯静态页面，最常用的托管方式是使用nginx。但就仅仅托管一个静态页面，ngxinx还是有点沉重。使用c++ 写个简单的托管静态资源的web server，占用资源极少，性能较高，而且十分简单。
 
-```cpp
-#include <drogon/HttpResponse.h>
-#include <drogon/HttpTypes.h>
-#include <drogon/drogon.h>
-#include <drogon/utils/FunctionTraits.h>
-#include <functional>
-#include <json/value.h>
-#include <string>
-using namespace drogon;
-int main(int argc, char *argv[]) {
-
-  app()
-      .setThreadNum(1)
-      .registerSyncAdvice([](const HttpRequestPtr &req) -> HttpResponsePtr {
-        auto port = req->getLocalAddr().toPort();
-        if (port == 80) {
-          auto resp = HttpResponse::newRedirectionResponse("https://xxxx.cn");
-          return resp;
-        } else {
-          return nullptr;
-        }
-      })
-      .addListener("0.0.0.0", 443, true,
-                   "/home/xxx/.ssl/zerlei.cn_bundle.pem",
-                   "/home/xxx/.ssl/zerlei.cn.key")
-      .addListener("0.0.0.0", 80)
-      .setDocumentRoot("./wwwroot")
-      .run();
-}
-
-```
-使用 `drogon`[^3]，这就是全部的代码了。当访问http时，会重定向到https。资源占用十分的让人满意。
-
+我选择使用 `drogon`[^3]。
 
 ## 部署与发布
 
-当写下新的内容时，系统能做到自动发布。首先想到的是git hook。使用腾讯的混元大模型。他是这样回答的:
+当写下新的内容时，系统能做到按需自动发布。首先想到的是git hook。使用腾讯的混元大模型。他是这样回答的:
 
 ![Alt text](/asserts/githook1.png)
 
 
 ![Alt text](/asserts/githook2.png)
 
+:::danger 注意
+
+我的使用场景是，我通过远程ssh连接到我的云服务器写blog,我的网站也部署在此云服务器上[^4]。
+
+:::
 比较全面了。
 
 如果直接把构建的脚本写在post-commit里面，那么每次commit的时候都要等待30-40s用于构建发布。若把命名加上 `nohup ...  &`转到后台运行，使用命令行敲commit时没有问题，但使用vscode commit时，我发现发布任务又跑到前台了。。。还是要等。
@@ -223,7 +166,7 @@ int main(int argc, char *argv[]) {
 
 其它还有一些比较沉重的方法就不考虑了。
 
-我想到的一个方案是：在我的静态web server 里写一个接口，实现发布过程；在post-commit写一个 curl 命令，当commit的时候，curl命令会向web server 发一个请求，之后由web server 执行发布的具体步骤，这样做既可以做到，每个commit实时发布，也不会让我在commit的时候等待太长时间。
+我决定在我的静态web server 里写一个接口，实现发布过程；在post-commit写一个 curl 命令，当commit的时候，curl命令会向web server 发一个请求，之后由web server 执行发布的具体步骤，这样做既可以做到，每个commit实时发布，也不会让我在commit的时候等待太长时间。
 
 我实践之后发现存在这样一个问题：
 
@@ -232,7 +175,6 @@ int main(int argc, char *argv[]) {
 3. 发布工具bun 一般都是在非root用户下使用。
 
 所以，这导致了发布时的一些异常，页面无法正常访问。最初我以为是文件权限问题，但改了文件权限后，还是无法正常访问，后来发现是在root用户下，执行发布出现了问题，一些开发工具默认不在root用户下运行。
-
 
 要解决这样的问题，考虑从以下方面着手：
 
@@ -339,13 +281,6 @@ int main(int argc, char *argv[]) {
 
 ```
 `bun run docs:build` 将会执行 `vitepress build && rm -rf /home/****/workspace/mysite/wwwroot/assets/*  && cp -r /home/****/git/my-site/.vitepress/dist/*  /home/****/workspace/mysite/wwwroot`
-
-:::danger 注意
-
-我的使用场景是，我通过远程ssh连接到我的云服务器写blog,我的网站也部署在此云服务器上[^4]。
-
-:::
-
 
 这样整个流程是，每次commit 后会curl web server 发一个http 请求，当web server接收到相关请求之后，notify 一个工作线程，异步执行发布，并立即向curl请求返回结果,commit 不阻塞完成。
 
