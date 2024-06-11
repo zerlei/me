@@ -43,6 +43,19 @@
   font-family: "柳公权楷体";
   src: url("https://zerlei.cn/fonts/FZLiuGQKSJW.TTF");
 } */
+
+/* :root { */
+/*   --vp-c-bg: #DFECD5; */
+/*   --vp-c-bg-alt: #DFECD5; */
+/*   --vp-c-bg-elv: #DFECD5; */
+/*   --vp-c-bg-soft: #DFECD5; */
+/* } */
+/* .dark { */
+/*   --vp-c-bg: #1b1b1f; */
+/*   --vp-c-bg-alt: #161618; */
+/*   --vp-c-bg-elv: #202127; */
+/*   --vp-c-bg-soft: #202127; */
+/* } */
 .VPContent.is-home {
   height: calc(100vh - 70px);
 }
