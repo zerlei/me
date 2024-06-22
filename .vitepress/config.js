@@ -42,7 +42,7 @@ export default {
         },
         sideBarItemsResolved(data) {
           data = data.filter((item) => {
-
+            //目录将过滤这些文件
             for (let word of [".png", ".jpg", ".jpeg", ".gif", ".svg"]) {
               if (item.text.includes(word)) {
                 return false
