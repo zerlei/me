@@ -1,11 +1,11 @@
 import AutoSidebar from 'vite-plugin-vitepress-auto-sidebar';
 import htmlImport from './plugin/vitehtml';
-import {filterDocsSideBar, getPosts} from './utils';
+import { filterDocsSideBar, getPosts } from './utils';
 import markdownItTextualUml from 'markdown-it-textual-uml';
 import markdownFootnote from 'markdown-it-footnote';
 // https://vitepress.dev/reference/site-config
 export default {
-  head: [['link', {rel: 'icon', href: '/zerlei.svg'}]],
+  head: [['link', { rel: 'icon', href: '/zerlei.svg' }]],
   title: 'Zerlei',
   lang: 'zh-cn',
   description: '🌈A programmer,there are his blog🌈',
@@ -13,9 +13,9 @@ export default {
     // logo:'../asserts/zerlei.svg',
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      {text: 'blog', link: '/'},
-      {text: 'project', link: '/project'},
-      {text: 'me', link: '/about'}
+      { text: 'blog', link: '/' },
+      { text: 'project', link: '/project' },
+      { text: 'me', link: '/about' }
     ],
     // search: {
     //   provider: "local",
@@ -27,18 +27,34 @@ export default {
     //     "Copyright © 2019-present Evan You  🫲 等我 有域名，我就换掉有语系",
     // },
 
-    socialLinks: [{icon: 'github', link: 'https://github.com/ZhaoYouYa/me/issues'}],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/ZhaoYouYa/me/issues' }],
     outline: 'deep'
   },
   vite: {
     plugins: [
       // add plugin
       AutoSidebar({
-        path: '/',
+        path: '/docs/',
         collapsed: true,
         sideBarResolved: (data) => {
           let d = filterDocsSideBar(data);
           return d;
+        },
+        sideBarItemsResolved(data) {
+          data = data.filter((item) => {
+
+            for (let word of [".png", ".jpg", ".jpeg", ".gif", ".svg"]) {
+              if (item.text.includes(word)) {
+                return false
+              }
+            }
+            if (item.link) {
+              item.link = `/docs${item.link}`
+            }
+            return true
+          })
+          return data;
+
         }
         // You can also set options to adjust sidebar data
         // see option document below

@@ -1,4 +1,4 @@
-import {globby} from 'globby';
+import { globby } from 'globby';
 import matter from 'gray-matter';
 import fs from 'fs-extra';
 
@@ -8,9 +8,11 @@ import fs from 'fs-extra';
  * @returns
  */
 export function filterDocsSideBar(item) {
-  let beforItems = item['/docs/'][0].items;
+  let beforItems = item;
   let afterItems = {};
-  filterDocsSideBarWork(beforItems, afterItems, '/docs/');
+  for (const key in beforItems) {
+    filterDocsSideBarWork(beforItems[key][0].items, afterItems, `/docs${key}`);
+  }
   return afterItems;
 }
 function filterDocsSideBarWork(beforItems, willInsertItems, prefix) {
@@ -42,12 +44,12 @@ export async function getPosts() {
       if (despMatch) {
         desp = despMatch[0].replace(/:::\s*info\s*Introduction/, '').replace(':::', '');
       }
-      const {data} = matter(content);
+      const { data } = matter(content);
       data.desp = desp;
       //创建时间
-      data.birthtime = state.birthtime.toLocaleString('zh-CN', {timeZone: 'Asia/Shanghai'}).split(' ')[0];
+      data.birthtime = state.birthtime.toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' }).split(' ')[0];
       //最后修改时间
-      data.mtime = state.mtime.toLocaleString('zh-CN', {timeZone: 'Asia/Shanghai'}).split(' ')[0];
+      data.mtime = state.mtime.toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' }).split(' ')[0];
 
       //如果不包含title将使用文件目录作为title
       if (!data.title) {
