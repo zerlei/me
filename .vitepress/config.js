@@ -8,7 +8,7 @@ export default {
   head: [['link', { rel: 'icon', href: '/zerlei.svg' }]],
   title: 'Zerlei',
   lang: 'zh-cn',
-  description: '🌈A programmer,there are his blog🌈',
+  description: '🌈A programmer,there are his blogs🌈',
   themeConfig: {
     // logo:'../asserts/zerlei.svg',
     // https://vitepress.dev/reference/default-theme-config
@@ -59,7 +59,7 @@ export default {
         // You can also set options to adjust sidebar data
         // see option document below
       }),
-      htmlImport()
+      // htmlImport()
     ],
     server: {
       host: '0.0.0.0',
