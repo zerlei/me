@@ -1,5 +1,5 @@
 import AutoSidebar from 'vite-plugin-vitepress-auto-sidebar';
-import htmlImport from './plugin/vitehtml';
+// import htmlImport from './plugin/vitehtml';
 import { filterDocsSideBar, getPosts } from './utils';
 import markdownItTextualUml from 'markdown-it-textual-uml';
 import markdownFootnote from 'markdown-it-footnote';
@@ -13,8 +13,9 @@ export default {
     // logo:'../asserts/zerlei.svg',
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'blog', link: '/' },
-      { text: 'project', link: '/project' },
+      { text: 'blogs', link: '/' },
+      { text: 'navigation', link: '/navigation' },
+      { text: 'projects', link: '/project' },
       { text: 'me', link: '/about' }
     ],
     // search: {

@@ -1,9 +1,10 @@
 <template>
-  <Layout>
+   <!-- 不在docs目录里，使用特殊页面布局 -->
+  <Layout :class="frontMatter.title?'':'m-special-layout'">
     <template #nav-bar-content-before>
     </template>
     <template #doc-before>
-      <div>
+      <div v-if="frontMatter.title">
         <h1 class="title">{{ frontMatter.title }}</h1>
         <div style="display: flex; flex-wrap: wrap; margin-bottom: 5px">
           <div
