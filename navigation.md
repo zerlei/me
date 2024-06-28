@@ -1,7 +1,7 @@
 ---
 layout: doc
 ---
-# 资源导航
+# 导航
 
 
 <style>
