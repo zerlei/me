@@ -14,6 +14,12 @@ export const NavigationData = [
         'https://media.geeksforgeeks.org/gfg-gg-logo.svg',
         '这里有很多教程，有些质量非常高，比如关于数据结构和算法，但似乎有些杂乱，这个网站一直安利付费课程',
         'https://www.geeksforgeeks.org/'
+      ],
+      [
+        'DZone',
+        'https://dz2cdn1.dzone.com/themes/dz20/images/favicon.png',
+        '有许多优秀的学习资源，和优秀的博客，特别是关于devops和系统设计，c/c++内容较少',
+        'https://dzone.com'
       ]
     ]
   },
@@ -71,10 +77,17 @@ export const NavigationData = [
   },
   {
     title: '论坛&工具',
-    children: []
+    children: [
+      [
+        'Compliler Explorer',
+        'https://godbolt.org/favicon.ico?v=1',
+        '你的代码编译之后的样子?通产是各种中间码和汇编码，你可能更关注c/c++ zig等系统级编程语言',
+        'https://godbolt.org/'
+      ]
+    ]
   },
   {
     title: '资源网站',
-    children: []
+    children: [['cloudflare', 'https://dash.cloudflare.com/favicon.ico', '活菩萨！！！ 好用的ssl服务，静态网页托管(github 仓库直连)，数据库，完全免费！', 'https://dash.cloudflare.com/']]
   }
 ];
