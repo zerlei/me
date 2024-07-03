@@ -88,6 +88,9 @@ export const NavigationData = [
   },
   {
     title: '资源网站',
-    children: [['cloudflare', 'https://dash.cloudflare.com/favicon.ico', '活菩萨！！！ 好用的ssl服务，静态网页托管(github 仓库直连)，数据库，完全免费！', 'https://dash.cloudflare.com/']]
+    children: [['cloudflare', 'https://dash.cloudflare.com/favicon.ico', '活菩萨！！！ 好用的ssl服务，静态网页托管(github 仓库直连)，数据库，完全免费！', 'https://dash.cloudflare.com/']
+  
+          ['REfACTORING','https://refactoring.guru/favicon.png','在这个网站中可以学习到设计模式和代码重构，质量非常好，钱相对充足的时候去支持一下作者，可以微信支付宝。', 'https://refactoring.guru/']
+  ]
   }
 ];
