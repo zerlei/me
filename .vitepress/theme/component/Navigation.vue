@@ -27,7 +27,7 @@
 
 <script setup>
 import {ref} from 'vue';
-import {NavigationData} from './Navigation.js';
+import {NavigationData} from './Navigation.ts';
 function IsSvg(str) {
   if (str[0] == '<') {
     return true;
