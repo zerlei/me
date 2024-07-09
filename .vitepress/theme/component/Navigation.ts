@@ -91,6 +91,12 @@ export const NavigationData = [
         'https://refactoring.guru/favicon.png',
         '在这个网站中可以学习到设计模式和代码重构，质量非常好，钱相对充足的时候去支持一下作者，可以微信支付宝。',
         'https://refactoring.guru/'
+      ],
+      [
+        "Coursela",
+        "https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/favicon-v2-32x32.png",
+        "人间充满爱的学习平台,质量很高。能在这里找的学习资源，就在这里找吧，很多免费的资源，付费也完全值得，将来有机会的话，可以在这里申请硕士学位，前提是钱和时间都要有",
+        "https://www.coursera.org/"
       ]
     ]
   }
