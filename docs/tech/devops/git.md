@@ -259,3 +259,36 @@ Pull with a merge commit:
   - -u Track this branch(--set-upstream) 
   - if there are no branch,it will push all branch
   - there are a default repository
+  
+
+### git rebase
+
+- Rebase
+- Interactive rebase
+
+**Rebase change commits history**
+
+这和在同一个分支上开发，然后合并冲突有点像。
+
+![alt text](image-8.png)
+
+`git rebase <branch>`: rebase the current branch onto the specified branch
+
+`git rebase <upstream> <branch>`: rebase branch to upstream.
+
+
+`git rebase --continue`: continue rebase,after you **solved conflicts**.
+
+merge vs rebase:
+
+![alt text](image-9.png)
+
+
+## git rewrite history
+
+`git commit --amend`: change the last commit  message
+
+
+internal rebase : 记住这个可以修改commits的历史就行了，为了显示项目的变化的完整历史，修改commit message，或者用创建一个新的commit覆盖会比较好，直接修改commit历史比较不好
+
+Squash merge:  merge two commits into one
