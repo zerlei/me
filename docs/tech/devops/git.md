@@ -7,7 +7,9 @@ keys:
 
 ::: info Introduction
 
-每天都在用git,现在去系统的学习一下git吧，它时devops的基础~
+每天都在用git,现在去系统的学习一下git吧，它是devops的基础~
+
+中文和英文搭配确实显得很乱，但 这是我当前的状态，我学习的是英文资源，然后嘛，英文水平有限~
 
 :::
 
@@ -185,12 +187,75 @@ Main types of merges:
 
 
 
+### merge conflicts
+
+> git automatically merges changes to different parts(hunks) of files.
+
+![alt text](image-2.png)
+
+> Small frequent merges are the easiest
 
 
+**the step of merge conflict**:
+
+1. checkout master
+2. Merge featureX
+  - a . CONFLICT- Both modified fileA.txt
+3. Fix fileA.txt
+4. Stage fileA.txt
+5. Commit the merge commit.
+6. (Optionally) Delete the featureX branch
 
 
+a conflict look like:
+
+![alt text](image-3.png)
 
 
+after you fixed conflicts, you can `git add ...` ,`git commit`.
 
 
+### Tracking branch
 
+> A branch that tracks represent a remote branch
+
+
+![alt text](image-4.png)
+
+`git branch --all`: Displays local and tracking branches
+
+`git status`: includes tracking branch information
+
+
+### git network commands
+
+- Clone: Copies a remote repository
+- Fetch: Retrieves new objects and references from a remote repository 
+- Pull: Fetches and merges commits locally
+- Push: Updates remote references 
+
+
+Fetch the lastest commits:
+
+![alt text](image-5.png)
+
+
+- `git pull [<repository> [<branch>]`
+  - Combines git fetch and git merge FETCH_HEAD
+  - --ff(default) fast-forward if possible,otherwse perform a merge commit
+  - --no-ff  always include a merge commit
+  - --ff-only cancle instead of doing a merge commit
+  - --rebase TODO
+
+Pull with a fast-forward merge:
+
+![alt text](image-6.png)
+
+Pull with a merge commit:
+
+![alt text](image-7.png)
+
+- `git push [-u] [<repository> [<branch>]`
+  - -u Track this branch(--set-upstream) 
+  - if there are no branch,it will push all branch
+  - there are a default repository
