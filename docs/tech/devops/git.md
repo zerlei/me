@@ -292,3 +292,11 @@ merge vs rebase:
 internal rebase : 记住这个可以修改commits的历史就行了，为了显示项目的变化的完整历史，修改commit message，或者用创建一个新的commit覆盖会比较好，直接修改commit历史比较不好
 
 Squash merge:  merge two commits into one
+
+
+修改历史提交信息的步骤
+
+1. `git rebase -i <commit>`: 在另一个基础上重新提交，所以，这行命令的commit是你要修改的commit的上一个commitID
+2. 在弹出的nvim编辑行中，选择要修改的commit，在行首将pick改为edit
+3. 保存退出，然后执行`git commit --amend`修改message信息
+4. 保存退出，`git rebase --continue`完成！
