@@ -12,10 +12,13 @@ keys:
 
 :::
 
+我的权限认证是一样的，但是 commit 记录仍然显示两个人。
+
+
+![alt text](image11.png)
+
 1. 确定使用gh登陆账号并授权
 2. 确定修改 git 的 user.email 和 user.name 与 github账号匹配
 
-这次就好了。
-
-我的权限认证是一样的，但是 commit 记录仍然显示两个人，我不清楚这是一个feature还是一个bug。总之，使git的账号和github匹配吧。
+这次就好了。git 的提交纪录应该是：**相同邮箱被视为同一个人。**  出现不一样作者的原因可能是我的git 设置的邮箱和github 账号邮箱不一致。
 

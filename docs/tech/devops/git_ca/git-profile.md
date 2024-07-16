@@ -9,7 +9,7 @@ keys:
 
 每天都在用git,现在去系统的学习一下git吧，它是devops的基础~
 
-中文和英文搭配确实显得很乱，但 这是我当前的状态，我学习的是英文资源，然后嘛，英文水平有限~
+中文和英文搭配确实显得很乱，这是我当前的状态，我学习的是英文资源，然后嘛，英文水平有限~
 
 :::
 
@@ -300,3 +300,21 @@ Squash merge:  merge two commits into one
 2. 在弹出的nvim编辑行中，选择要修改的commit，在行首将pick改为edit
 3. 保存退出，然后执行`git commit --amend`修改message信息
 4. 保存退出，`git rebase --continue`完成！
+
+## git pull request
+
+- Pull requests are opened using an online Git host such as github
+- the ultimate goal of a pull request is to merge a branch, but they also facilitate team discussion and code review
+- you can open a pull request any time after creating the branch
+
+the steps:
+
+- Fork
+- Clone
+- Create a branch
+- Make changes
+- Push to your fork
+- Create a pull request
+
+
+![alt text](image-10.png)
