@@ -15,7 +15,7 @@ keys:
 我的权限认证是一样的，但是 commit 记录仍然显示两个人。
 
 
-![alt text](image11.png)
+![alt text](image-11.png)
 
 1. 确定使用gh登陆账号并授权
 2. 确定修改 git 的 user.email 和 user.name 与 github账号匹配
