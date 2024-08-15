@@ -25,7 +25,7 @@
       </DynamicScroller>
       <!-- <BlogItems :item="item" v-for="(item, _) in filterGroupChild(group.Children)" v-on:click="routeGo(item)"> </BlogItems> -->
       <!-- </div> -->
-      <ProfileMe :style="profileMeStyle"></ProfileMe>
+      <ProfileMe :-is-show-img="true" :style="profileMeStyle"></ProfileMe>
     </div>
     <div id="footer" style="
         bottom: 0;

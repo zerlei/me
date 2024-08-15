@@ -50,9 +50,6 @@
         </div>
       </div>
     </template>
-    <template #home-features-after>
-      <Home ref="home" />
-    </template>
   </Layout>
 </template>
 
@@ -60,13 +57,11 @@
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import DefaultTheme from 'vitepress/theme';
-import Home from './Home.vue';
 import {useData, onContentUpdated} from 'vitepress';
 import {ref} from 'vue';
 import mermaid from 'mermaid';
 mermaid.initialize({startOnLoad: false});
 const data = useData();
-const home = ref(null);
 const cPage = data.page;
 const posts = data.theme.value.posts;
 

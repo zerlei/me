@@ -9,7 +9,9 @@ keys:
 
 ::: info Introduction
 
-代码写的没问题啊? 提示报错了是什么情况?
+使用clang++编译，默认使用的标准库是`stdlibc++`,这是gnu的标准库。而`stdc++` 是llvm 的标准库，需要额外安装。`sudo zypper install libc++-devel`。
+
+clangd 和编译器 的include 文件可能不一致，特别是在cmake没有生成`compiler_commants.json`或者没有特定编译选项的情况下，clangd 和当前编译器将分别使用默认配置。
 
 :::
 
@@ -20,7 +22,7 @@ keys:
 1. goto https://en.cppreference.com/w/cpp/utility/format/format 查看文档确认是 c++20 的功能
 2. 我使用的 lsp 是 clangd,编译器是 gcc,我在 `CMakeLists.txt` 设置了 `set(CMAKE_CXX_STANDARD 20)`,首先确定能否编译成功,编译是没有问题的.
 3. clangd 的提示依赖于编译器生成的`compiler_commants.json`,而我又在 `CMakeLists.txt`中设置了`set(CMAKE_EXPORT_COMPILE_COMMANDS on)`它会指示编译器生成该 json 文件,这应该是没有问题的,我删除了/build 文件下的构建缓存,并检查了`CMakePresets.json`文件确认没有问题,`cmake --preset=default`重新生成构建缓存,并重新启动 lsp(clangd),但问题仍然存在.
-4. clangd 的提示依赖于 clang, 去 https://isocpp.org/ 检查 clang 对`<format>`的支持情况,并检查 我当前clangd 的版本,当然此版本 clang 是支持的.
+4. clangd 的提示依赖于clang(?,我确定有关系，但具体是什么关系，我现在不清楚), 去 https://isocpp.org/ 检查 clang 对`<format>`的支持情况,并检查 我当前clangd 的版本,当然此版本 clang 是支持的.
 5. changd 的代码提示是能配置的,之前用的 c++ version 比较低,clangd 正常能用就没有想太多,查文档发现,还有一个.clangd 的文件可以做 clangd 的配置,于是在工程目录里加了此文件,内容如下:
 
 ```
@@ -28,29 +30,28 @@ CompileFlags:
   Add: [-std=c++20]
 ```
 
-但还是不行!!!
+但还是不行。
 
 6. 因为我使用的编译器是 gcc,那好吧,写个最简单的带`<format>`的程序,使用命令行编译
 
 ```bash
-clang++  test.cpp -o t -std=c++20
+clang++ test.cpp -o t -std=c++20
 ```
 
 编译不了,`<format>`找不到
 
-使用 g++ 则是没有问题的!
+使用最新的 g++ 则是没有问题的!
 
 ```bash
 g++-13 test.cpp -o t -std=c++20
 ```
-
 clang 加上 libc++试试看
 
 ```bash
 clang++  test.cpp -o t -std=c++20 -stdlib=libc++
 ```
 
-OK! 成功了!
+OK~
 
 7. clangd 应该也有直接使用命令行的模式,于是
 
@@ -67,7 +68,16 @@ CompileFlags:
   Add: [-std=c++20,-stdlib=libc++]
 ```
 
-再次使用 clangd 命令行模式,成功!,返回项目,提示正常! clangd 的提示完全按照clang来的... 现在处于没有clangd写不了代码的情况,不知道 gcc以后还咋混~
+再次使用 clangd 命令行模式,成功,返回项目,提示正常。
+## 分析
+
+**场景**:
+1. 我的电脑的默认gcc版本不支持c++20
+2. 我安装了最新版的gcc(g++) 和clang(v=18)，它们支持c++20.
+
+**原因**:
+1. 使用clang 编译，它默认会使用 gnu 的 c++ stdlib 也就是`libstdc++`,但是我默认的gcc 并不支持c++20，所以它会编译错误。
+2. clangd 的表现和clang(++) 相同。
 
 ## 反思
 

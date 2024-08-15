@@ -1,8 +1,9 @@
 <template>
   <div>
-    <img style="border-radius: 50%;width: 150px; margin: auto;" src="../../../asserts/blackcat3.jpeg"></img>
-    <p style="text-align: center;font-size: large;font-weight: bold;margin-top: 10px;">Zerlei</p>
-
+    <div v-if="props.IsShowImg">
+        <img  style="border-radius: 50%;width: 150px; margin: auto;" src="../../../asserts/blackcat3.jpeg"></img>
+        <p style="text-align: center;font-size: large;font-weight: bold;margin-top: 10px;">Zerlei</p>
+    </div>
     <div class="ctitle">#Skills</div>
     <div style="display: flex; justify-content: flex-start; flex-wrap: wrap">
       <div class="ctag" v-for="tag in skill">
@@ -30,14 +31,18 @@
     </div>
     <p style="font-size: small;font-style: italic;
       padding: 5px;border-top: 2px solid #ee4866;margin-top: 5px;
-    ">完成复杂的事情。或者完成简单的事情，但是干净、效率、艺术。</p>
-    <p style="text-align: right;font-size: small;font-style: italic;">-- Me</p>
+    ">完成复杂的事情。或者完成简单的事情，干净、效率、艺术。</p>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-
+ const props = defineProps({
+  IsShowImg:{
+    type:Boolean,
+    default:()=>false
+  }
+})
 const skill = ref([
   "c",
   "c++",
