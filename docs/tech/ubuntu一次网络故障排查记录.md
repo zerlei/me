@@ -1,3 +1,16 @@
+---
+tags:
+    - linux
+keys:
+    - ubuntu
+---
+
+::: info Introduction
+
+记录一次ubuntu云服务器的网络问题排查，重装python时导致 netplan 被卸载。联系腾讯云售后没有得到支持，但是爆了代金券，我给满分~
+
+:::
+
 ## 1. 场景
 
 将机器重启后，就没有及时关注，过两天后连ssh` 发现连不上了，首先检查本地电脑是否有网络，没有问题。然后登陆vnc,检查ssh服务状态。
@@ -20,19 +33,10 @@ sudo iptables -L -n -v
 
 ### 2.1 联系云服务器售后
 
-因为是判断云服务断网(可能硬件故障？)，我不是运维，之前没有碰到这样的事情，联系售后，希望能蹭点经验。
-
-引导页面一副劝退的样子，我选了我出问题的云服务器，一番操作之后，写下了我的问题，然后等待回复。
-
-![请在此添加图片描述](https://developer.qcloudimg.com/http-save/yehe-6978125/e6e125ed22c928a3deca6e2f57e47648.png)
-
-![请在此添加图片描述](https://developer.qcloudimg.com/http-save/yehe-6978125/973dd0479705552d4987e802a57a7d07.png)
-
-![请在此添加图片描述](https://developer.qcloudimg.com/http-save/yehe-6978125/60c367d8a344d5eb955078cfde8d61af.png)
-
-我可以确定腾讯云售后根本没有看我的问题。我选了我的云服务器，我认为腾讯云售后可以得到我的系统是ubuntu，其次我明确描述了，在云服务器上 `ping 8.8.8.8`不通，这就没有DNS的事了，至于让我重启服务器，我不知道他在说什么。
-
-算了，指望不上。
+因为是判断云服务断网(可能硬件故障？)，我不是运维，之前没有碰到这样的事情，联系售后，希望能蹭点经验。过程下来发现，售后指望不上。
+![alt text](image.png)
+![alt text](image-2.png)
+![alt text](image-1.png)
 
 ### 2.2 问题排查
 
@@ -63,9 +67,6 @@ ip -br link show
 ```bash
 ip -s link show eth0
 ```
-
-![请在此添加图片描述](https://developer.qcloudimg.com/http-save/yehe-6978125/ae731dd6d0c674df20b46920b8a2ed85.png)
-
 收发数据包正常，现在可以确定物理网络连接没有问题。
 
 **2. 确定是否有ARP数据**

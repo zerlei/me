@@ -2,10 +2,10 @@
 layout: home
 ---
 
-赵磊，男，94/95出生，工人[^1]，程序员，["唯物主义信仰"](http://opinion.people.com.cn/n/2015/1019/c159301-27711780.html)。
+赵磊，男，90后，工人[^1]，程序员，["唯物主义信仰"](http://opinion.people.com.cn/n/2015/1019/c159301-27711780.html)。
 
 
-<img src="./asserts/me2.png" width="40%" style=" margin: auto;" />
+<img src="./asserts/me2.png" width="20%" style=" margin: auto;" />
 
 <p style="text-align:center; font-style: italic;font-size: small;"> (这张照片拍摄于2014年5月份)</p>
 
