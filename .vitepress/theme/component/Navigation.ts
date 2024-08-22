@@ -15,7 +15,13 @@ export const NavigationData = [
         '这里有很多教程，有些质量非常高，比如关于数据结构和算法，但似乎有些杂乱，这个网站一直安利付费课程',
         'https://www.geeksforgeeks.org/'
       ],
-      ['DZone', 'https://dz2cdn1.dzone.com/themes/dz20/images/favicon.png', '有许多优秀的学习资源，和优秀的博客，特别是关于devops和系统设计，c/c++内容较少', 'https://dzone.com']
+      ['DZone', 'https://dz2cdn1.dzone.com/themes/dz20/images/favicon.png', '有许多优秀的学习资源，和优秀的博客，特别是关于devops和系统设计，c/c++内容较少', 'https://dzone.com'],
+      [
+        'Conventional Commits',
+        'https://www.conventionalcommits.org/favicon.ico',
+        'git commit 非常重要，按照这里的约定去写git commit message',
+        'https://www.conventionalcommits.org/'
+      ]
     ]
   },
 
