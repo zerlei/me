@@ -1,7 +1,7 @@
 #!/usr/bin/env zx
 
 import fs from 'fs'
-console.log("pre-commit 开始执行")
+console.log("pre-push 开始执行")
 const gitfiles = await $`git ls-tree -r --name-only HEAD`;
 
 const files = gitfiles.stdout.split('\n').filter((item) => {
@@ -21,5 +21,5 @@ catch (err) {
 console.error(err)
 }
 await $`git add .`
-await $`git commit -m "chore: auto get files time info" --no-verify`
-console.log("pre-commit 结束执行")
+await $`git commit --amend --no-edit --no-verify`
+console.log("pre-push 结束执行")
