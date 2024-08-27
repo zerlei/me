@@ -1,6 +1,7 @@
-import { globby } from 'globby';
+import {globby} from 'globby';
 import matter from 'gray-matter';
 import fs from 'fs-extra';
+import filesTime from './filesTime.json';
 
 /**
  * 获取sidebar 目录,当目录下的文件包含'_ca'时，将会在此文件下生成一个sidebar 目录
@@ -44,12 +45,15 @@ export async function getPosts() {
       if (despMatch) {
         desp = despMatch[0].replace(/:::\s*info\s*Introduction/, '').replace(':::', '');
       }
-      const { data } = matter(content);
+      const {data} = matter(content);
       data.desp = desp;
+
+      const time = getFilesTime(item)
       //创建时间
-      data.birthtime = state.birthtime.toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' }).split(' ')[0];
+      data.birthtime =  time[0]
+
       //最后修改时间
-      data.mtime = state.mtime.toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' }).split(' ')[0];
+      data.mtime =  time[1]
 
       //如果不包含title将使用文件目录作为title
       if (!data.title) {
@@ -84,6 +88,14 @@ export async function getPosts() {
 function _convertDate(date = new Date().toString()) {
   const json_date = new Date(date).toJSON();
   return json_date.split('T')[0];
+}
+function getFilesTime(fileName) {
+  for (const file of filesTime) {
+    if(file[0] == fileName){
+      return [file[1],file[2]]
+    }
+  }
+  return ['','']
 }
 
 function _compareDate(obj1, obj2) {
