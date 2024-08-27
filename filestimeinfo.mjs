@@ -21,5 +21,5 @@ catch (err) {
 console.error(err)
 }
 await $`git add .`
-await $`git commit -m "auto get files time info" --no-verify`
+//await $`git commit -m "auto get files time info" --no-verify`
 console.log("pre-commit 结束执行")
