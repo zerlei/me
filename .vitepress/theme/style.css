@@ -119,5 +119,10 @@
   padding-left: 8px;
 }
 :root {
-    --vp-c-bg: #f7f4ed;
+  --vp-c-bg: #f7f4ed;
+  --vp-c-bg-alt: #e9e6e0;
+}
+.dark {
+  --vp-c-bg: #1b1b1f;
+  --vp-c-bg-alt: #161618;
 }
