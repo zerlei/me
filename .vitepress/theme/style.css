@@ -125,4 +125,7 @@
 .dark {
   --vp-c-bg: #1b1b1f;
   --vp-c-bg-alt: #161618;
+  --vp-c-text-1: rgba(213,206,205, 0.9);
+  --vp-c-text-2: rgba(235, 235, 245, 0.6);
+  --vp-c-text-3: rgba(235, 235, 245, 0.38);
 }
