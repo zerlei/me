@@ -45,7 +45,7 @@ layout: home
     /* border-top: 1px dashed rgba(150, 150, 150, 0.4); */
     /* line-height: 30px; */
     cursor: pointer;
-    z-index: -10;
+    z-index: 100;
   ">
   <span style="position: relative">
     <a href="https://beian.miit.gov.cn/">豫ICP备2023028578号 </a>
