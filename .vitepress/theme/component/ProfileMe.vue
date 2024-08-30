@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="props.IsShowImg">
-        <img  style="border-radius: 50%;width: 150px; margin: auto;" src="../../../asserts/blackcat3.jpeg"></img>
+        <img  style="width: 200px; margin: auto;-webkit-filter: hue-rotate(90deg);" src="../../../asserts/cat-circle.png"></img>
         <p style="text-align: center;font-size: large;font-weight: bold;margin-top: 10px;">Zerlei</p>
     </div>
     <div class="ctitle">#Skills</div>
