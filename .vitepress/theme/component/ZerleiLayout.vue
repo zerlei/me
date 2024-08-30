@@ -63,7 +63,7 @@ mermaid.initialize({startOnLoad: false});
 const data = useData();
 const cPage = data.page;
 const posts = data.theme.value.posts;
-const cloak = ref(false)
+const cloak = ref(false);
 // watch(cPage, (n, o) => {
 
 // })
@@ -81,10 +81,10 @@ function setFrontMatter(c) {
 
 const {Layout} = DefaultTheme;
 dayjs.extend(relativeTime);
-setFrontMatter(cPage.value);
 onContentUpdated(async () => {
+  setFrontMatter(cPage.value);
   await mermaid.run();
-  cloak.value = true
+  cloak.value = true;
 });
 
 //TODO gittalk 这个似乎没用
