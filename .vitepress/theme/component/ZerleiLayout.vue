@@ -82,8 +82,8 @@ function setFrontMatter(c) {
 
 const {Layout} = DefaultTheme;
 dayjs.extend(relativeTime);
+setFrontMatter(cPage.value);
 onContentUpdated(async () => {
-  setFrontMatter(cPage.value);
   await mermaid.run();
 });
 
