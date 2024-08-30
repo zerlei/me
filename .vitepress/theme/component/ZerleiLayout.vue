@@ -1,8 +1,7 @@
 <template>
-   <!-- 不在docs目录里，使用特殊页面布局 -->
-  <Layout :class="frontMatter.title?'':'m-special-layout'">
-    <template #nav-bar-content-before>
-    </template>
+  <!-- 不在docs目录里，使用特殊页面布局 -->
+  <Layout v-show="cloak" :class="frontMatter.title ? '' : 'm-special-layout'">
+    <template #nav-bar-content-before> </template>
     <template #doc-before>
       <div v-if="frontMatter.title">
         <h1 class="title">{{ frontMatter.title }}</h1>
@@ -64,7 +63,7 @@ mermaid.initialize({startOnLoad: false});
 const data = useData();
 const cPage = data.page;
 const posts = data.theme.value.posts;
-
+const cloak = ref(false)
 // watch(cPage, (n, o) => {
 
 // })
@@ -85,6 +84,7 @@ dayjs.extend(relativeTime);
 setFrontMatter(cPage.value);
 onContentUpdated(async () => {
   await mermaid.run();
+  cloak.value = true
 });
 
 //TODO gittalk 这个似乎没用
