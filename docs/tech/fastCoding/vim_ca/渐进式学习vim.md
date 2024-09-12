@@ -54,3 +54,7 @@ keys:
 ### 使用在insert mode 的快捷键
 
 `insert mode` 下也有许多快捷键。
+
+### 使用AI 工具
+
+neovim 的配置和概念非常多，向ai描述你的需求会十分有用。
