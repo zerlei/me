@@ -21,5 +21,5 @@ catch (err) {
 console.error(err)
 }
 await $`git add .`
-await $`git commit --amend --no-edit --no-verify`
+await $`git commit --amend --no-edit`
 console.log("pre-push 结束执行")
