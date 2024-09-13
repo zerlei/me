@@ -1,6 +1,9 @@
+---
+  - comfortable coding
 keys:
   - 编程环境
 ---
+
 ::: info Introduction
 
 记录一些快捷键的设置。
