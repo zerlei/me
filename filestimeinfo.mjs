@@ -1,7 +1,8 @@
 #!/usr/bin/env zx
 
 import fs from 'fs';
-console.log(process.env.SKIP_POST_COMMIT)
+const SKIP_POST_COMMIT = await $`echo $SKIP_POST_COMMIT`
+console.log(SKIP_POST_COMMIT.stdout)
 //if (process.env.SKIP_POST_COMMIT == 'true') {
 //  await $`SKIP_POST_COMMIT=false`;
 //} else {
