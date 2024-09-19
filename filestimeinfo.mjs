@@ -1,7 +1,7 @@
 #!/usr/bin/env zx
 
 import fs from 'fs'
-console.log("pre-push 开始执行")
+console.log("post-commit 开始执行")
 const gitfiles = await $`git ls-tree -r --name-only HEAD`;
 
 const files = gitfiles.stdout.split('\n').filter((item) => {
@@ -22,4 +22,4 @@ console.error(err)
 }
 await $`git add .`
 await $`git commit --amend --no-edit --no-verify`
-console.log("pre-push 结束执行")
+console.log("post-commit 结束执行")
