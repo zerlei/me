@@ -3,21 +3,24 @@
     <div style="position: relative; max-width: 1376px; margin: auto">
       <div :style="filterContainerStyle">
         <!-- ctrl+ 点击 切换是否 导出 export全部文章  -->
-        <input placeholder="filter title||keywords||brief " v-model="filter" style="width: 100%" @click.ctrl="() => {
-          blogExport = !blogExport;
-        }
-        " />
+        <input placeholder="filter title||keywords||brief " v-model="filter" style="width: 100%" @click.ctrl="switchBlogs" />
         <div style="display: flex; justify-content: flex-start; flex-wrap: wrap">
-          <Tags v-for="g in currentTags" @click="setChoiceGroupItem(g.tag)" :title="g.tag"
-            :count="filterGroupChildCount(g.Children)" :focus="isItemChoice(g.tag)" :show-count="true" :radius="true">
+          <Tags
+            v-for="g in currentTags"
+            @click="setChoiceGroupItem(g.tag)"
+            :title="g.tag"
+            :count="filterGroupChildCount(g.Children)"
+            :focus="isItemChoice(g.tag)"
+            :show-count="true"
+            :radius="true"
+          >
           </Tags>
         </div>
       </div>
 
       <!-- <div id="blogItemsContainer" class="scrollArea"> -->
-      <DynamicScroller class="scrollArea" :items="filterGroupChild(currentGroup.Children)" :min-item-size="140"
-        ref="scroller" :emit-update="true" @update="onScrollUpdate">
-        <template v-slot="{ item, index, active }">
+      <DynamicScroller class="scrollArea" :items="filterGroupChild(currentGroup.Children)" :min-item-size="140" ref="scroller" :emit-update="true" @update="onScrollUpdate">
+        <template v-slot="{item, index, active}">
           <DynamicScrollerItem :item="item" :active="active" :data-index="index">
             <BlogItems :item="item" v-on:click="routeGo(item)"> </BlogItems>
           </DynamicScrollerItem>
@@ -27,7 +30,9 @@
       <!-- </div> -->
       <ProfileMe :-is-show-img="true" :style="profileMeStyle"></ProfileMe>
     </div>
-    <div id="footer" style="
+    <div
+      id="footer"
+      style="
         bottom: 0;
         left: 0;
         width: 100%;
@@ -39,7 +44,8 @@
         /* line-height: 30px; */
         cursor: pointer;
         z-index: 999;
-      ">
+      "
+    >
       <span style="position: relative">
         <a href="https://beian.miit.gov.cn/">豫ICP备2023028578号 </a>
       </span>
@@ -51,15 +57,21 @@
   </div>
 </template>
 <script setup>
-import { ref, watch, onMounted, computed, onBeforeMount, nextTick } from 'vue';
+import {ref, watch, onMounted, computed, onBeforeMount, nextTick} from 'vue';
 import Tags from './Tags.vue';
 import ProfileMe from './ProfileMe.vue';
 import BlogItems from './BlogItems.vue';
 //commonJs 报错？ 错误信息推荐使用这种导入。
-import { useData, withBase } from 'vitepress';
-import { DynamicScroller, DynamicScrollerItem } from 'vue-virtual-scroller';
+import {useData, withBase} from 'vitepress';
+import {DynamicScroller, DynamicScrollerItem} from 'vue-virtual-scroller';
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css';
 const blogExport = ref(true);
+function switchBlogs() {
+  blogExport.value = !blogExport.value;
+  if (!blogExport.value) {
+    alert('一定是特别的缘分~');
+  }
+}
 const scroller = ref({});
 let isMounted = false;
 function onScrollUpdate(viewStartIndex, viewEndIndex, visibleStartIndex, visibleEndIndex) {
@@ -67,11 +79,11 @@ function onScrollUpdate(viewStartIndex, viewEndIndex, visibleStartIndex, visible
     localStorage.setItem('ScrollVisibleStartIndex', visibleStartIndex);
   }
 }
-const { theme } = useData();
+const {theme} = useData();
 const filter = ref('');
-const choiceGroupItem = ref('all')
+const choiceGroupItem = ref('all');
 function setChoiceGroupItem(tag) {
-  choiceGroupItem.value = tag
+  choiceGroupItem.value = tag;
   localStorage.setItem('choiceGroupItem', choiceGroupItem.value);
 }
 
@@ -236,8 +248,7 @@ onMounted(() => {
   });
 });
 onBeforeMount(() => {
-
-  choiceGroupItem.value = localStorage.getItem('choiceGroupItem') || 'all'
+  choiceGroupItem.value = localStorage.getItem('choiceGroupItem') || 'all';
   if (localStorage.getItem('blogExport') == 'false') {
     blogExport.value = false;
   } else {
