@@ -14,7 +14,7 @@ void (*busyUntilSleep)() = f;
 int main(int, char **) {
   using namespace std::chrono_literals;
   while (alive) {
-    std::this_thread::sleep_for(1.5s);
+    std::this_thread::sleep_for(8.5h);
     std::cout << "今天真好啊~\n";
     busyUntilSleep();
   }
