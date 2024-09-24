@@ -5,16 +5,18 @@ layout: home
 ```cpp
 #include <iostream>
 #include <thread>
+#include "other.hpp"
 auto alive = true;
+void (*busyUntilSleep)() = f;
 /*void toDeath() {*/
 /*  alive = false;*/
 /*}*/
-
 int main(int, char **) {
   using namespace std::chrono_literals;
   while (alive) {
-    std::this_thread::sleep_for(8.5h);
+    std::this_thread::sleep_for(1.5s);
     std::cout << "今天真好啊~\n";
+    busyUntilSleep();
   }
   return -1;
 }
