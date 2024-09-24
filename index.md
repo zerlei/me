@@ -3,11 +3,21 @@ layout: home
 ---
 
 ```cpp
-#include<iostream>
-int main () {
-    std::cout<<"吃饭了没?\n";
-}
+#include <iostream>
+#include <thread>
+auto alive = true;
+/*void toDeath() {*/
+/*  alive = false;*/
+/*}*/
 
+int main(int, char **) {
+  using namespace std::chrono_literals;
+  while (alive) {
+    std::this_thread::sleep_for(8.5h);
+    std::cout << "今天真好啊~\n";
+  }
+  return -1;
+}
 ```
 ## Profile
 赵磊，男，90后，程序员，["唯物主义信仰"](http://opinion.people.com.cn/n/2015/1019/c159301-27711780.html)。
