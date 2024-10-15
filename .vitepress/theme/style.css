@@ -67,9 +67,9 @@
   /* font-weight: light; */
   /* font-style: italic; */
 }
-.mermaid {
+/* .mermaid {
   background-color: #fcffba;
-}
+} */
 .vp-doc h1 {
   &::before {
     position: absolute;

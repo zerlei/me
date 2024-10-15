@@ -6,8 +6,7 @@
       <div v-if="frontMatter.title">
         <h1 class="title">{{ frontMatter.title }}</h1>
         <div style="display: flex; flex-wrap: wrap; margin-bottom: 5px">
-          <div
-            style="
+          <div style="
               background-color: rgba(32, 128, 240, 0.12);
               color: #2080f0;
               padding-left: 10px;
@@ -19,13 +18,10 @@
               border-radius: 2px;
               line-height: normal;
               margin-bottom: 5px;
-            "
-            v-for="tag in frontMatter.tags || []"
-          >
+            " v-for="tag in frontMatter.tags || []">
             {{ tag }}
           </div>
-          <div
-            style="
+          <div style="
               background-color: rgba(32, 128, 240, 0.12);
               color: #2080f0;
               padding-left: 10px;
@@ -37,9 +33,7 @@
               border-radius: 15px;
               line-height: normal;
               margin-bottom: 5px;
-            "
-            v-for="key in frontMatter.keys || []"
-          >
+            " v-for="key in frontMatter.keys || []">
             {{ key }}
           </div>
         </div>
@@ -56,10 +50,8 @@
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import DefaultTheme from 'vitepress/theme';
-import {useData, onContentUpdated} from 'vitepress';
-import {ref} from 'vue';
-import mermaid from 'mermaid';
-mermaid.initialize({startOnLoad: false});
+import { useData, onContentUpdated } from 'vitepress';
+import { ref } from 'vue';
 const data = useData();
 const cPage = data.page;
 const posts = data.theme.value.posts;
@@ -79,11 +71,10 @@ function setFrontMatter(c) {
 }
 //ToDO 合并
 
-const {Layout} = DefaultTheme;
+const { Layout } = DefaultTheme;
 dayjs.extend(relativeTime);
 onContentUpdated(async () => {
   setFrontMatter(cPage.value);
-  await mermaid.run();
   cloak.value = true;
 });
 

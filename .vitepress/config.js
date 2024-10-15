@@ -1,10 +1,13 @@
 import AutoSidebar from 'vite-plugin-vitepress-auto-sidebar';
 // import htmlImport from './plugin/vitehtml';
 import { filterDocsSideBar, getPosts } from './utils';
-import markdownItTextualUml from 'markdown-it-textual-uml';
+// import MarkdownItDiagrams from 'markdown-it-diagram'
+// import markdownItTextualUml from 'markdown-it-textual-uml';
 import markdownFootnote from 'markdown-it-footnote';
+import  MarkdownItPlantUml from './theme/lib/plantuml';
+import { withMermaid } from "vitepress-plugin-mermaid";
 // https://vitepress.dev/reference/site-config
-export default {
+export default withMermaid({
   head: [['link', { rel: 'icon', href: '/zerlei.svg' }]],
   title: 'Zerlei',
   lang: 'zh-cn',
@@ -69,11 +72,12 @@ export default {
   },
   markdown: {
     config: (md) => {
-      md.use(markdownItTextualUml);
+      // md.use(markdownItTextualUml);
       md.use(markdownFootnote);
+      md.use(MarkdownItPlantUml)
     }
   }
-};
+});
 // export default({
 //
 //   // mermaid: {
