@@ -64,5 +64,3 @@ ddb[(开发/测试数据库)]
 2. 测试服务器需要完整的项目构建生产环境
 3. 需要sqlpackage来提取、发布数据库。
 
-
-具体详情[wiki](https://github.com/zhengyuanzhi/FileSqlServerSync/wiki)
