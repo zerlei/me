@@ -9,12 +9,13 @@ key:
 
 ::: info Introduction
 
-我在错误的方向前进，我要回头。我错了。
+一个用于asp.net 项目集成发布的工具，它使用c#开发。它的作用是使不方便使用docker嵌入到现代CI/CD 流程的旧的asp.net framework 项目发布自动化。 
 
 :::
 
 
-一个用于asp.net 项目集成发布的工具，它使用c#开发。它的作用是使不方便使用docker嵌入到现代CI/CD 流程的旧的asp.net framework 项目发布自动化。 
+![alt text](image-1.png)
+
 
 它的功能包含：
 
@@ -55,7 +56,7 @@ ddb[(开发/测试数据库)]
 
 - 通信基于http,需要在在服务器开启特定的端口
 - LocalServer 与 RemoteServer 的通信使用AES加密
-- 差异问价加密压缩
+- 差异文件加密压缩
 
 使用环境：
 
