@@ -2,8 +2,7 @@
 
 import type {LangType, PlantumlOptions} from './types.ts';
 
-import deflate from './deflate';
-
+import * as plantUmlEncoder from 'plantuml-encoder';
 enum SelectorEnum {
   IMG = 'diagram-m',
   MODAL = 'data-diagram-modal',
@@ -35,11 +34,17 @@ const functions = {
     if (!umlCode.startsWith('@start')) {
       umlContent = `@start${diagramName}\n${umlCode}\n@end${diagramName}`;
     }
+    // console.log(umlContent)
+
     const imageFormat = pluginOptions?.imageFormat || 'svg';
     const server = pluginOptions?.server || 'https://www.plantuml.com/plantuml';
-    const zippedCode = deflate.zip_deflate(umlContent, 9);
-    const base64Encoded = deflate.encode64(zippedCode);
-    return `${server}/${imageFormat}/${base64Encoded}`;
+    //console.log(encodeURIComponent(umlContent))
+    //console.log(unescape(encodeURIComponent(umlContent)))
+    //console.log(decodeURIComponent(encodeURIComponent(umlContent)))
+    //const zippedCode = deflate.zip_deflate(unescape(encodeURIComponent(umlContent)), 9);
+    //const base64Encoded = deflate.encode64(zippedCode);
+    // const base64Encoded = "AqXCpavCJrLGAaWiIiqhKLAevb800hXmSaPcJegXaeADJL1gSabYNdfEgfqTI0b88HHmWLcrM3GQ0Ss3oTPoeSd5WurrIIn9J4ei1feAL0fKn0MJLD3LrLQ0S1Ii59xsj3wVrVAqVzcJ7GtFb_S2kKydh7usRUUppLEvkE0cEq9T1JJ7KK5NJzSEOO2DJMPkGNvH2T3r23kGr1Y2rIGc9wSM5zlP0G00"
+    return `${server}/${imageFormat}/${plantUmlEncoder.encode(umlContent)}`;
   }
 };
 

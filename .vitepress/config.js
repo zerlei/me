@@ -23,21 +23,6 @@ export default withMermaid({
       {
         src: 'https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js'
       }
-    ],
-    [
-      'script',
-      {},
-      `
-        const script = document.createElement("script");
-        script.defer = "";
-        script.sync = "";
-        script.src = "https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js";
-        document.body.append(script);
-        const link = document.createElement("link");
-        link.rel = "stylesheet";
-        link.href = "https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css";
-        document.head.append(link);
-      `
     ]
   ],
   title: 'Zerlei',
