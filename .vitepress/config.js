@@ -35,7 +35,7 @@ export default withMermaid({
       {text: 'home', link: '/'},
       {text: 'blogs', link: '/blog'},
       {text: 'navigation', link: '/navigation'},
-      {text: 'projects', link: '/project'}
+      {text: 'projects', link: '/docs/tech/project_ca/目录.html'}
     ],
     // search: {
     //   provider: "local",
