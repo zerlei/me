@@ -1,4 +1,5 @@
 ---
+export:true
 tags:
     - linux
 keys:
