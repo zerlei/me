@@ -35,9 +35,9 @@ sudo iptables -L -n -v
 ### 2.1 联系云服务器售后
 
 因为是判断云服务断网(可能硬件故障？)，我不是运维，之前没有碰到这样的事情，联系售后，希望能蹭点经验。过程下来发现，售后指望不上。
-![alt text](image.png)
-![alt text](image-2.png)
-![alt text](image-1.png)
+![alt text](https://cloud.zerlei.cn/f/4LiN/image11.png)
+![alt text](https://cloud.zerlei.cn/f/AAUJ/image-2.png)
+![alt text](https://cloud.zerlei.cn/f/ymtp/image-1.png)
 
 ### 2.2 问题排查
 

@@ -122,6 +122,10 @@
   --vp-c-bg: #FAFAF9;
   --vp-c-bg-alt: #F6F6F7;
 }
+s {
+  text-decoration-thickness: 1.5px;
+  text-decoration-color: #FE6154;
+}
 .dark {
   --vp-c-bg: #1b1b1f;
   --vp-c-bg-alt: #161618;
