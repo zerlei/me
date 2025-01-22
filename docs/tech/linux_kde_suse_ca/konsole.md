@@ -8,7 +8,7 @@ keys:
 
 ::: info Introduction
 
-我使用kde桌面，所以默认的konsole 就是我使用的terminal了。
+我使用kde plasma桌面，所以默认的konsole 就是我使用的terminal了。
 
 :::
 
