@@ -75,7 +75,7 @@ function setFrontMatter(c) {
     })?.frontMatter || {};
   frontMatter.value = match;
 }
-//ToDO 合并
+
 function changeToGrowStyle() {
   if (!document.getElementById('grow')) {
     var NGrow = document.getElementById('ngrow');
@@ -100,8 +100,11 @@ function changeToGrowStyle() {
         .glow-text {
           background: linear-gradient(90deg, #ff0000, #00ff00, #3584ff);
           -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
           -webkit-text-fill-color: transparent;
           animation: glowd 3s infinite !important;
+          text-decoration: underline;
         }
         `;
     document.head.appendChild(style);
