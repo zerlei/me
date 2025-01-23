@@ -100,11 +100,8 @@ function changeToGrowStyle() {
         .glow-text {
           background: linear-gradient(90deg, #ff0000, #00ff00, #3584ff);
           -webkit-background-clip: text;
-          background-clip: text;
-          color: transparent;
           -webkit-text-fill-color: transparent;
-          animation: glowd 3s infinite;
-          text-decoration: underline;
+          animation: glowd 3s infinite !important;
         }
         `;
     document.head.appendChild(style);
