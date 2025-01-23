@@ -119,17 +119,59 @@
   padding-left: 8px;
 }
 :root {
-  --vp-c-bg: #FAFAF9;
-  --vp-c-bg-alt: #F6F6F7;
+  --vp-c-bg: #fafaf9;
+  --vp-c-bg-alt: #f6f6f7;
 }
 s {
   text-decoration-thickness: 1.5px;
-  text-decoration-color: #FE6154;
+  text-decoration-color: #fe6154;
 }
 .dark {
   --vp-c-bg: #1b1b1f;
   --vp-c-bg-alt: #161618;
-  --vp-c-text-1: rgba(213,206,205, 0.9);
+  --vp-c-text-1: rgba(213, 206, 205, 0.9);
   --vp-c-text-2: rgba(235, 235, 245, 0.6);
   --vp-c-text-3: rgba(235, 235, 245, 0.38);
+}
+
+@keyframes glow {
+  0% {
+    text-shadow:
+      0 0 1px #ff0000,
+      0 0 2px #ff0000,
+      0 0 3px #ff0000;
+  }
+  50% {
+    text-shadow:
+      0 0 2px #00ff00,
+      0 0 5px #00ff00,
+      0 0 10px #00ff00;
+    font-size: larger;
+  }
+  100% {
+    text-shadow:
+      0 0 1px #3584ff,
+      0 0 2px #3584ff,
+      0 0 3px #3584ff;
+  }
+}
+.glow-container {
+  position: relative;
+}
+.glow-figer {
+  position: absolute;
+  top: 1em;
+  left: 1.5em;
+  z-index: 100;
+  font-size:40px;
+}
+
+.glow-text {
+  /* font-size: 3rem; */
+   /*font-weight: bold; */
+  background: linear-gradient(90deg, #ff0000, #00ff00, #3584ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glow 3s infinite;
+  text-decoration: underline;
 }
