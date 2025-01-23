@@ -163,14 +163,16 @@ s {
   top: 1em;
   left: 1.5em;
   z-index: 100;
-  font-size:40px;
+  font-size: 40px;
 }
 
 .glow-text {
   /* font-size: 3rem; */
-   /*font-weight: bold; */
+  /*font-weight: bold; */
   background: linear-gradient(90deg, #ff0000, #00ff00, #3584ff);
   -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
   -webkit-text-fill-color: transparent;
   animation: glow 3s infinite;
   text-decoration: underline;
