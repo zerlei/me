@@ -53,9 +53,9 @@ System Settings > Desktop Behavior > Desktop Effects > Mouse Mark
 
 `<meta+l>`: 平铺窗口向右移动。
 
-`<meta+shift+h>`: 窗口移动到屏幕0 通常是左边的屏幕。
+`<meta+shift+h>`: 窗口移动左边的屏幕。
 
-`<meta+shift+l>`: 窗口移动到屏幕1 通常是右边的屏幕。
+`<meta+shift+l>`: 窗口移动右边的屏幕。
 
 `<meta+1/2/3/4>`: 切换到虚拟桌面1/2/3/4。
 
