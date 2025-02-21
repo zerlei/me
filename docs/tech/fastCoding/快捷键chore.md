@@ -1,6 +1,6 @@
 ---
 tags:
-  - comfortable coding
+  - vscode
 keys:
   - 编程环境
 ---

@@ -30,7 +30,7 @@ konsole 的缺点是配置文件都是零散分布的。所以在一个机器上
 
 `ctrl+shift+(/)`: 在右侧/下面创建一个新的split窗口
 
-`shift+Left/Right`: 在tab窗口之间切换。
+`ctrl+[shfit]+tab`: 在tab窗口之间切换。
 
 `ctrl+shift+Left/Right/Top/Bottom`: 在split 窗口之前切换焦点
 

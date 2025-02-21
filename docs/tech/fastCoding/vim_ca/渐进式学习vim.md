@@ -1,7 +1,6 @@
 ---
 tags:
-  - comfortable coding
-  - vim&nvim
+  - vim
 keys:
   - 编程环境
 ---

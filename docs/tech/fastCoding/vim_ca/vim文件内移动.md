@@ -1,7 +1,6 @@
 ---
 tags:
-  - comfortable coding
-  - vim&nvim
+  - vim
 keys:
   - 编程环境
 ---
@@ -10,7 +9,6 @@ keys:
 
 写的操作不能简化，移动的操作可以简化，做到更高的效率。 
 
-牛逼 上面都是用大模型生成的。
 :::
 ## n/v mode 
 
