@@ -75,7 +75,8 @@ export const NavigationData = [
 
       ['Learncpp', 'https://www.learncpp.com/blog/wp-content/uploads/learncpp.png', '系统学习c++语法的最佳网站，你不需要别的参考书了', 'https://www.learncpp.com/'],
 
-      ['pvs-studio', 'https://cdn.pvs-studio.com/static/favicon.ico', 'c/c++,c#的一个静态分析工具，非常优秀的工程师，此网站还有许多优秀的博客内容！', 'https://pvs-studio.com/']
+      ['pvs-studio', 'https://cdn.pvs-studio.com/static/favicon.ico', 'c/c++,c#的一个静态分析工具，非常优秀的工程师，此网站还有许多优秀的博客内容！', 'https://pvs-studio.com/'],
+      ['c++module', 'https://arewemodulesyet.org/favicon.ico', 'c++module进度，看样子普遍用上module还要好长时间🤣...至少等clangd支持了再说吧', 'https://arewemodulesyet.org/']
     ]
   },
   {
