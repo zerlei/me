@@ -22,6 +22,8 @@ catch (err) {
 console.error(err)
 }
 await $`git add .`
+
+// 避免递归调用
 await $`mv ./.git/hooks/post-commit ./.git/hooks/post-commit.bak`
 await $`git commit --amend --no-edit --no-verify`
 await $`mv ./.git/hooks/post-commit.bak ./.git/hooks/post-commit`
