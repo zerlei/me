@@ -47,15 +47,15 @@ System Settings > Desktop Behavior > Desktop Effects > Mouse Mark
 
 `<meta+;>`: 平铺窗口最大。
 
-`<meta+shift+;>`: <meta+\:>平铺窗口最小。
+`<meta+shift+;>/<meta+;>`平铺窗口占面积最大/最小。
 
 `<meta+h>`: 平铺窗口向左移动。
 
 `<meta+l>`: 平铺窗口向右移动。
 
-`<meta+shift+h>`: 窗口移动左边的屏幕。
+`<meta+shift+h>`: 窗口移动到左边的屏幕。
 
-`<meta+shift+l>`: 窗口移动右边的屏幕。
+`<meta+shift+l>`: 窗口移动到右边的屏幕。
 
 `<meta+1/2/3/4>`: 切换到虚拟桌面1/2/3/4。
 
