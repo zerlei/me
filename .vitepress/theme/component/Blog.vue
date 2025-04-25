@@ -3,7 +3,7 @@
     <div style="position: relative; max-width: 1376px; margin: auto">
       <div :style="filterContainerStyle">
         <!-- ctrl+ 点击 切换是否 导出 export全部文章  -->
-        <input placeholder="filter title||keywords||brief " v-model="filter" style="width: 100%" @click.ctrl="switchBlogs" />
+        <input placeholder="filter title||keywords||brief " v-model="filter_" style="width: 100%" @click.ctrl="switchBlogs" />
         <div style="display: flex; justify-content: flex-start; flex-wrap: wrap">
           <Tags
             v-for="g in currentTags"
@@ -81,6 +81,7 @@ function onScrollUpdate(viewStartIndex, viewEndIndex, visibleStartIndex, visible
 }
 const {theme} = useData();
 const filter = ref('');
+const filter_ = ref('');
 const choiceGroupItem = ref('all');
 function setChoiceGroupItem(tag) {
   choiceGroupItem.value = tag;
@@ -174,26 +175,30 @@ function tagsorKeysIncludes(tags, str) {
   return false;
 }
 function filterGroupChild(Children) {
+  console.log(1)
   return Children.filter((e) => {
-    return (
-      e.frontMatter.title.includes(filter.value) ||
-      tagsorKeysIncludes(e.frontMatter.tags, filter.value) ||
-      tagsorKeysIncludes(e.frontMatter.keys, filter.value) ||
-      e.frontMatter.desp.includes(filter.value)
-    );
+    return e
+    //return (
+    //  e.frontMatter.title.includes(filter.value) ||
+    //  tagsorKeysIncludes(e.frontMatter.tags, filter.value) ||
+    //  tagsorKeysIncludes(e.frontMatter.keys, filter.value) ||
+    //  e.frontMatter.desp.includes(filter.value)
+    //);
   });
 }
 function filterGroupChildCount(Children) {
   let count = 0;
   Children.forEach((e) => {
-    if (
-      e.frontMatter.title.includes(filter.value) ||
-      tagsorKeysIncludes(e.frontMatter.tags, filter.value) ||
-      tagsorKeysIncludes(e.frontMatter.keys, filter.value) ||
-      e.frontMatter.desp.includes(filter.value)
-    ) {
-      count++;
-    }
+
+
+    //if (
+    //  e.frontMatter.title.includes(filter.value) ||
+    //  tagsorKeysIncludes(e.frontMatter.tags, filter.value) ||
+    //  tagsorKeysIncludes(e.frontMatter.keys, filter.value) ||
+    //  e.frontMatter.desp.includes(filter.value)
+    //) {
+    //  count++;
+    //}
   });
   return count;
 }

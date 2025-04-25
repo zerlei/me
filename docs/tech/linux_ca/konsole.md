@@ -30,11 +30,15 @@ konsole 的缺点是配置文件都是零散分布的。所以在一个机器上
 
 `ctrl+shift+(/)`: 在右侧/下面创建一个新的split窗口
 
-`ctrl+[shfit]+tab`: 在tab窗口之间切换。
+`shfit+Left/Right/Top/Bottom`: 在tab窗口之间切换。
+
+`ctrl+shift+9/0`: 创建一个 vsplit/split 窗口。
 
 `ctrl+shift+Left/Right/Top/Bottom`: 在split 窗口之前切换焦点
 
 `ctrl+shift+c/v` : 复制/粘贴
+
+`meta+t` : 从屏幕上方呼叫一个抽屉式窗口(YaKuake) 这个非常常用。
 
 
 ![](https://cloud.zerlei.cn/f/B9TE/Screenshot_20250121_224245.png)
