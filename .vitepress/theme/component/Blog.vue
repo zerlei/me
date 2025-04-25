@@ -3,7 +3,7 @@
     <div style="position: relative; max-width: 1376px; margin: auto">
       <div :style="filterContainerStyle">
         <!-- ctrl+ 点击 切换是否 导出 export全部文章  -->
-        <input placeholder="filter title||keywords||brief " v-model="filter_" style="width: 100%" @click.ctrl="switchBlogs" />
+        <input placeholder="filter title||keywords||brief " v-model="filter" style="width: 100%" @click.ctrl="switchBlogs" />
         <div style="display: flex; justify-content: flex-start; flex-wrap: wrap">
           <Tags
             v-for="g in currentTags"
@@ -81,7 +81,13 @@ function onScrollUpdate(viewStartIndex, viewEndIndex, visibleStartIndex, visible
 }
 const {theme} = useData();
 const filter = ref('');
-const filter_ = ref('');
+
+watch(filter, () => {
+  if (filter.value == '@sw') {
+    switchBlogs();
+    filter.value = '';
+  }
+});
 const choiceGroupItem = ref('all');
 function setChoiceGroupItem(tag) {
   choiceGroupItem.value = tag;
@@ -174,31 +180,32 @@ function tagsorKeysIncludes(tags, str) {
   }
   return false;
 }
+
+// 当写完这个，过了很长一段时间，大概有两年把，我搞不懂了这个函数是从哪里调用的
+//对于vue 来说，这是个函数的动态绑定，只要这个页面有v-model的值被改变，所有类似的动态绑定的以函数返回的值都会被调用，所以这个调用过程对于用户是“部分隐藏的”
+// 也就是说，我在我写的代码里面找不到`事件与这个函数的关系`
+// 当时我是怎么知道这个知识点的呢？ 我咋一点印象都没有？:)
 function filterGroupChild(Children) {
-  console.log(1)
   return Children.filter((e) => {
-    return e
-    //return (
-    //  e.frontMatter.title.includes(filter.value) ||
-    //  tagsorKeysIncludes(e.frontMatter.tags, filter.value) ||
-    //  tagsorKeysIncludes(e.frontMatter.keys, filter.value) ||
-    //  e.frontMatter.desp.includes(filter.value)
-    //);
+    return (
+      e.frontMatter.title.includes(filter.value) ||
+      tagsorKeysIncludes(e.frontMatter.tags, filter.value) ||
+      tagsorKeysIncludes(e.frontMatter.keys, filter.value) ||
+      e.frontMatter.desp.includes(filter.value)
+    );
   });
 }
 function filterGroupChildCount(Children) {
   let count = 0;
   Children.forEach((e) => {
-
-
-    //if (
-    //  e.frontMatter.title.includes(filter.value) ||
-    //  tagsorKeysIncludes(e.frontMatter.tags, filter.value) ||
-    //  tagsorKeysIncludes(e.frontMatter.keys, filter.value) ||
-    //  e.frontMatter.desp.includes(filter.value)
-    //) {
-    //  count++;
-    //}
+    if (
+      e.frontMatter.title.includes(filter.value) ||
+      tagsorKeysIncludes(e.frontMatter.tags, filter.value) ||
+      tagsorKeysIncludes(e.frontMatter.keys, filter.value) ||
+      e.frontMatter.desp.includes(filter.value)
+    ) {
+      count++;
+    }
   });
   return count;
 }
