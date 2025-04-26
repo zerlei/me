@@ -42,11 +42,6 @@ export default withMermaid({
     // },
     posts: await getPosts(),
     sidebar: [],
-    // footer: {
-    //   copyright:
-    //     "Copyright © 2019-present Evan You  🫲 等我 有域名，我就换掉有语系",
-    // },
-
     socialLinks: [{icon: 'github', link: 'https://github.com/ZhaoYouYa/me/issues'}],
     outline: 'deep'
   },
