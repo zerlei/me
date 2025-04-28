@@ -31,14 +31,20 @@ export: true
 - KDE Plasma 中可能已经为 `Ctrl+Tab` 分配了窗口或任务切换快捷键。
 (可怕的是我把这个快捷键位，指向了一个不存在的程序，所以什么事情也没发生。)
 ---
+### 2️⃣  输入法快捷键
 
-### 2️⃣ Konsole 应用快捷键层
-
-- Konsole 可能也配置了Ctrl+Tab键位。
+-- 我使用的 fcitx5 输入法可能占用了对应的快捷键
 
 ---
 
-### 3️⃣ 终端层（Konsole → Neovim）
+### 3️⃣ Konsole 应用快捷键层
+
+- Konsole 可能也配置了Ctrl+Tab键位。
+- ssh manager 默认占用了 `ctrl+alt+h`
+
+---
+
+### 4️⃣ 终端层（Konsole → Neovim）
 
 终端本身可能无法区分 \<C-Tab\> 和普通的 \<Tab\>。这是终端层的限制，而不是 Neovim 的问题。
 
@@ -69,7 +75,8 @@ export: true
 
 - 正确的解决顺序是：
   ```
-  系统快捷键 → Konsole 快捷键 → 自定义 escape 序列 → Neovim 映射
+  系统快捷键 → 输入法快捷键 → Konsole 快捷键(插件快捷键) → 自定义 escape 序列 → Neovim 映射
+
   ```
 - 这个方法也适用于其他“疑难键位”如 `<Ctrl+Enter>`、`<Ctrl+Shift+Arrow>` 等。
 

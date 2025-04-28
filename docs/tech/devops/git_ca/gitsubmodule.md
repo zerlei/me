@@ -29,8 +29,7 @@ keys:
 
 ```bash
 
-git submodule add ../sub-repo-path sub-repo-name
-
+git submodule add  subgiturl subgitfilepath
 ```
 在父仓库下会有一个文件 `.gitmodules`，里面记录了子模块的相关信息。
 

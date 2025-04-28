@@ -41,3 +41,7 @@ keys:
 ## i mode
 
 i mode 下通常用来打字，但是也会有一些移动
+
+## 使用 telecope marks 快速预览，查看标记
+
+`<leader>mm`: 打开标记窗口。
