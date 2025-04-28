@@ -76,7 +76,8 @@ export const NavigationData = [
       ['Learncpp', 'https://www.learncpp.com/blog/wp-content/uploads/learncpp.png', '系统学习c++语法的最佳网站，你不需要别的参考书了', 'https://www.learncpp.com/'],
 
       ['pvs-studio', 'https://cdn.pvs-studio.com/static/favicon.ico', 'c/c++,c#的一个静态分析工具，非常优秀的工程师，此网站还有许多优秀的博客内容！', 'https://pvs-studio.com/'],
-      ['c++module', 'https://arewemodulesyet.org/favicon.ico', 'c++module进度，看样子普遍用上module还要好长时间🤣...至少等clangd支持了再说吧', 'https://arewemodulesyet.org/']
+      ['c++module', 'https://arewemodulesyet.org/favicon.ico', 'c++module进度，看样子普遍用上module还要好长时间🤣...至少等clangd支持了再说吧', 'https://arewemodulesyet.org/'],
+      ['gdb debugger', 'https://sourceware.org/gdb/images/archer-fish.ico', 'gdb 的网站，有写的很详细的文档', 'https://sourceware.org/gdb/']
     ]
   },
   {
@@ -107,12 +108,7 @@ export const NavigationData = [
         '人间充满爱的学习平台,质量很高。能在这里找的学习资源，就在这里找吧，很多免费的资源，付费也完全值得，将来有机会的话，可以在这里申请硕士学位，前提是钱和时间都要有',
         'https://www.coursera.org/'
       ],
-      [
-        'csdiy',
-        'https://csdiy.wiki/images/favicon.ico',
-        '计算机自学网站，都是硬核的东西，作者是北大的博士生，学习一点就够了',
-        'https://csdiy.wiki/'
-      ]
+      ['csdiy', 'https://csdiy.wiki/images/favicon.ico', '计算机自学网站，都是硬核的东西，作者是北大的博士生，学习一点就够了', 'https://csdiy.wiki/']
     ]
   }
 ];
