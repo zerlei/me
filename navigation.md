@@ -1,8 +1,11 @@
 ---
 layout: doc
 ---
-# 导航
+::: tip
 
+该导航借鉴了 [maomao](https://github.com/maomao1996) 的<https://github.com/maomao1996/vitepress-nav-template>,其中css样式是原作的复制，在此向作者`maomao`表示感谢，你可以在[这里](https://github.com/maomao1996/vitepress-nav-template)查看版权声明
+
+:::
 
 <style>
 .m-special-layout
@@ -42,10 +45,4 @@ layout: doc
 </style>
 
 <Navigation/>
-
-::: tip
-
-该导航借鉴了 [maomao](https://github.com/maomao1996) 的<https://github.com/maomao1996/vitepress-nav-template>,其中css样式是原作的复制，在此向作者`maomao`表示感谢，你可以在[这里](https://github.com/maomao1996/vitepress-nav-template)查看版权声明
-
-:::
 

@@ -69,7 +69,7 @@ export const NavigationData = [
   },
   {
     title: '🧑🏻‍💻计算机科学',
-    children: ['Hello 算法', 'https://www.hello-algo.com/assets/images/favicon.png', '对于基本的数据结构和算法，不需要其它的了，免费，强大！', 'https://www.hello-algo.com/']
+    children: [['Hello 算法', 'https://www.hello-algo.com/assets/images/favicon.png', '对于基本的数据结构和算法，不需要其它的了，免费，强大！', 'https://www.hello-algo.com/']]
   },
   {
     title: 'c/c++',
