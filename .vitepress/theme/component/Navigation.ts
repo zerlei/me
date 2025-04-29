@@ -68,6 +68,10 @@ export const NavigationData = [
     children: []
   },
   {
+    title: '🧑🏻‍💻计算机科学',
+    children: ['Hello 算法', 'https://www.hello-algo.com/assets/images/favicon.png', '对于基本的数据结构和算法，不需要其它的了，免费，强大！', 'https://www.hello-algo.com/']
+  },
+  {
     title: 'c/c++',
     children: [
       ['isocpp', 'https://isocpp.org/favicon.ico', 'cpp官网？cpp的最新信息和资源', 'https://isocpp.org/'],
@@ -97,7 +101,7 @@ export const NavigationData = [
       ['cloudflare', 'https://dash.cloudflare.com/favicon.ico', '活菩萨！！！ 好用的ssl服务，静态网页托管(github 仓库直连)，数据库，完全免费！', 'https://dash.cloudflare.com/'],
 
       [
-        'REfACTORING',
+        'REFACTORING',
         'https://refactoring.guru/favicon.png',
         '在这个网站中可以学习到设计模式和代码重构，质量非常好，钱相对充足的时候去支持一下作者，可以微信支付宝。',
         'https://refactoring.guru/'
