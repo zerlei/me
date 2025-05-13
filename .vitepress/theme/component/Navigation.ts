@@ -98,7 +98,14 @@ export const NavigationData = [
 
       ['pvs-studio', 'https://cdn.pvs-studio.com/static/favicon.ico', 'c/c++,c#的一个静态分析工具，非常优秀的工程师，此网站还有许多优秀的博客内容！', 'https://pvs-studio.com/'],
       ['c++module', 'https://arewemodulesyet.org/favicon.ico', 'c++module进度，看样子普遍用上module还要好长时间🤣...至少等clangd支持了再说吧', 'https://arewemodulesyet.org/'],
-      ['gdb debugger', 'https://sourceware.org/gdb/images/archer-fish.ico', 'gdb 的网站，有写的很详细的文档', 'https://sourceware.org/gdb/']
+      ['gdb debugger', 'https://sourceware.org/gdb/images/archer-fish.ico', 'gdb 的网站，有写的很详细的文档', 'https://sourceware.org/gdb/'],
+      ['C++ Core Guidelines', 'https://isocpp.github.io/CppCoreGuidelines/cpp_core_guidelines_16b.png', '创造C++的那些人，告诉你如何使用c++', 'https://isocpp.github.io/'],
+      [
+        'SEC CERT C++',
+        'https://wiki.sei.cmu.edu/confluence/s/-a00b01/9012/5bulwo/7/_/favicon.ico',
+        '大名鼎鼎的CMU 安全c++编程规范，重要的是理解为什么',
+        'https://wiki.sei.cmu.edu/'
+      ]
     ]
   },
   {
