@@ -42,7 +42,7 @@ export default withMermaid({
     // },
     posts: await getPosts(),
     sidebar: [],
-    socialLinks: [{icon: 'github', link: 'https://github.com/ZhaoYouYa/me/issues'}],
+    socialLinks: [{icon: 'github', link: 'https://github.com/zerlei'}],
     outline: 'deep'
   },
   vite: {
