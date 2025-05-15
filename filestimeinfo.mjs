@@ -1,9 +1,7 @@
 #!/usr/bin/env zx
 import fs from 'fs'
-console.log("prepare-commit-msg 开始执行")
+console.log("post-commit 开始执行")
 const gitfiles = await $`git ls-tree -r --name-only HEAD`;
-
-await  $`SKIP_POST_COMMIT=true`
 
 const files = gitfiles.stdout.split('\n').filter((item) => {
   return item.includes('.md');
@@ -25,6 +23,6 @@ await $`git add .`
 
 // // 避免递归调用
 // await $`mv ./.git/hooks/post-commit ./.git/hooks/post-commit.bak`
-// await $`git commit --amend --no-edit --no-verify`
+await $`git commit --amend --no-edit --no-verify`
 // await $`mv ./.git/hooks/post-commit.bak ./.git/hooks/post-commit`
-console.log("prepare-commit-msg 结束执行")
+console.log("post-commit 结束执行")
