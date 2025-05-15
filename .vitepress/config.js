@@ -29,7 +29,7 @@ export default withMermaid({
   lang: 'zh-cn',
   description: '🌈A programmer,there are his blogs🌈',
   themeConfig: {
-    // logo:'../asserts/zerlei.svg',
+    logo:'https://cloud.zerlei.cn/f/D5cy/%E4%B8%89%E8%8A%B1%E7%8C%AB.svg',
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       {text: 'home', link: '/'},
