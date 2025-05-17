@@ -105,6 +105,12 @@ export const NavigationData = [
         'https://wiki.sei.cmu.edu/confluence/s/-a00b01/9012/5bulwo/7/_/favicon.ico',
         '大名鼎鼎的CMU 安全c++编程规范，重要的是理解为什么',
         'https://wiki.sei.cmu.edu/'
+      ],
+      [
+        'Learn Modern C++',
+        'https://learnmoderncpp.com/wp-content/uploads/2022/11/cropped-bitmap.png?w=192',
+        '有非常优秀的关于 mordern cpp的 blog,可以作为learncpp的补充',
+        'https://learnmoderncpp.com'
       ]
     ]
   },
