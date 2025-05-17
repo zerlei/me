@@ -1,4 +1,7 @@
 #!/usr/bin/env zx
+// 这个文件 由于 git post-commit hook。
+// 提取当前变更的文件 jjjjj
+
 import fs from 'fs';
 console.log('post-commit 开始执行');
 let oldFiles = [];
@@ -8,6 +11,8 @@ if (fs.existsSync('/home/zerlei/git/me/.vitepress/filesTime.json')) {
 const gitfiles = await $`git status -s`;
 
 const files = gitfiles.stdout.split('\n');
+console.log(files)
+return;
 files.forEach(async (item) => {
   if (item.includes('.md')) {
     let items = item.split(' ');
