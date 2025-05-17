@@ -1,6 +1,5 @@
 #!/usr/bin/env zx
-import fs from 'fs'
-console.log("post-commit 开始执行")
+import fs from 'fs';
 const gitfiles = await $`git ls-tree -r --name-only HEAD`;
 
 const files = gitfiles.stdout.split('\n').filter((item) => {
@@ -14,15 +13,7 @@ for (var file of files) {
   ar.push(ob);
 }
 try {
-  fs.writeFileSync('/home/zerlei/git/me/.vitepress/filesTime.json',JSON.stringify(ar))
+  fs.writeFileSync('/home/zerlei/git/me/.vitepress/filesTime.json', JSON.stringify(ar));
+} catch (err) {
+  console.error(err);
 }
-catch (err) {
-console.error(err)
-}
-await $`git add .`
-
-// // 避免递归调用
-// await $`mv ./.git/hooks/post-commit ./.git/hooks/post-commit.bak`
-await $`git commit --amend --no-edit --no-verify`
-// await $`mv ./.git/hooks/post-commit.bak ./.git/hooks/post-commit`
-console.log("post-commit 结束执行")
