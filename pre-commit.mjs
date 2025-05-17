@@ -3,7 +3,7 @@
 // 提取当前变更的文件 jjjjj
 
 import fs from 'fs';
-console.log('post-commit 开始执行');
+console.log('pre-commit 开始执行');
 let oldFiles = [];
 if (fs.existsSync('/home/zerlei/git/me/.vitepress/filesTime.json')) {
   oldFiles = JSON.parse(fs.readFileSync('/home/zerlei/git/me/.vitepress/filesTime.json', 'utf-8'));
@@ -11,11 +11,11 @@ if (fs.existsSync('/home/zerlei/git/me/.vitepress/filesTime.json')) {
 const gitfiles = await $`git status -s`;
 
 const files = gitfiles.stdout.split('\n');
-files.forEach(async (item) => {
+const promises = files.map(async (item) => {
   if (item.includes('.md')) {
     let items = item.split(' ');
     const name = items[items.length - 1];
-    const addOrModify = items[items.length - 2];
+    const addOrModify = items[0];
     const createTimeResult = await $`git log --pretty=format:"%ai" -- ${name} | tail -1`;
     const modifyTimeResult = await $`git log -1 --pretty=format:"%ai" -- ${name}`;
     const cTime = createTimeResult.stdout.split('+')[0];
@@ -35,6 +35,7 @@ files.forEach(async (item) => {
     }
   }
 });
+await Promise.all(promises);
 try {
   fs.writeFileSync('/home/zerlei/git/me/.vitepress/filesTime.json', JSON.stringify(oldFiles));
 } catch (err) {
