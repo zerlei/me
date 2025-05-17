@@ -1,7 +1,7 @@
 #!/usr/bin/env zx
 import fs from 'fs';
+// 用于生成所有文件的时间信息
 const gitfiles = await $`git ls-tree -r --name-only HEAD`;
-
 const files = gitfiles.stdout.split('\n').filter((item) => {
   return item.includes('.md');
 });
