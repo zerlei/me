@@ -49,7 +49,7 @@ export async function getPosts() {
         const {data} = matter(content);
         data.desp = desp;
 
-        const time = getFilesTime(item);
+        const time = getFilesTime(item.replace('docs/', ''));
         //创建时间
         data.birthtime = time[0];
 
