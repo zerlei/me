@@ -29,7 +29,7 @@ export default withMermaid({
   lang: 'zh-cn',
   description: '🌈A programmer,there are his blogs🌈',
   themeConfig: {
-    logo:'https://cloud.zerlei.cn/f/D5cy/%E4%B8%89%E8%8A%B1%E7%8C%AB.svg',
+    logo: 'https://cloud.zerlei.cn/f/D5cy/%E4%B8%89%E8%8A%B1%E7%8C%AB.svg',
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       {text: 'home', link: '/'},
@@ -52,7 +52,9 @@ export default withMermaid({
         path: '/docs/',
         collapsed: true,
         sideBarResolved: (data) => {
+          // console.log('sideBarResolved', JSON.stringify(data));
           let d = filterDocsSideBar(data);
+          // console.log('after', JSON.stringify(d));
           return d;
         },
         sideBarItemsResolved(data) {

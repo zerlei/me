@@ -1,7 +1,7 @@
 import {globby} from 'globby';
 import matter from 'gray-matter';
 import fs from 'fs-extra';
-import filesTime from './filesTime.json';
+import filesTime from '../docs/filesTime.json';
 
 /**
  * 获取sidebar 目录,当目录下的文件包含'_ca'时，将会在此文件下生成一个sidebar 目录
@@ -12,6 +12,11 @@ export function filterDocsSideBar(item) {
   let beforItems = item;
   let afterItems = {};
   for (const key in beforItems) {
+    if (key.includes('_ca')) {
+      beforItems[key][0].text = key.replace('_ca', '').replaceAll('/', '');
+      afterItems[`/docs${key}`] = beforItems[key];
+      continue;
+    }
     filterDocsSideBarWork(beforItems[key][0].items, afterItems, `/docs${key}`);
   }
   return afterItems;

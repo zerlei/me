@@ -13,7 +13,7 @@ for (var file of files) {
   ar.push(ob);
 }
 try {
-  fs.writeFileSync('/home/zerlei/git/blog-framework/.vitepress/filesTime.json', JSON.stringify(ar));
+  fs.writeFileSync('/home/zerlei/git/blog-framework/docs/filesTime.json', JSON.stringify(ar));
 } catch (err) {
   console.error(err);
 }
