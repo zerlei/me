@@ -70,8 +70,6 @@ export default withMermaid({
           });
           return data;
         }
-        // You can also set options to adjust sidebar data
-        // see option document below
       })
       // htmlImport()
     ],

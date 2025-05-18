@@ -35,37 +35,47 @@ function filterDocsSideBarWork(beforItems, willInsertItems, prefix) {
  */
 export async function getPosts() {
   let paths = await getPostMDFilePaths();
-  let posts = await Promise.all(
-    paths.map(async (item) => {
-      const content = await fs.readFile(item, 'utf-8');
-      const state = fs.statSync(item);
-      //查找文字内容的简介
-      let despMatch = content.match(/:::\s*info\s*Introduction(?:.|\n)*?:::/);
-      let desp = '';
-      if (despMatch) {
-        desp = despMatch[0].replace(/:::\s*info\s*Introduction/, '').replace(':::', '');
-      }
-      const {data} = matter(content);
-      data.desp = desp;
+  let posts = (
+    await Promise.all(
+      paths.map(async (item) => {
+        const content = await fs.readFile(item, 'utf-8');
+        const state = fs.statSync(item);
+        //查找文字内容的简介
+        let despMatch = content.match(/:::\s*info\s*Introduction(?:.|\n)*?:::/);
+        let desp = '';
+        if (despMatch) {
+          desp = despMatch[0].replace(/:::\s*info\s*Introduction/, '').replace(':::', '');
+        }
+        const {data} = matter(content);
+        data.desp = desp;
 
-      const time = getFilesTime(item)
-      //创建时间
-      data.birthtime =  time[0]
+        const time = getFilesTime(item);
+        //创建时间
+        data.birthtime = time[0];
 
-      //最后修改时间
-      data.mtime =  time[1]
+        //最后修改时间
+        data.mtime = time[1];
 
-      //如果不包含title将使用文件目录作为title
-      if (!data.title) {
-        let ar = item.split('/');
-        data.title = ar[ar.length - 1].replace('.md', '');
-      }
-      return {
-        frontMatter: data,
-        regularPath: `/${item.replace('.md', '.html')}`
-      };
-    })
-  );
+        //如果不包含title将使用文件目录作为title
+        if (!data.title) {
+          let ar = item.split('/');
+          data.title = ar[ar.length - 1].replace('.md', '');
+        }
+        return {
+          frontMatter: data,
+          regularPath: `/${item.replace('.md', '.html')}`
+        };
+      })
+    )
+  ).filter((e) => {
+    // 没有写 desp 和 hidden 为 true 的文章将不会被显示
+    if ([null, undefined, ''].includes(e.frontMatter.desp) || e.frontMatter.hidden == true) {
+      // 用于检查哪些文章被过滤掉了
+      // console.log(e.frontMatter.title)
+      return false;
+    }
+    return true;
+  });
   posts.sort(_compareDate);
 
   // let data = [];
@@ -91,11 +101,11 @@ function _convertDate(date = new Date().toString()) {
 }
 function getFilesTime(fileName) {
   for (const file of filesTime) {
-    if(file[0] == fileName){
-      return [file[1],file[2]]
+    if (file[0] == fileName) {
+      return [file[1], file[2]];
     }
   }
-  return ['','']
+  return ['', ''];
 }
 
 function _compareDate(obj1, obj2) {
