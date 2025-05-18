@@ -1,44 +1,48 @@
+> 有很多做blog或者文档网站的方式：
+> 
+> 偏向做项目文档的方式：
+> 
+> - sphinx-doc
+>    - linux kernel 都在使用的文档工具
+> - doxygen
+>    - 非常适合 c++ 的文档生成工具
 
-有很多做blog或者文档网站的方式：
+> 偏向做blog的方式：
+> - hexo
+>    - 应该是大多数人用的 
+>
+> 都还行的：
+>
+> - Docusaurus
+>    - react 生态的一部分
+> - vitepress
+>    - vue 生态
+> - vuepress
+>    - vue 生态，但是 `vitepress` 是下一代
 
-偏向做项目文档的方式：
+我使用的是vitepress，我对vue 更熟悉一点，可以更好的做一些个性化定制。
 
-- sphinx-doc
-    - linux kernel 都在使用的文档工具
-- doxygen
-    - 非常适合 c++ 的文档生成工具
+这个项目本来是作为自用的，但目前已经有两个小伙伴问我这个网站是怎么做的，有人感兴趣十分的不容易！
 
-偏向做blog的方式：
-- hexo
-    - 应该是大多数人用的 
-
-都还行的：
-
-- Docusaurus
-    - react 生态的一部分
-- vitepress
-    - vue 生态
-- vuepress
-    - vue 生态，但是 `vitepress` 是下一代
-
-我使用的是vitepress,原因是我对vue 更熟悉一点，可以更好的做一些个性化定制。这个项目本来是作为自用的，但目前已经有两个小伙伴问我这个网站是怎么做的，有人感兴趣十分的不容易！ 在这里，我把流程具体记录一下，它对我自己也是有帮助的，鄙人不擅长~~奔跑~~前端:)
+在这里，我把流程具体记录一下，它对我自己也是有帮助的，鄙人不擅长~~奔跑~~前端:)
 
 > [!TIP]
 > 许多blog做的非常炫酷，我很喜欢，也很羡慕，但是这需要
-> 1. 非常好的审美(优秀前端的审美都很好！)
+> 1. 非常好的审美(优秀前端的审美都很好！)我🤷🏼‍♂️
 > 2. css 体操，我🤷🏼‍♂️
+>
 > 这个blog网站追求实用，风格以简单为主
 
 ## 准备材料
 
 - 一个github账号
 - 一个cloudflare 账号
-- 一个域名(要花钱，可选，若没有，就只能使用组织的一级域名了，例如：cloudflare 的 https://blog-framework.pages.dev/，但你没有 但你没有 https://zerlei.cn)
-- 一个图床(可选，如果没有，可以把图片资源放到 git repo 里面，这回导致仓库体积变大，发布会变慢)
+- 一个域名(要花钱，可选，若没有，就只能使用组织的一级域名了，例如：cloudflare 的 https://blog-framework.pages.dev/  但你没有 https://zerlei.cn)
+- 一个图床(可选，如果没有，可以把图片资源放到 git repo 里面，这会导致仓库体积变大，发布会变慢)
 
 ## 简介
 
-基于 [vitepress](https://vitepress.dev/)。vitepress 目标是做一个上手即用的文档网站，vitepress的文档在描述对vitepress 个性化定制的方面上，内容较少（目前:2025年5月18日）。如果有一些特别的想法，除了翻文档之外，还需要查找更多的资料。
+基于 [vitepress](https://vitepress.dev/)。vitepress 的目标是做一个上手即用的文档网站，vitepress的文档在描述对vitepress 个性化定制的方面上，内容较少（目前:2025年5月18日）。如果有一些特别的想法，除了翻文档之外，还需要查找更多的资料。
 
 vitepress 提供这些能力:
 
@@ -48,7 +52,7 @@ vitepress 提供这些能力:
 
 除了vitepress的开箱即用标准功能，这个项目还做了下面这些扩展：
 
-1. 写了主页和blogs 的导航页面，可以根据 `tags` 分类，可以根据 `title` `tags` `Introduction`查找和筛选，可以控制blog是否显示到页面上。(vitepress 自带搜索功能，但不好用，有很多其它方案，一个常用的是使用https://www.algolia.com 来爬取页面信息，它提供更详细的搜索)
+1. 写了主页和blogs 的导航页面。可以根据 `tags` 分类，可以根据 `title` `tags` `Introduction`查找和筛选，可以控制blog是否显示在导航页面上。(vitepress 自带搜索功能，但不好用，有很多其它方案，一个常用的是使用https://www.algolia.com 来爬取页面信息，它提供更详细的搜索)
 2. 左侧边导航自动生成。这对于写一系列文章特别有用，它将该系列文章显示到一个目录里面
 3. 修改了一些样式，怎么说，默认的就很好，我改了一点，让我自己感觉更舒服一些
 4. 从git中获取blog的创建时间和修改时间
@@ -67,9 +71,11 @@ gh repo clone zerlei/blog-framework
 # or pure git: git clone https://github.com/zerlei/blog-framework.git
 
 ```
-> [!CUTION]
-> 我把我的docs 也就是我的blog内容作为这个项目的子项目，不要clone 子项目 把`docs/`内容也 clone 了。
+> [!CAUTION]
+> 我把我的`docs` 也就是**我的blog内容**作为这个项目的子项目，不要clone 子项目 把`docs/`内容也 clone 了。
+> 
 > 把`docs` 子仓库作为private 可能更好，但是 cloudflare 免费版，**不支持git 仓库为private的发布**
+> 
 > 我拆分了仓库(之前只有一个仓库)，所以我的blog的创建时间和修改时间，丢失了之前的数据（因为它是从git中提取的）但影响有限，就这样吧～
 
 (可选)将`docs`子仓库设为你自己的子仓库
@@ -112,7 +118,7 @@ bun run docs:dev
 ## 功能
 
 > [!IMPORTANT]
-> 当然，一切的前提是：**应该先熟悉标准的[vitepress](https://vitepress.dev/)内容👍**
+> 当然，一切的前提是：**应该先熟悉标准的[vitepress](https://vitepress.dev/)内容**
 
 ### 1. markdown 文件头格式
 
@@ -155,7 +161,7 @@ keys:
 ![](https://cloud.zerlei.cn/f/Ljtz/Screenshot_20250518_172019-1.png)
 
 
-### 目录chunk
+### 2. 目录chunk
 
 正常的blog 是前后不关联的。如果你为了一个主题写了一系列blogs，你想把它们前后关联起来
 
@@ -176,22 +182,39 @@ keys:
 
 
 ```
-它的效果是这样的：
+**对应的文件夹名称应该添加`_ca`后缀**，它的效果是这样的：
 
 ![](https://cloud.zerlei.cn/f/0WUa/Screenshot_20250518_181758.png)
 
 > [!NOTE]
-> 目录可以嵌套，如果你制定了一个文件夹的blog生成目录(也就是后缀为`_ca`)，它的所有子文件夹也将是目录的一部分。
+> 目录可以嵌套，如果你指定了一个文件夹的blog生成目录(也就是后缀为`_ca`)，它的所有子文件夹也将是目录的一部分。
 
 
-### 绘制dot、plantuml 和 mermaidJs图
+### 3. 绘制dot、plantuml 和 mermaidJs图
 
-按照标准markdown 语法正常，正常写代码块就可以了。
+按照标准markdown 语法正常写代码块就可以了。
 
-plantuml 默认的渲染 server 需要公网。参考 `PlantumlOptions`
+plantuml 默认的渲染 server 需要公网。参考 `PlantumlOptions`(.vitepress/theme/lib/types.ts)
+
+### 4. 控制blog `发布` 和 `未发布`
+
+参考 1. markdown文件头格式。默认是`未发布的`，如果指定了`export: true`，这个blog将变成 `发布的`。
+
+当网站被打开时，只能看到`发布的`内容。如果在搜索框，进行了下列行为之一：
+
+1. ctlr+鼠标左键点击
+2. 输入@sw
+
+blog将在`全部内容` 和 `发布的` 之间切换。
+
+> [!CAUTION]
+> 这只控制相关blog是否在导航页面显示。所有blogs的路由都一直存在（也就是说，一个正确的url可以访问任意的blog，无论它是否标记了`export`，对于`hidden: true`，也是一样的道理） 
+> 
+
+![](https://cloud.zerlei.cn/f/odS0/Screenshot_20250518_215339.png)
 
 
-### 自动获取blog的创建时间，和修改时间
+### 5. 自动获取blog的创建时间，和修改时间
 
 > 最初的时候，这个项目使用系统上的文件创建时间和修改时间。但是git 提取文件信息的时候，不会包含它们；也就是说，当项目重新 clone之后，所有的文件时间信息都是错的。
 
@@ -209,18 +232,91 @@ const modifyTimeResult = await $`git log -1 --pretty=format:"%ai" -- ${file}`;
 
 
 
-#### 使用git hook自动化
+### 6. 使用git hook自动化
 
 这和你的项目结构有关。
 
+自动化流程完成下面的任务：
+
+1. blogs 更新时，自动获取文件的时间信息
+2. push 子仓库之后也就是 `docs`仓库后，把父仓库推送出去（因为发布的hook是在父仓库上的，所以先后顺序是为了避免“异步错误”,也就是避免 `push 了父仓库->触发了发布hook->但是子仓库还没有push 上去->发布错误。`）
+
+自动化流程和这些文件有关:
+
+- `docs`仓库hook: pre-commit
+- `docs`仓库hook: post-commit
+- `docs`仓库hook: pre-push
+- `docs`仓库blogs时间json: filesTime.json
+
+- `blog-framework`仓库：pre-commit.mjs
+- `blog-framework`仓库：post-commit.mjs
+
+除了上面的文件，还有一个文件可能会有帮助：
+
+- `blog-framework`仓库：filestimeinfo.mjs 它用于一次性生成所有的blogs时间信息(pre-commit.mjs 在filesTime.json 的基础上，只更新当前git status 的变动文件信息)
+
+
+整个流程：
+
 
 ```mermaid
-graph TD;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;
+
+graph
+
+subgraph blog-framework[git-repo:blog-framework]
+    docs[git-repo:docs]
+end
+
+docs --githook:pre-commit--> pre-commit[./pre-commit.mjs]
+
+%% blog-framework -.include.-o pre-commit
+
+pre-commit --wirte blogs time info --> filesTime[./filesTime.json]
+
+docs --githook:post-commit--> hook-commit@{ shape: lean-l, label: "add filesTime.json and commit amend" }
+
+docs --githook:pre-push--> stop1@{ shape: lean-l, label: "1.blog-framework pushed" }
+stop1 ----> stop2@{shape: dbl-circ,label: "2.docs pushed"}
+
+
+blog-framework ---->build[npm run build]
+
+build-..-o filesTime
+build --blogs time info -->dists
+
 ```
+感觉十分魔怔，不过最后的效果是：**多余的步骤，一个也没有**
+
+### 7. 使用cloudflare托管页面
+
+cloudflare 是赛博菩萨！！！
+
+使用cloudflare pages 有以下作用：
+
+1. 防止网络攻击
+2. 自动https代理，现在免费的证书有效期只有3个月了，cloudflare 会自动帮你申请证书，这个真的非常方便！！！
+3. 和github集成，push后自动发布
+
+所有我把域名的DNS解析放到了cloudflare 上了
+
+### 8. 做个图床
+
+> 为了静态资源，主要是图片
+
+NAS实在是太多了。
+
+我是这样做的：
+
+1. 拼多多购物 微型工控机+1TB固态硬盘：共计rmb 550左右
+2. 装opensuse 系统
+3. 安装 [cloudreve](https://cloudreve.org/) 服务
+4. cloudflare zero trust DNS解析到cloudreve服务上
+5. frp内网穿透（我有个云服务器，所以有公网ip） -- 为了远程维护，但是我基本每维护过
+6. 插⚡和家庭网络。一个月1到2快的电费
+
+在家庭网络使用内网访问，是非常快的！
+
+我还没有发现过比这个性价比更高的方式，没有人比我更懂性价比:)
 
 
 

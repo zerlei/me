@@ -1,10 +1,9 @@
 ---
 export: true
 tags:
-  - project
-  - web
+  - hello
 keys:
-  - vitepress
+  - word
 ---
 
 ::: info Introduction
