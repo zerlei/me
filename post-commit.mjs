@@ -14,8 +14,9 @@ import fs from 'fs';
 // exit 0
 console.log('post-commit 开始执行');
 // post_commit commit 已经结束了，所以获取的是上一个 commit 的信息
-const last_commit_id = (await $`git rev-parse --short HEAD~`).stdout;
+const last_commit_id = (await $`git rev-parse --short HEAD~`).stdout.replace('\n', '');
 const change_files = JSON.parse(fs.readFileSync(`/tmp/blogs_time${last_commit_id}`, 'utf-8'));
+await $`rm -f /tmp/blogs_time${last_commit_id}`;
 let oldFiles = [];
 if (fs.existsSync('./filesTime.json')) {
   oldFiles = JSON.parse(fs.readFileSync('./filesTime.json', 'utf-8'));

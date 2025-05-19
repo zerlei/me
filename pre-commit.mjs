@@ -133,7 +133,7 @@ await Promise.all(promises);
 console.log('blogs_time_info', blogs_time_info);
 //##### ⬆️ DEBUG INFO
 
-const commit_id = (await $`git rev-parse --short HEAD`).stdout;
+const commit_id = (await $`git rev-parse --short HEAD`).stdout.replace('\n', '');
 fs.writeFileSync(`/tmp/blogs_time${commit_id}`, JSON.stringify(blogs_time_info), 'utf-8');
 
 console.log('post-commit 结束执行');

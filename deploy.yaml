@@ -1,0 +1,40 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone blog-framework
+        run: |
+          echo "clone blog-framework"
+          git clone https://github.com/zerlei/blog-framework.git blog-framework
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+            path: blog-framework/docs
+
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install and build
+        run: |
+          echo "install and build"
+          cd blog-framework
+          bun install
+          bun run docs:build
+
+      - name: Deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy blog-framework/.vitepress/dist --project-name=blogs-from-github
