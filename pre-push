@@ -1,0 +1,30 @@
+#!/bin/sh
+
+# if [[ "$GIT_SKIP_PRE_PUSH_HOOK" == "1" ]]; then
+#   export GIT_SKIP_PRE_PUSH_HOOK=0
+#   exit 0
+# fi
+# export GIT_SKIP_PRE_PUSH_HOOK=1
+# if git push; then
+#   echo "[✅] inner push success"
+#   cd ..
+#   if git add . && git commit -m "chore: add or change some blogs" && git push; then
+#     echo "[✅] parent git add and commit and push success"
+#     echo "[✅] all things true but exit 1 beause of there are't post-push hook"
+#     exit 1
+#   else
+#     echo "[❌] parent git add or commit or push failed"
+#     exit 1
+#   fi
+# else
+#   echo "[❌] inner push failed"
+#   exit 1
+# fi
+cd ..
+if git add . && git commit -m "chore: add or change some blogs" && git push; then
+  echo "[✅] parent git add and commit and push success"
+  exit o
+else
+  echo "[❌] parent git add or commit or push failed"
+  exit 1
+fi
