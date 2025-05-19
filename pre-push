@@ -23,7 +23,7 @@
 cd ..
 if git add . && git commit -m "chore: add or change some blogs" && git push; then
   echo "[✅] parent git add and commit and push success"
-  exit o
+  exit 0
 else
   echo "[❌] parent git add or commit or push failed"
   exit 1
