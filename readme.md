@@ -13,13 +13,21 @@
 
 除了vitepress的开箱即用标准功能，这个项目还做了下面这些扩展：
 
-1. 写了主页和blogs 的导航页面。可以根据 `tags` 分类，可以根据 `title` `tags` `Introduction`查找和筛选，可以控制blog是否显示在导航页面上。(vitepress 自带搜索功能，但不好用，有很多其它方案，一个常用的是使用https://www.algolia.com 来爬取页面信息，它提供更详细的搜索)
-2. 左侧边导航自动生成。这对于写一系列文章特别有用，它将该系列文章显示到一个目录里面
-3. 修改了一些样式，怎么说，默认的就很好，我改了一点，让我自己感觉更舒服一些
-4. 从git中获取blog的创建时间和修改时间
-5. 可以绘制 `mermaidJs` 和 `plantuml`
-6. 图片箱，可以放大查看图片
+- 写了主页和blogs 的导航页面。
+    - 可以根据 `tags` 分类
+    - 可以根据 `title` `tags` `Introduction`查找和筛选
+    - 可以控制blog是否显示在导航页面上。
+- 左侧边导航自动生成。这对于写一系列文章特别有用，它将该系列文章显示到一个目录里面
+- 修改了一些样式，怎么说，默认的就很好，我改了一点，让我自己感觉更舒服一些
+- 从git中获取blog的创建时间和修改时间
+- 可以绘制 `mermaid` 和 `plantuml`
+- 图片箱，可以放大查看图片
 
+> [!TIP]
+> vitepress 自带搜索功能，但不好用，有很多其它方案，一个常用的是使用https://www.algolia.com 来爬取页面信息，它提供更详细的搜索
+
+
+> [!NOTE]
 > 有很多做blog或者文档网站的方式：
 > 
 > 偏向做项目文档的方式：
@@ -28,7 +36,7 @@
 >    - linux kernel 都在使用的文档工具
 > - **doxygen**
 >    - 非常适合 c++ 的文档生成工具
-
+> 
 > 偏向做blog的方式：
 > - **hexo**
 >    - 应该是大多数人用的 
@@ -284,8 +292,8 @@ post-commit -..-o tempfile
 
 post-commit --extrat changed blogs time info --> filesTime[docs/filesTime.json]
 
-docs --3.githook:pre-push--> stop1@{ shape: lean-l, label: "blog-framework pushed" }
-stop1 ----> stop2@{shape: lean-l,label: "docs pushed"}
+docs --3.githook:pre-push--> stop1@{ shape: lean-l, label: "repo:blog-framework pushed" }
+stop1 ----> stop2@{shape: lean-l,label: "repo:docs pushed"}
 stop2 ----> github
 
 github --Action-->build{{bun run docs:build}}
@@ -339,4 +347,3 @@ NAS实在是太多了。
 在家庭网络使用内网访问，是非常快的！
 
 我还没有发现过比这个性价比更高的方式:)
-
