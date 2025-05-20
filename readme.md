@@ -1,6 +1,6 @@
 ## 简介
 
-一个基于 [vitepress](https://vitepress.dev/)的blog网站 example。
+一个基于 [vitepress](https://vitepress.dev/)的blog网站example。
 
 > [!TIP]
 > vitepress 的目标是做一个上手即用的文档网站，vitepress的文档在描述对vitepress 个性化定制的方面上，内容较少（目前:2025年5月18日）。如果有一些特别的想法，除了翻文档之外，还需要查找更多的资料。
