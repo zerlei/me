@@ -8,7 +8,8 @@ import About from './component/About.vue';
 import './style.css';
 import Navigation from './component/Navigation.vue';
 import Blog from './component/Blog.vue';
-import ProfileMe from './component/ProfileMe.vue'
+import ProfileMe from './component/ProfileMe.vue';
+import Html from '../plugin/html.vue';
 export default {
   extends: Theme,
   Layout: () => {
@@ -19,9 +20,10 @@ export default {
   enhanceApp({app, router, siteData}) {
     // app.component('History', History);
     app.component('About', About);
-    app.component('Navigation',Navigation);
-    app.component('Blog',Blog);
-    app.component('ProfileMe',ProfileMe);
+    app.component('Navigation', Navigation);
+    app.component('Blog', Blog);
+    app.component('ProfileMe', ProfileMe);
+    app.component('Html', Html);
     // ...
   }
 };
