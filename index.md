@@ -3,22 +3,20 @@ layout: home
 ---
 
 ```cpp
-#include <iostream>
-#include <thread>
-#include "other.hpp"
-auto alive = true;
-void (*busyUntilSleep)() = f;
+import std;
+auto alive{true};
 /*void toDeath() {*/
 /*  alive = false;*/
 /*}*/
-int main(int, char **) {
-  using namespace std::chrono_literals;
-  while (alive) {
-    std::this_thread::sleep_for(8.5h);
-    std::cout << "今天真好啊~\n";
-    busyUntilSleep();
-  }
-  return -1;
+auto busyUntillSleep() -> void;
+auto main(int, char**) -> int {
+    using namespace std::chrono_literals;
+    while (alive) {
+        std::this_thread::sleep_for(8.5h);
+        std::println("今天真好👌啊");
+        busyUntillSleep();
+    }
+    return -1;
 }
 ```
 程序员，["唯物主义信仰"](http://opinion.people.com.cn/n/2015/1019/c159301-27711780.html)。
