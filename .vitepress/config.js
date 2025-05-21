@@ -35,7 +35,10 @@ export default withMermaid({
       {text: 'home', link: '/'},
       {text: 'blogs', link: '/blog'},
       {text: 'navigation', link: '/navigation'},
-      // {text: '<div class="glow-container">🌈<span class="glow-figer">👆 </span> <span class="glow-text">Looking for a job</span>🌈</div>', link: '/docs/tech/project_ca/我的简介.html'}
+      // {
+      //   text: '<div class="glow-container">🌈<span class="glow-figer">👆 </span> <span class="glow-text">Looking for a job</span>🌈</div>',
+      //   link: '/docs/tech/project_ca/1-关于我.html'
+      // }
     ],
     // search: {
     //   provider: "local",
